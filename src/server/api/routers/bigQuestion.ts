@@ -9,6 +9,8 @@ export const bigQuestionRouter = createTRPCRouter({
     const data = await ctx.prisma.bigQuestion.findUnique({
       where: { id },
       select: {
+        body: true,
+        explanation: true,
         smallQuestions: {
           select: {
             body: true,

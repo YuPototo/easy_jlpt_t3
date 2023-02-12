@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // schemas
-const SmallQuestionSchema = z.object({
+export const SmallQuestionSchema = z.object({
   body: z.string().nullish(),
   explanation: z.string().nullish(),
   options: z.array(z.string()),
@@ -15,3 +15,4 @@ export const BigQuestionSchema = z.object({
 });
 
 export type BigQuestionType = z.infer<typeof BigQuestionSchema>;
+export type SmallQuestionType = z.infer<typeof SmallQuestionSchema>;
