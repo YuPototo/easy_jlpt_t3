@@ -7,9 +7,9 @@ import { api } from "../../../../../utils/api";
 const AddSectionPage: NextPage = () => {
   const router = useRouter();
   const query = router.query;
-  const uniqueTitle = query.uniqueTitle as string;
+  const bookTitle = query.bookTitle as string;
 
-  const { data: book } = api.book.byUniqueTitle.useQuery(uniqueTitle);
+  const { data: book } = api.book.byUniqueTitle.useQuery(bookTitle);
 
   const handleSuccess = () => {
     toast.success("添加成功，即将跳转");

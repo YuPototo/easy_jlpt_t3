@@ -6,9 +6,9 @@ import { api } from "../../../../utils/api";
 const Book: NextPage = () => {
   const router = useRouter();
   const query = router.query;
-  const uniqueTitle = query.uniqueTitle as string;
+  const bookTitle = query.bookTitle as string;
 
-  const { data: book } = api.book.byUniqueTitle.useQuery(uniqueTitle);
+  const { data: book } = api.book.byUniqueTitle.useQuery(bookTitle);
 
   // get sections
   const { data: sections } = api.section.byBookId.useQuery(book?.id as string, {
@@ -35,7 +35,7 @@ const Book: NextPage = () => {
             <div>
               <Link
                 className="bg-green-300 p-2"
-                href={`/admin/books/${uniqueTitle}/sections/add`}
+                href={`/admin/books/${bookTitle}/sections/add`}
               >
                 添加一个 Section
               </Link>

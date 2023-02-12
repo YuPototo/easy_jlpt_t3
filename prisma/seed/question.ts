@@ -1,29 +1,19 @@
 import { PrismaClient } from "@prisma/client";
+import { BigQuestionSchema } from "../../src/types/bigQuestion";
 import { z } from "zod";
 
-// schemas
-const SmallQuestionSchema = z.object({
-  body: z.string().optional(),
-  explanation: z.string().optional(),
-  options: z.array(z.string()),
-  answer: z.number().int(),
-});
-
-const BigQuestionSchema = z.object({
-  sectionId: z.string(),
-  seqIndex: z.number(),
-  body: z.string().optional(),
-  explanation: z.string().optional(),
-  smallQuestions: z.array(SmallQuestionSchema).min(1),
-});
-
-export type BigQuestionType = z.infer<typeof BigQuestionSchema>;
+const BigQuestionInputSchema = BigQuestionSchema.merge(
+  z.object({
+    sectionId: z.string(),
+    seqIndex: z.number(),
+  })
+);
 
 // insert function
 
 const prisma = new PrismaClient();
 
-async function createBigQuestion(data: BigQuestionType) {
+async function createBigQuestion(data: z.infer<typeof BigQuestionInputSchema>) {
   const { sectionId, seqIndex, body, explanation, smallQuestions } = data;
   const bigQuestion = await prisma.bigQuestion.create({
     data: {

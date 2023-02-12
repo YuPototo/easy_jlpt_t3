@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { faker } from "@faker-js/faker";
+import { titleToUniqueTitle } from "../../src/server/api/utils";
 
 const prisma = new PrismaClient();
 
@@ -7,19 +7,21 @@ export default async function addSectionByBook(bookId: string) {
   await prisma.section.createMany({
     data: [
       {
-        title: "First Section",
+        title: "Section One",
+        titleInUrl: titleToUniqueTitle("Section One"),
+        seqIndex: 0,
         bookId,
       },
       {
-        title: faker.lorem.words(2),
+        title: "Section Two",
+        titleInUrl: titleToUniqueTitle("Section Two"),
+        seqIndex: 1,
         bookId,
       },
       {
-        title: faker.lorem.words(2),
-        bookId,
-      },
-      {
-        title: faker.lorem.words(2),
+        title: "Section Three",
+        titleInUrl: titleToUniqueTitle("Section Three"),
+        seqIndex: 2,
         bookId,
       },
     ],

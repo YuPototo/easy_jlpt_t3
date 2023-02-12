@@ -28,22 +28,26 @@ model Book {
 
 // Section
 model Section {
-    id          String        @id @default(cuid())
-    title       String
-    bookId      String
-    book        Book          @relation(fields: [bookId], references: [id])
-    BigQuestion BigQuestion[]
+    id           String        @id @default(cuid())
+    title        String
+    bookId       String
+    book         Book          @relation(fields: [bookId], references: [id])
+    bigQuestions BigQuestion[]
+    seqIndex     Int // 排第几位
+    titleInUrl   String // 用于url的title
+
+    @@unique([bookId, titleInUrl])
 }
 
 // model BigQuestion
 model BigQuestion {
-    id            String          @id @default(cuid())
-    body          String?
-    explanation   String?
-    sectionId     String
-    seqIndex      Int // 排第几位
-    section       Section         @relation(fields: [sectionId], references: [id])
-    SmallQuestion SmallQuestion[]
+    id             String          @id @default(cuid())
+    body           String?
+    explanation    String?
+    sectionId      String
+    seqIndex       Int // 排第几位
+    section        Section         @relation(fields: [sectionId], references: [id])
+    smallQuestions SmallQuestion[]
 }
 
 model SmallQuestion {

@@ -1,4 +1,4 @@
-import type { BigQuestionType } from "../question";
+import type { BigQuestionType } from "../../../src/types/bigQuestion";
 
 // data
 export const data: Omit<BigQuestionType, "sectionId" | "seqIndex">[] = [
