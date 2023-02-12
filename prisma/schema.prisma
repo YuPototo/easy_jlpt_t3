@@ -28,8 +28,32 @@ model Book {
 
 // Section
 model Section {
-    id     String @id @default(cuid())
-    title  String
-    bookId String
-    book   Book   @relation(fields: [bookId], references: [id])
+    id          String        @id @default(cuid())
+    title       String
+    bookId      String
+    book        Book          @relation(fields: [bookId], references: [id])
+    BigQuestion BigQuestion[]
+}
+
+// model BigQuestion
+model BigQuestion {
+    id            String          @id @default(cuid())
+    body          String?
+    explanation   String?
+    sectionId     String
+    seqIndex      Int // 排第几位
+    section       Section         @relation(fields: [sectionId], references: [id])
+    SmallQuestion SmallQuestion[]
+}
+
+model SmallQuestion {
+    body          String?
+    explanation   String?
+    options       String[]
+    answer        Int
+    seqIndex      Int
+    bigQuestionId String
+    bigQuestion   BigQuestion @relation(fields: [bigQuestionId], references: [id])
+
+    @@id([bigQuestionId, seqIndex])
 }

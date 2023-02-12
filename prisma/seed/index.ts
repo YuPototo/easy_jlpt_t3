@@ -1,33 +1,20 @@
-import { faker } from "@faker-js/faker";
 import { PrismaClient } from "@prisma/client";
+import { data as bookData } from "./data/book";
+import { data as questionData } from "./data/question";
+import addSectionByBook from "./section";
+import createBigQuestion from "./question";
 
 const prisma = new PrismaClient();
 
 async function main() {
   await addBooks();
   await addSections();
+  await addQuestions();
 }
 
 async function addBooks() {
   await prisma.book.createMany({
-    data: [
-      {
-        title: "N2 Words",
-        uniqueTitle: "n2-words",
-      },
-      {
-        title: "N1 Words",
-        uniqueTitle: "n1-words",
-      },
-      {
-        title: "N3 Words",
-        uniqueTitle: "n3-words",
-      },
-      {
-        title: "N2 Reading",
-        uniqueTitle: "n2-reading",
-      },
-    ],
+    data: bookData,
   });
 }
 
@@ -38,27 +25,22 @@ async function addSections() {
   }
 }
 
-async function addSectionByBook(bookId: string) {
-  await prisma.section.createMany({
-    data: [
-      {
-        title: faker.lorem.words(2),
-        bookId,
-      },
-      {
-        title: faker.lorem.words(2),
-        bookId,
-      },
-      {
-        title: faker.lorem.words(2),
-        bookId,
-      },
-      {
-        title: faker.lorem.words(2),
-        bookId,
-      },
-    ],
-  });
+/**
+ * 每个 section 里都有相同的题目
+ */
+async function addQuestions() {
+  const sections = await prisma.section.findMany();
+  for (const section of sections) {
+    for (let index = 0; index < questionData.length; index++) {
+      const question = questionData[index];
+      if (question === undefined) continue;
+      await createBigQuestion({
+        ...question,
+        sectionId: section.id,
+        seqIndex: index,
+      });
+    }
+  }
 }
 
 main()
