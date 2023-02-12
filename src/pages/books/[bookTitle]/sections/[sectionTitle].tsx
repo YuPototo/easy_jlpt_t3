@@ -6,6 +6,7 @@ import { api } from "../../../../utils/api";
 
 const SectionPracticePage: NextPage = () => {
   const [index, setIndex] = useState(0);
+  const [isDond, setIsDone] = useState(false);
 
   const router = useRouter();
   const query = router.query;
@@ -31,18 +32,32 @@ const SectionPracticePage: NextPage = () => {
     }
   );
 
+  const handleToNext = () => {
+    setIsDone(false);
+    setIndex(index + 1);
+  };
+
+  const handleDone = () => {
+    setIsDone(true);
+  };
+
   return (
     <>
       <main className="flex h-screen flex-col items-center">
         <div>section: {section?.sectionTitle} </div>
-        {bigQuestion ? <BigQuestion data={bigQuestion} /> : <></>}
+        {bigQuestion ? (
+          <BigQuestion data={bigQuestion} onDone={handleDone} />
+        ) : (
+          <></>
+        )}
 
-        <button
-          className="mt-8 bg-blue-100 px-4 py-2"
-          onClick={() => setIndex(index + 1)}
-        >
-          Next
-        </button>
+        {isDond ? (
+          <button className="mt-8 bg-blue-100 px-4 py-2" onClick={handleToNext}>
+            Next
+          </button>
+        ) : (
+          <></>
+        )}
       </main>
     </>
   );

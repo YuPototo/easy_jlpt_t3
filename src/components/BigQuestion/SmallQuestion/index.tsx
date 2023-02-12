@@ -5,19 +5,27 @@ import Option from "./Option";
 
 type Props = {
   data: SmallQuestionType;
+  smallQuestionIndex: number;
 };
 
-const SmallQuestion: React.FC<Props> = ({ data }) => {
-  const { body, explanation, options } = data;
+const SmallQuestion: React.FC<Props> = ({ data, smallQuestionIndex }) => {
+  const { body, explanation, options, answer } = data;
+
   return (
     <div>
       {body ? <Body content={body} /> : <></>}
 
-      <button>
+      <div>
         {options.map((option, index) => (
-          <Option content={option} key={index} />
+          <Option
+            content={option}
+            key={index}
+            smallQuestionIndex={smallQuestionIndex}
+            optionIndex={index}
+            isAnswer={index === answer}
+          />
         ))}
-      </button>
+      </div>
 
       {explanation ? <Explanation content={explanation} /> : <></>}
     </div>
