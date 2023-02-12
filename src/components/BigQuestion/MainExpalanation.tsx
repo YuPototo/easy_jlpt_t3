@@ -3,11 +3,7 @@ type Props = {
 };
 
 const MainExplanation: React.FC<Props> = ({ content }) => {
-  return (
-    <div>
-      <div>Explanation: {content}</div>
-    </div>
-  );
+  return <div className="bg-gree-50 p-2">Explanation: {content}</div>;
 };
 
 export default MainExplanation;

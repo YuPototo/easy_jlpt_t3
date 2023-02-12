@@ -3,11 +3,7 @@ type Props = {
 };
 
 const MainBody: React.FC<Props> = ({ content }) => {
-  return (
-    <div>
-      <div>{content}</div>
-    </div>
-  );
+  return <div className="bg-green-50 p-2">{content}</div>;
 };
 
 export default MainBody;

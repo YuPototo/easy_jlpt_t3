@@ -37,7 +37,12 @@ const SectionPracticePage: NextPage = () => {
         <div>section: {section?.sectionTitle} </div>
         {bigQuestion ? <BigQuestion data={bigQuestion} /> : <></>}
 
-        <button onClick={() => setIndex(index + 1)}>Next</button>
+        <button
+          className="mt-8 bg-blue-100 px-4 py-2"
+          onClick={() => setIndex(index + 1)}
+        >
+          Next
+        </button>
       </main>
     </>
   );
