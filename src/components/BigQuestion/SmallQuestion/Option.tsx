@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { useContext } from "react";
 import { BigQuestionContext } from "..";
+import RichText from "../../../lib/renderer/src/RichText";
 
 type Props = {
   content: string;
@@ -24,12 +25,12 @@ const Option: React.FC<Props> = ({
     <div>
       <button
         className={clsx(
-          "my-4 bg-yellow-50 py-2 px-4",
+          "my-4 py-2 px-4",
           backgroundColor({ isDone, isAnswer, isPicked })
         )}
         onClick={() => optionPicked(smallQuestionIndex, optionIndex)}
       >
-        {content}
+        <RichText data={content} />
       </button>
     </div>
   );

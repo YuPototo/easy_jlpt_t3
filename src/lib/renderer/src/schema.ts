@@ -29,6 +29,8 @@ export const NodeSchema: z.ZodType<RichTextNodeType> = z.union([
 
 export const RootNodesSchema = NodeSchema.array();
 
+export type RootNodesSchemaType = z.infer<typeof RootNodesSchema>;
+
 export function isElement(node: RichTextNodeType): node is RichTextElementType {
   return (node as RichTextElementType).type !== undefined;
 }
