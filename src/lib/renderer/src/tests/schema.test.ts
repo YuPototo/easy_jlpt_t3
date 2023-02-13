@@ -1,4 +1,4 @@
-import { TextSchema, NodeSchema, ElementSchema } from "./schema";
+import { TextSchema, NodeSchema, ElementSchema } from "../schema";
 import { describe, it, expect } from "vitest";
 
 describe("TextSchema", () => {
