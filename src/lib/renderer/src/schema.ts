@@ -8,7 +8,6 @@ export const TextSchema = z.object({
 export type TextType = z.infer<typeof TextSchema>;
 
 /* Element */
-
 export type ElementType = {
   type: string;
   children: NodeType[];
