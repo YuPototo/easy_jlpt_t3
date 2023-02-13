@@ -1,9 +1,11 @@
+import RichText from "../../lib/renderer/src/RichText";
+
 type Props = {
   content: string;
 };
 
 const MainBody: React.FC<Props> = ({ content }) => {
-  return <div className="bg-green-50 p-2">{content}</div>;
+  return <RichText data={content} />;
 };
 
 export default MainBody;

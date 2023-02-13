@@ -1,9 +1,11 @@
+import RichText from "../../lib/renderer/src/RichText";
+
 type Props = {
   content: string;
 };
 
 const MainExplanation: React.FC<Props> = ({ content }) => {
-  return <div className="bg-gree-50 p-2">Explanation: {content}</div>;
+  return <RichText data={content} />;
 };
 
 export default MainExplanation;
