@@ -1,10 +1,11 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { useBookPathParams } from "../../../../hooks/usePath";
+import { useBookPath } from "../../../../hooks/usePath";
 import { api } from "../../../../utils/api";
 
 const Book: NextPage = () => {
-  const { bookTitle } = useBookPathParams();
+  const { bookTitle, router } = useBookPath();
+  const currentPath = router.asPath;
 
   const { data: book } = api.book.byUniqueTitle.useQuery(bookTitle as string, {
     enabled: !!bookTitle,
@@ -28,8 +29,9 @@ const Book: NextPage = () => {
               <div>
                 {sections?.map((section) => (
                   <Link
+                    className="m-2 block p-2"
                     key={section.id}
-                    href={`/admin/books/${bookTitle}/sections/${section.titleInUrl}`}
+                    href={`${currentPath}/sections/${section.titleInUrl}`}
                   >
                     {section.title}
                   </Link>
@@ -39,7 +41,7 @@ const Book: NextPage = () => {
               <div>
                 <Link
                   className="bg-green-300 p-2"
-                  href={`/admin/books/${bookTitle}/sections/add`}
+                  href={`${currentPath}/sections/add`}
                 >
                   添加一个 Section
                 </Link>

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-export function useBookPathParams() {
+export function useBookPath() {
   const router = useRouter();
   const query = router.query;
   const bookTitle = query.bookTitle;
@@ -13,7 +13,7 @@ export function useBookPathParams() {
 }
 
 export function useSectionPath() {
-  const { bookTitle, router } = useBookPathParams();
+  const { bookTitle, router } = useBookPath();
 
   const sectionTitle = router.query.sectionTitle;
 
