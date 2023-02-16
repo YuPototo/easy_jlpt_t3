@@ -4,8 +4,14 @@ type Props = {
   data: string[];
   onAddOption: () => void;
   onRemoveOption: (optionIndex: number) => void;
+  onChangeContent: (optionIndex: number, newContent: string) => void;
 };
-const Options: React.FC<Props> = ({ data, onAddOption, onRemoveOption }) => {
+const Options: React.FC<Props> = ({
+  data,
+  onAddOption,
+  onRemoveOption,
+  onChangeContent,
+}) => {
   return (
     <div>
       {data.map((option, optionIndex) => (
@@ -14,6 +20,7 @@ const Options: React.FC<Props> = ({ data, onAddOption, onRemoveOption }) => {
             title={`选项 ${optionIndex + 1}`}
             content={option}
             onRemove={() => onRemoveOption(optionIndex)}
+            onChange={(newContent) => onChangeContent(optionIndex, newContent)}
           />
         </div>
       ))}

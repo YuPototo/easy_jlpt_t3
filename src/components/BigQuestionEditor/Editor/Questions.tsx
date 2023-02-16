@@ -11,6 +11,7 @@ type Props = {
   onRemovePart: ActionFunction;
   onAddQuestion: () => void;
   onRemoveQuestion: (questionIndex: number) => void;
+  onChangeContent: (partLocation: PartLocation, newContent: string) => void;
 };
 
 const QuestionsEditor: React.FC<Props> = ({
@@ -19,6 +20,7 @@ const QuestionsEditor: React.FC<Props> = ({
   onRemovePart,
   onAddQuestion,
   onRemoveQuestion,
+  onChangeContent,
 }) => {
   return (
     <div className="my-10">
@@ -52,6 +54,12 @@ const QuestionsEditor: React.FC<Props> = ({
                 questionIndex,
               })
             }
+            onChange={(newContent) =>
+              onChangeContent(
+                { position: "question", part: "body", questionIndex },
+                newContent
+              )
+            }
           />
 
           <Options
@@ -71,6 +79,17 @@ const QuestionsEditor: React.FC<Props> = ({
                 optionIndex,
               })
             }
+            onChangeContent={(optionIndex, newContent) =>
+              onChangeContent(
+                {
+                  position: "question",
+                  part: "option",
+                  questionIndex,
+                  optionIndex,
+                },
+                newContent
+              )
+            }
           />
 
           <RemovableEditor
@@ -89,6 +108,12 @@ const QuestionsEditor: React.FC<Props> = ({
                 part: "explanation",
                 questionIndex,
               })
+            }
+            onChange={(newContent) =>
+              onChangeContent(
+                { position: "question", part: "explanation", questionIndex },
+                newContent
+              )
             }
           />
         </div>

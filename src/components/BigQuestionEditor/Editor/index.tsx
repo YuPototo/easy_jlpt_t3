@@ -1,7 +1,7 @@
 import { createRichText } from "../../../lib/renderer/src";
 import type { BigQuestionType } from "../../../types/bigQuestion";
 import RemovableEditor from "./RemovableEditor";
-import QuestionsEditor from "./QuestionsEditor";
+import QuestionsEditor from "./Questions";
 import { createSmallQuestion } from "../intitialData";
 
 type Props = {
@@ -115,6 +115,44 @@ const Editor: React.FC<Props> = ({ data, setData }: Props) => {
     });
   };
 
+  const handleChangeContent = (location: PartLocation, newContent: string) => {
+    if (location.position === "main") {
+      setData({
+        ...data,
+        [location.part]: newContent,
+      });
+    } else if (location.position === "question") {
+      const { questionIndex } = location;
+      const newSmallQuestions = [...smallQuestions];
+      const question = newSmallQuestions[questionIndex];
+      if (!question) {
+        throw new Error(`index ${questionIndex} out of range`);
+      }
+
+      if (location.part === "option") {
+        const { optionIndex } = location;
+
+        if (optionIndex === undefined) {
+          throw new Error("optionIndex is undefined");
+        }
+
+        const newOptions = [...question.options];
+        newOptions[optionIndex] = newContent;
+        question.options = newOptions;
+        setData({
+          ...data,
+          smallQuestions: newSmallQuestions,
+        });
+      } else {
+        question[location.part] = newContent;
+        setData({
+          ...data,
+          smallQuestions: newSmallQuestions,
+        });
+      }
+    }
+  };
+
   return (
     <div>
       <RemovableEditor
@@ -122,6 +160,9 @@ const Editor: React.FC<Props> = ({ data, setData }: Props) => {
         content={body}
         onAdd={() => handleAddPart({ position: "main", part: "body" })}
         onRemove={() => handleRemovePart({ position: "main", part: "body" })}
+        onChange={(newContent) =>
+          handleChangeContent({ position: "main", part: "body" }, newContent)
+        }
       />
 
       <QuestionsEditor
@@ -130,6 +171,7 @@ const Editor: React.FC<Props> = ({ data, setData }: Props) => {
         onRemovePart={(partLocation) => handleRemovePart(partLocation)}
         onAddQuestion={handleAddQuestion}
         onRemoveQuestion={handleRemoveQuestion}
+        onChangeContent={handleChangeContent}
       />
 
       <RemovableEditor
@@ -138,6 +180,12 @@ const Editor: React.FC<Props> = ({ data, setData }: Props) => {
         onAdd={() => handleAddPart({ position: "main", part: "explanation" })}
         onRemove={() =>
           handleRemovePart({ position: "main", part: "explanation" })
+        }
+        onChange={(newContent) =>
+          handleChangeContent(
+            { position: "main", part: "explanation" },
+            newContent
+          )
         }
       />
     </div>
