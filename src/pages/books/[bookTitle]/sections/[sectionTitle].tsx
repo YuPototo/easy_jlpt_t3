@@ -1,23 +1,20 @@
 import type { NextPage } from "next";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import BigQuestion from "../../../../components/BigQuestion";
+import { useSectionPath } from "../../../../hooks/usePath";
 import { api } from "../../../../utils/api";
 
 const SectionPracticePage: NextPage = () => {
   const [index, setIndex] = useState(0);
   const [isDond, setIsDone] = useState(false);
 
-  const router = useRouter();
-  const query = router.query;
-  const bookTitle = query.bookTitle as string;
-  const sectionTitle = query.sectionTitle as string;
+  const { bookTitle, sectionTitle } = useSectionPath();
 
   const { data: section } = api.section.content.useQuery(
     {
       bookTitle,
       sectionTitleInUrl: sectionTitle,
-    },
+    } as { bookTitle: string; sectionTitleInUrl: string },
     {
       enabled: !!bookTitle && !!sectionTitle,
     }
