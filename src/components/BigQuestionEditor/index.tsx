@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { BigQuestionType } from "../../types/bigQuestion";
 import BigQuestion from "../BigQuestion";
 import Editor from "./Editor";
-import INITIAL_BIG_QUESTION from "./intitialData";
+import createBigQuestion from "./intitialData";
 
 type Props = {
   mode: "edit" | "preview";
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const BigQuestionEditor: React.FC<Props> = ({ mode, toggleMode }) => {
-  const [data, setData] = useState<BigQuestionType>(INITIAL_BIG_QUESTION);
+  const [data, setData] = useState<BigQuestionType>(createBigQuestion());
 
   return (
     <div>
