@@ -5,7 +5,7 @@
 import { useState } from "react";
 import type { BigQuestionType } from "../../types/bigQuestion";
 import { BigQuestion } from "../BigQuestion";
-import { Editor } from "./Editor/Editor";
+import { Editor } from "./Editor";
 import { createBigQuestion } from "./intitialData";
 
 type Props = {

@@ -1,11 +1,11 @@
 /**
  * 这是真正的编辑器，它负责渲染题目编辑器的各个部分
  */
-import { createRichText } from "../../../lib/renderer/src";
-import type { BigQuestionType } from "../../../types/bigQuestion";
+import { createRichText } from "../../lib/renderer/src";
+import type { BigQuestionType } from "../../types/bigQuestion";
 import { PartEditor } from "./PartEditor";
 import { QuestionsEditor } from "./Questions";
-import { createSmallQuestion } from "../intitialData";
+import { createSmallQuestion } from "./intitialData";
 
 type Props = {
   data: BigQuestionType;

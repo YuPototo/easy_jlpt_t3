@@ -1,5 +1,5 @@
 import type { PartLocation } from "./Editor";
-import type { SmallQuestionType } from "../../../types/bigQuestion";
+import type { SmallQuestionType } from "../../types/bigQuestion";
 import Options from "./Options";
 import { PartEditor } from "./PartEditor";
 

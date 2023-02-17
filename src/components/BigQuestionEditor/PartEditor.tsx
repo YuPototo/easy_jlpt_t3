@@ -1,7 +1,7 @@
 /**
  * 一个单独的可移除的编辑器
  */
-import { createRichText } from "../../../lib/renderer/src";
+import { createRichText } from "../../lib/renderer/src";
 
 type Props = {
   title: string;
