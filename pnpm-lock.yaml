@@ -20,6 +20,7 @@ specifiers:
   eslint: ^8.30.0
   eslint-config-next: 13.1.6
   formik: ^2.2.9
+  immer: ^9.0.19
   next: 13.1.6
   postcss: ^8.4.14
   prettier: ^2.8.1
@@ -33,6 +34,7 @@ specifiers:
   superjson: 1.9.1
   tailwindcss: ^3.2.0
   typescript: ^4.9.4
+  use-immer: ^0.8.1
   vitest: ^0.28.5
   zod: ^3.20.2
   zod-formik-adapter: ^1.2.0
@@ -47,6 +49,7 @@ dependencies:
   clsx: registry.npmmirror.com/clsx/1.2.1
   csstype: registry.npmmirror.com/csstype/3.1.1
   formik: registry.npmmirror.com/formik/2.2.9_react@18.2.0
+  immer: registry.npmmirror.com/immer/9.0.19
   next: registry.npmmirror.com/next/13.1.6_biqbaboplfbrettd7655fr4n2y
   react: registry.npmmirror.com/react/18.2.0
   react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
@@ -54,6 +57,7 @@ dependencies:
   slate: registry.npmmirror.com/slate/0.90.0
   slate-react: registry.npmmirror.com/slate-react/0.90.0_vfkxdgngtm5gosdcaawdsu5ur4
   superjson: registry.npmmirror.com/superjson/1.9.1
+  use-immer: registry.npmmirror.com/use-immer/0.8.1_immer@9.0.19+react@18.2.0
   zod: registry.npmmirror.com/zod/3.20.6
   zod-formik-adapter: registry.npmmirror.com/zod-formik-adapter/1.2.0_formik@2.2.9+zod@3.20.6
 
@@ -4260,6 +4264,19 @@ packages:
     dependencies:
       punycode: registry.npmmirror.com/punycode/2.3.0
     dev: true
+
+  registry.npmmirror.com/use-immer/0.8.1_immer@9.0.19+react@18.2.0:
+    resolution: {integrity: sha512-OfTFf1pL+ICjjcLPn9+ZnaJO/Yg4MBzYZtACEe2mZ/W2A5col28PNUnwowOAaBuOogACOK/37TU17KgsIhUpOw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/use-immer/-/use-immer-0.8.1.tgz}
+    id: registry.npmmirror.com/use-immer/0.8.1
+    name: use-immer
+    version: 0.8.1
+    peerDependencies:
+      immer: '>=2.0.0'
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0
+    dependencies:
+      immer: registry.npmmirror.com/immer/9.0.19
+      react: registry.npmmirror.com/react/18.2.0
+    dev: false
 
   registry.npmmirror.com/use-sync-external-store/1.2.0_react@18.2.0:
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz}

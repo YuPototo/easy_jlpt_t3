@@ -22,36 +22,6 @@ describe("bigQuestionBodyAdded action", () => {
     };
     expect(finalState).toEqual(expectedState);
   });
-
-  it("should immutably add an empty big question body", () => {
-    const initalState = {
-      data: createBigQuestion(),
-    };
-    expect(initalState.data.body).toBeUndefined();
-    const finalState = reducer(initalState, { type: "bigQuestionBodyAdded" });
-
-    expect(finalState.data.body).toBeDefined();
-
-    const newBigQuestion = createBigQuestion();
-    const expectedState = {
-      data: {
-        body: createRichText(""),
-        ...newBigQuestion,
-      },
-    };
-    expect(finalState).toEqual(expectedState);
-
-    // check if the initalState is mutated
-    expect(initalState.data.body).toBeUndefined();
-
-    // check nested obj is not the same one
-    expect(finalState.data.smallQuestions).not.toBe(
-      initalState.data.smallQuestions
-    );
-    expect(finalState.data.smallQuestions[0]).not.toBe(
-      initalState.data.smallQuestions[0]
-    );
-  });
 });
 
 describe("bigQuestionBodyRemoved action", () => {

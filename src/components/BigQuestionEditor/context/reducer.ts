@@ -10,50 +10,26 @@ type ActionType =
   | { type: "bigQuestionExplanationRemoved" }; // 移除大题解析
 
 export function reducer(state: EditorState, action: ActionType): EditorState {
-  const stateCopy = deepCopyState(state);
   switch (action.type) {
     case "bigQuestionBodyAdded":
       console.log("action: bigQuestionBodyAdded");
-      // todo: find a better way to deep copy and get typescript help
-      return {
-        data: {
-          ...stateCopy.data,
-          body: createRichText(""),
-        },
-      };
+      state.data.body = createRichText("");
+      return state;
     case "bigQuestionBodyRemoved":
       console.log("action: bigQuestionBodyRemoved");
-      return {
-        data: {
-          ...stateCopy.data,
-          body: undefined,
-        },
-      };
+      state.data.body = undefined;
+      return state;
     case "bigQuestionExplanationAdded":
       console.log("action: bigQuestionExplanationAdded");
-      return {
-        data: {
-          ...stateCopy.data,
-          explanation: createRichText(""),
-        },
-      };
+      state.data.explanation = createRichText("");
+      return state;
     case "bigQuestionExplanationRemoved":
       console.log("action: bigQuestionExplanationRemoved");
-      return {
-        data: {
-          ...stateCopy.data,
-          explanation: undefined,
-        },
-      };
-
+      state.data.explanation = undefined;
+      return state;
     default:
       throw new Error("Unknown action type");
   }
 }
 
 export type DispatchFunction = Dispatch<ActionType>;
-
-// todo: find better way to deep copy without using as
-function deepCopyState<T>(state: T): T {
-  return JSON.parse(JSON.stringify(state)) as T;
-}
