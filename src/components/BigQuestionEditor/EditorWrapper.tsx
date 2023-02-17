@@ -1,6 +1,6 @@
 /**
  * Editor Wrapper 有两种模式，编辑和预览
- * 这个 component 里会存储临时的题目数据
+ * 这个 component 负责题目的编辑和展示，它不负责提交。提交由上层的 component 负责。
  */
 import { useState } from "react";
 import type { BigQuestionType } from "../../types/bigQuestion";

@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import AddBookForm from "../../../components/AddBookForm";
+import { AddBookForm } from "../../../components/AddBookForm";
 
 const AdminPage: NextPage = () => {
   const router = useRouter();

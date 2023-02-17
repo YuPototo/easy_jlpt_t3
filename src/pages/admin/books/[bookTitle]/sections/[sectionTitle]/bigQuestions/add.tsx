@@ -1,12 +1,9 @@
 import type { NextPage } from "next";
-import { useState } from "react";
-import { EditorWrapper } from "../../../../../../../components/BigQuestionEditor/EditorWrapper";
+import { EditorWrapper } from "../../../../../../../components/BigQuestionEditor/NewEditorWrapper/NewEditoWrapper";
 import { useSectionPath } from "../../../../../../../hooks/usePath";
 import { api } from "../../../../../../../utils/api";
 
 const AddBigQuestion: NextPage = () => {
-  const [mode, setMode] = useState<"edit" | "preview">("edit");
-
   // get section info
   const { bookTitle, sectionTitle } = useSectionPath();
 
@@ -37,8 +34,6 @@ const AddBigQuestion: NextPage = () => {
 
       <div className="m-4">
         <EditorWrapper
-          mode={mode}
-          toggleMode={() => setMode(mode === "edit" ? "preview" : "edit")}
           onSubmit={() => console.log("todo: 调用添加题目的 api")}
         />
       </div>

@@ -2,6 +2,7 @@ import { z } from "zod";
 
 // schemas
 export const SmallQuestionSchema = z.object({
+  // 使用 nullish 是因为 prisma 会对 nullable field 进行默认值填充
   body: z.string().nullish(),
   explanation: z.string().nullish(),
   options: z.array(z.string()),
