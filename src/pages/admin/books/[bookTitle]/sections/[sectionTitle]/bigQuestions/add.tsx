@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { EditorWrapper } from "../../../../../../../components/BigQuestionEditor/NewEditorWrapper/NewEditoWrapper";
+import { EditorWrapper } from "../../../../../../../components/BigQuestionEditor/NewEditoWrapper";
 import { useSectionPath } from "../../../../../../../hooks/usePath";
 import { api } from "../../../../../../../utils/api";
 

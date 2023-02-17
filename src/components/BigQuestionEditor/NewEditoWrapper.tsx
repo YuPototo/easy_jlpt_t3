@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { EditorProvider } from "../context/EditorContext";
+import { EditorProvider } from "./context/EditorContext";
 import { Editor } from "./Editor";
 import { Operator } from "./Operator";
 import { Previewer } from "./Previewer";
