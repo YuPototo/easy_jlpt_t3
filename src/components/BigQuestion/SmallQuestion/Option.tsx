@@ -10,7 +10,7 @@ type Props = {
   isAnswer: boolean;
 };
 
-const Option: React.FC<Props> = ({
+export const Option: React.FC<Props> = ({
   content,
   smallQuestionIndex,
   optionIndex,
@@ -80,5 +80,3 @@ function backgroundColor({
     return "bg-red-200";
   }
 }
-
-export default Option;

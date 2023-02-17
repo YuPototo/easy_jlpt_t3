@@ -1,4 +1,4 @@
-import RemovableEditor from "./RemovableEditor";
+import { RemovableEditor } from "./RemovableEditor";
 
 type Props = {
   data: string[];

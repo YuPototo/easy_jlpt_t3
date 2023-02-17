@@ -1,7 +1,7 @@
 import { createRichText } from "../../../lib/renderer/src";
 import type { BigQuestionType } from "../../../types/bigQuestion";
-import RemovableEditor from "./RemovableEditor";
-import QuestionsEditor from "./Questions";
+import { RemovableEditor } from "./RemovableEditor";
+import { QuestionsEditor } from "./Questions";
 import { createSmallQuestion } from "../intitialData";
 
 type Props = {
@@ -26,7 +26,7 @@ export type PartLocation =
       optionIndex?: number; // 删除时才需要 option index
     };
 
-const Editor: React.FC<Props> = ({ data, setData }: Props) => {
+export const Editor: React.FC<Props> = ({ data, setData }: Props) => {
   const { body, explanation, smallQuestions } = data;
 
   const handleAddPart = (location: PartLocation) => {
@@ -191,5 +191,3 @@ const Editor: React.FC<Props> = ({ data, setData }: Props) => {
     </div>
   );
 };
-
-export default Editor;

@@ -27,8 +27,6 @@ export function createSmallQuestion() {
   ) as SmallQuestionType;
 }
 
-function createBigQuestion() {
+export function createBigQuestion() {
   return JSON.parse(JSON.stringify(INITIAL_BIG_QUESTION)) as BigQuestionType;
 }
-
-export default createBigQuestion;

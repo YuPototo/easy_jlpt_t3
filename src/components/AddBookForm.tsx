@@ -8,9 +8,9 @@ const BookSchema = z.object({
   title: z.string().min(1).max(30),
 });
 
-const AddBookForm: React.FC<{ onSuccess: (uniqueTitle: string) => void }> = ({
-  onSuccess,
-}) => {
+export const AddBookForm: React.FC<{
+  onSuccess: (uniqueTitle: string) => void;
+}> = ({ onSuccess }) => {
   const addBook = api.book.add.useMutation({
     onSuccess: ({ uniqueTitle }) => {
       onSuccess(uniqueTitle);
@@ -86,5 +86,3 @@ const AddBookForm: React.FC<{ onSuccess: (uniqueTitle: string) => void }> = ({
     </Formik>
   );
 };
-
-export default AddBookForm;

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import type { BigQuestionType } from "../../types/bigQuestion";
-import BigQuestion from "../BigQuestion";
-import Editor from "./Editor";
-import createBigQuestion from "./intitialData";
+import { BigQuestion } from "../BigQuestion";
+import { Editor } from "./Editor";
+import { createBigQuestion } from "./intitialData";
 
 type Props = {
   mode: "edit" | "preview";
@@ -11,7 +11,7 @@ type Props = {
   onSubmit: () => void;
 };
 
-const BigQuestionEditor: React.FC<Props> = ({ mode, toggleMode }) => {
+export const BigQuestionEditor: React.FC<Props> = ({ mode, toggleMode }) => {
   const [data, setData] = useState<BigQuestionType>(createBigQuestion());
 
   return (
@@ -52,5 +52,3 @@ const BigQuestionEditor: React.FC<Props> = ({ mode, toggleMode }) => {
     </div>
   );
 };
-
-export default BigQuestionEditor;

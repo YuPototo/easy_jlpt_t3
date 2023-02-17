@@ -1,7 +1,7 @@
 import type { PartLocation } from ".";
 import type { SmallQuestionType } from "../../../types/bigQuestion";
 import Options from "./Options";
-import RemovableEditor from "./RemovableEditor";
+import { RemovableEditor } from "./RemovableEditor";
 
 export type ActionFunction = (partLocation: PartLocation) => void;
 
@@ -14,7 +14,7 @@ type Props = {
   onChangeContent: (partLocation: PartLocation, newContent: string) => void;
 };
 
-const QuestionsEditor: React.FC<Props> = ({
+export const QuestionsEditor: React.FC<Props> = ({
   questions,
   onAddPart,
   onRemovePart,
@@ -123,5 +123,3 @@ const QuestionsEditor: React.FC<Props> = ({
     </div>
   );
 };
-
-export default QuestionsEditor;

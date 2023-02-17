@@ -8,10 +8,10 @@ const SectionSchema = z.object({
   title: z.string().min(1).max(30),
 });
 
-const AddSectionForm: React.FC<{ bookId: string; onSuccess: () => void }> = ({
-  bookId,
-  onSuccess,
-}) => {
+export const AddSectionForm: React.FC<{
+  bookId: string;
+  onSuccess: () => void;
+}> = ({ bookId, onSuccess }) => {
   const addSection = api.section.add.useMutation({
     onSuccess,
     onError: (err) => {
@@ -85,5 +85,3 @@ const AddSectionForm: React.FC<{ bookId: string; onSuccess: () => void }> = ({
     </Formik>
   );
 };
-
-export default AddSectionForm;

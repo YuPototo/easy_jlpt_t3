@@ -8,7 +8,7 @@ type Props = {
   onChange: (newContent: string) => void;
 };
 
-const RemovableEditor: React.FC<Props> = ({
+export const RemovableEditor: React.FC<Props> = ({
   title,
   content,
   onAdd,
@@ -39,5 +39,3 @@ const RemovableEditor: React.FC<Props> = ({
     </div>
   );
 };
-
-export default RemovableEditor;

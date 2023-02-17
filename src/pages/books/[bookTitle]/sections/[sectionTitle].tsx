@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { useState } from "react";
-import BigQuestion from "../../../../components/BigQuestion";
+import { BigQuestion } from "../../../../components/BigQuestion";
 import { useSectionPath } from "../../../../hooks/usePath";
 import { api } from "../../../../utils/api";
 

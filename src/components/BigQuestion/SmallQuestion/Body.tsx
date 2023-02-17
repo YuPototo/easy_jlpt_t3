@@ -4,8 +4,6 @@ type Props = {
   content: string;
 };
 
-const Body: React.FC<Props> = ({ content }) => {
+export const Body: React.FC<Props> = ({ content }) => {
   return <RichText data={content} />;
 };
-
-export default Body;

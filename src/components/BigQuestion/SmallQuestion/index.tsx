@@ -1,7 +1,7 @@
 import type { SmallQuestionType } from "../../../types/bigQuestion";
-import Body from "./Body";
-import Explanation from "./MainExpalanation";
-import Option from "./Option";
+import { Body } from "./Body";
+import { Explanation } from "./MainExpalanation";
+import { Option } from "./Option";
 
 type Props = {
   data: SmallQuestionType;
