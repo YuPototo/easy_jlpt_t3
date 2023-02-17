@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import AddSectionForm from "../../../../../components/AddSectionForm";
+import { AddSectionForm } from "../../../../../components/AddSectionForm";
 import { api } from "../../../../../utils/api";
 
 const AddSectionPage: NextPage = () => {

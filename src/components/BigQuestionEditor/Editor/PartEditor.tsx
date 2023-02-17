@@ -1,14 +1,17 @@
+/**
+ * 一个单独的可移除的编辑器
+ */
 import { createRichText } from "../../../lib/renderer/src";
 
 type Props = {
   title: string;
   content?: string | null;
-  onAdd?: () => void;
   onRemove: () => void;
   onChange: (newContent: string) => void;
+  onAdd?: () => void; // 有的时候不支持直接添加，比如 option 编辑器
 };
 
-export const RemovableEditor: React.FC<Props> = ({
+export const PartEditor: React.FC<Props> = ({
   title,
   content,
   onAdd,

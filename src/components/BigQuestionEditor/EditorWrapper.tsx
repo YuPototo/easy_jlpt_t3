@@ -1,7 +1,11 @@
+/**
+ * Editor Wrapper 有两种模式，编辑和预览
+ * 这个 component 里会存储临时的题目数据
+ */
 import { useState } from "react";
 import type { BigQuestionType } from "../../types/bigQuestion";
 import { BigQuestion } from "../BigQuestion";
-import { Editor } from "./Editor";
+import { Editor } from "./Editor/Editor";
 import { createBigQuestion } from "./intitialData";
 
 type Props = {
@@ -11,7 +15,7 @@ type Props = {
   onSubmit: () => void;
 };
 
-export const BigQuestionEditor: React.FC<Props> = ({ mode, toggleMode }) => {
+export const EditorWrapper: React.FC<Props> = ({ mode, toggleMode }) => {
   const [data, setData] = useState<BigQuestionType>(createBigQuestion());
 
   return (

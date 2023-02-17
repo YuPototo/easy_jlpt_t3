@@ -1,7 +1,7 @@
-import type { PartLocation } from ".";
+import type { PartLocation } from "./Editor";
 import type { SmallQuestionType } from "../../../types/bigQuestion";
 import Options from "./Options";
-import { RemovableEditor } from "./RemovableEditor";
+import { PartEditor } from "./PartEditor";
 
 export type ActionFunction = (partLocation: PartLocation) => void;
 
@@ -37,7 +37,7 @@ export const QuestionsEditor: React.FC<Props> = ({
             移除小题
           </button>
 
-          <RemovableEditor
+          <PartEditor
             title="题干"
             content={question.body}
             onAdd={() =>
@@ -92,7 +92,7 @@ export const QuestionsEditor: React.FC<Props> = ({
             }
           />
 
-          <RemovableEditor
+          <PartEditor
             title="解析"
             content={question.explanation}
             onAdd={() =>

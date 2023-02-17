@@ -1,4 +1,4 @@
-import { RemovableEditor } from "./RemovableEditor";
+import { PartEditor } from "./PartEditor";
 
 type Props = {
   data: string[];
@@ -16,7 +16,7 @@ const Options: React.FC<Props> = ({
     <div>
       {data.map((option, optionIndex) => (
         <div className="my-4 bg-purple-200 p-2" key={optionIndex}>
-          <RemovableEditor
+          <PartEditor
             title={`选项 ${optionIndex + 1}`}
             content={option}
             onRemove={() => onRemoveOption(optionIndex)}

@@ -1,6 +1,9 @@
+/**
+ * 这是真正的编辑器，它负责渲染题目编辑器的各个部分
+ */
 import { createRichText } from "../../../lib/renderer/src";
 import type { BigQuestionType } from "../../../types/bigQuestion";
-import { RemovableEditor } from "./RemovableEditor";
+import { PartEditor } from "./PartEditor";
 import { QuestionsEditor } from "./Questions";
 import { createSmallQuestion } from "../intitialData";
 
@@ -155,8 +158,9 @@ export const Editor: React.FC<Props> = ({ data, setData }: Props) => {
 
   return (
     <div>
-      <RemovableEditor
-        title="题干"
+      {/* --- 大题题干 --- */}
+      <PartEditor
+        title="大题题干"
         content={body}
         onAdd={() => handleAddPart({ position: "main", part: "body" })}
         onRemove={() => handleRemovePart({ position: "main", part: "body" })}
@@ -165,6 +169,7 @@ export const Editor: React.FC<Props> = ({ data, setData }: Props) => {
         }
       />
 
+      {/* --- 小题 --- */}
       <QuestionsEditor
         questions={smallQuestions}
         onAddPart={(partLocation) => handleAddPart(partLocation)}
@@ -174,7 +179,8 @@ export const Editor: React.FC<Props> = ({ data, setData }: Props) => {
         onChangeContent={handleChangeContent}
       />
 
-      <RemovableEditor
+      {/* --- 大题解析 --- */}
+      <PartEditor
         title="解析"
         content={explanation}
         onAdd={() => handleAddPart({ position: "main", part: "explanation" })}

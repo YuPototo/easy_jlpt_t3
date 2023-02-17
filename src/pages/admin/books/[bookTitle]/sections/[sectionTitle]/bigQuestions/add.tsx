@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { useState } from "react";
-import { BigQuestionEditor } from "../../../../../../../components/BigQuestionEditor";
+import { EditorWrapper } from "../../../../../../../components/BigQuestionEditor/EditorWrapper";
 import { useSectionPath } from "../../../../../../../hooks/usePath";
 import { api } from "../../../../../../../utils/api";
 
@@ -36,7 +36,7 @@ const AddBigQuestion: NextPage = () => {
       </div>
 
       <div className="m-4">
-        <BigQuestionEditor
+        <EditorWrapper
           mode={mode}
           toggleMode={() => setMode(mode === "edit" ? "preview" : "edit")}
           onSubmit={() => console.log("todo: 调用添加题目的 api")}
