@@ -3,7 +3,7 @@ import { createRichText } from "../../../lib/renderer/src/createRichText";
 import { createBigQuestion } from "../intitialData";
 import { reducer } from "./reducer";
 
-describe("bigQuestionBodyAdded action", () => {
+describe("bigQuestionBodyAdded", () => {
   it("should add an empty big question body", () => {
     const initalState = {
       data: createBigQuestion(),
@@ -24,7 +24,7 @@ describe("bigQuestionBodyAdded action", () => {
   });
 });
 
-describe("bigQuestionBodyRemoved action", () => {
+describe("bigQuestionBodyRemoved", () => {
   it("should remove the big question body", () => {
     // first we create a initial state
     const initalState = {
@@ -74,5 +74,31 @@ describe("bigQuestionBodyRemoved action", () => {
     });
 
     expect(finalState.data.body).toBeDefined();
+  });
+});
+
+describe("bigQuestionBodyChanged", () => {
+  it("should change the big question body", () => {
+    // first we create a initial state
+    const initalState = {
+      data: createBigQuestion(),
+    };
+    expect(initalState.data.body).toBeUndefined();
+
+    // then we add the big question body
+    const stateAfterAdd = reducer(initalState, {
+      type: "bigQuestionBodyAdded",
+    });
+
+    expect(stateAfterAdd.data.body).toBeDefined();
+
+    // then we change the big question body
+    const finalState = reducer(stateAfterAdd, {
+      type: "bigQuestionBodyChanged",
+      payload: "hello",
+    });
+
+    expect(finalState.data.body).toBeDefined();
+    expect(finalState.data.body).toEqual(createRichText("hello"));
   });
 });

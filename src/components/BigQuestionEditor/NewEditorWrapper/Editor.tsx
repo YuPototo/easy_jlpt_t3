@@ -15,7 +15,6 @@ export const Editor: React.FC = () => {
   }
 
   const { body, explanation } = data;
-  console.log(body);
 
   return (
     <div>
@@ -25,7 +24,9 @@ export const Editor: React.FC = () => {
         content={body}
         onAdd={() => dispatch({ type: "bigQuestionBodyAdded" })}
         onRemove={() => dispatch({ type: "bigQuestionBodyRemoved" })}
-        onChange={() => console.log("todo")}
+        onChange={(content) =>
+          dispatch({ type: "bigQuestionBodyChanged", payload: content })
+        }
       />
 
       {/* --- 大题解析 --- */}
@@ -34,7 +35,9 @@ export const Editor: React.FC = () => {
         content={explanation}
         onAdd={() => dispatch({ type: "bigQuestionExplanationAdded" })}
         onRemove={() => dispatch({ type: "bigQuestionExplanationRemoved" })}
-        onChange={() => console.log("todo")}
+        onChange={(content) =>
+          dispatch({ type: "bigQuestionExplanationChanged", payload: content })
+        }
       />
     </div>
   );
