@@ -1,5 +1,8 @@
 import { PartEditor } from "./PartEditor";
-import { useEditor, useEditorDispatch } from "./context/EditorContext";
+import {
+  useBigQuestionEditor,
+  useEditorDispatch,
+} from "./context/BigQuestionEditorContext";
 import { removeOption, addOption, changeOption } from "./context/reducer";
 
 type Props = {
@@ -7,17 +10,13 @@ type Props = {
 };
 
 const Options: React.FC<Props> = ({ smallQuestionIndex }) => {
-  const editor = useEditor();
+  const editor = useBigQuestionEditor();
   const dispatch = useEditorDispatch();
 
-  const smallQuestion = editor?.data.smallQuestions[smallQuestionIndex];
+  const smallQuestion = editor.data.smallQuestions[smallQuestionIndex];
 
   if (!smallQuestion) {
-    return <div>Error: 没有 small question 啊</div>;
-  }
-
-  if (!dispatch) {
-    return <div>Error: 没有 dispatch 啊</div>;
+    return <div>Error: 没有第 ${smallQuestionIndex} 个 small question</div>;
   }
 
   const options = smallQuestion.options;

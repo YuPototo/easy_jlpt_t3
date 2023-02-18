@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { EditorProvider } from "./context/EditorContext";
+import { BigQuestionEditorProvider } from "./context/BigQuestionEditorContext";
 import { Editor } from "./Editor";
 import { Operator } from "./Operator";
 import { Previewer } from "./Previewer";
@@ -12,7 +12,7 @@ export const EditorWrapper: React.FC<Props> = () => {
   const [mode, setMode] = useState<"edit" | "preview">("edit");
 
   return (
-    <EditorProvider>
+    <BigQuestionEditorProvider>
       <div className="my-10">
         {mode === "edit" ? <Editor /> : <Previewer />}
       </div>
@@ -21,6 +21,6 @@ export const EditorWrapper: React.FC<Props> = () => {
         mode={mode}
         onToggleMode={() => setMode(mode === "edit" ? "preview" : "edit")}
       />
-    </EditorProvider>
+    </BigQuestionEditorProvider>
   );
 };

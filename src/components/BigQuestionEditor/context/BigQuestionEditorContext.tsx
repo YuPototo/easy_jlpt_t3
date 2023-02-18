@@ -18,25 +18,33 @@ const initialState: EditorState = {
   data: createBigQuestion(),
 };
 /* --- context --- */
-const EditorContext = createContext<EditorState | null>(null);
+const BigQuestionEditorContext = createContext<EditorState>(initialState);
 const EditorDispatchContext = createContext<DispatchFunction | null>(null);
 
-export function EditorProvider({ children }: { children: React.ReactNode }) {
+export function BigQuestionEditorProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [data, dispatch] = useImmerReducer(reducer, initialState);
 
   return (
-    <EditorContext.Provider value={data}>
+    <BigQuestionEditorContext.Provider value={data}>
       <EditorDispatchContext.Provider value={dispatch}>
         {children}
       </EditorDispatchContext.Provider>
-    </EditorContext.Provider>
+    </BigQuestionEditorContext.Provider>
   );
 }
 
-export function useEditor() {
-  return useContext(EditorContext);
+export function useBigQuestionEditor() {
+  return useContext(BigQuestionEditorContext);
 }
 
 export function useEditorDispatch() {
-  return useContext(EditorDispatchContext);
+  const dispatch = useContext(EditorDispatchContext);
+  if (!dispatch) {
+    throw new Error("dispatch is undefined");
+  }
+  return dispatch;
 }

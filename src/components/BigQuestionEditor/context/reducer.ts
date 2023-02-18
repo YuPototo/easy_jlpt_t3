@@ -2,7 +2,7 @@ import type { Dispatch } from "react";
 // 必须从源文件引入 createRichText，否则单元测试会报错
 import { createRichText } from "../../../lib/renderer/src/createRichText";
 import { createSmallQuestion } from "../intitialData";
-import type { EditorState } from "./EditorContext";
+import type { EditorState } from "./BigQuestionEditorContext";
 
 type BigQuestionActionType =
   | { type: "bigQuestionBodyAdded" } // 增加大题题干

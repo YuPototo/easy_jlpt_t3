@@ -1,9 +1,9 @@
-import { useEditor } from "./context/EditorContext";
+import { useBigQuestionEditor } from "./context/BigQuestionEditorContext";
 import { BigQuestion } from "../BigQuestion";
 
 export const Previewer: React.FC = () => {
-  const editor = useEditor();
-  const data = editor?.data;
+  const editor = useBigQuestionEditor();
+  const data = editor.data;
 
   return (
     <div>

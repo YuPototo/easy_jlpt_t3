@@ -1,5 +1,8 @@
 import { PartEditor } from "./PartEditor";
-import { useEditor, useEditorDispatch } from "./context/EditorContext";
+import {
+  useBigQuestionEditor,
+  useEditorDispatch,
+} from "./context/BigQuestionEditorContext";
 import {
   addSmallQuestionBody,
   changeSmallQuestionBody,
@@ -12,15 +15,10 @@ import {
 import Options from "./Options";
 
 export const SmallQuestions: React.FC = () => {
-  const editor = useEditor();
+  const editor = useBigQuestionEditor();
   const dispatch = useEditorDispatch();
-  const data = editor?.data;
+  const data = editor.data;
   const smallQuestions = data?.smallQuestions || [];
-
-  // todo: why should I not assign default value to data?
-  if (!dispatch) {
-    return <div className="text-red-500">dispatch is undefined</div>;
-  }
 
   return (
     <div className="my-10">
