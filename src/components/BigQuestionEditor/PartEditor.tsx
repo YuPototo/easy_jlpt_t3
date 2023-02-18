@@ -1,7 +1,7 @@
 /**
  * 一个单独的可移除的编辑器
  */
-import { createRichText } from "../../lib/renderer/src";
+import SlateEditor from "../../lib/editor/SlateEditor";
 
 type Props = {
   title: string;
@@ -28,16 +28,16 @@ export const PartEditor: React.FC<Props> = ({
   return (
     <div className="my-4">
       <div>{title}</div>
-      {content ? <div>{content}</div> : <></>}
+      {content ? (
+        <SlateEditor
+          initalValue={content}
+          onChange={(value) => onChange(value)}
+        />
+      ) : (
+        <></>
+      )}
       <button className="bg-blue-100 p-2" onClick={handleClickBtn}>
         {content ? "移除" : "添加"}
-      </button>
-
-      <button
-        className="ml-4 bg-red-50"
-        onClick={() => onChange(createRichText("after change"))}
-      >
-        临时：会改变content
       </button>
     </div>
   );

@@ -8,6 +8,8 @@ specifiers:
   '@trpc/next': ^10.9.0
   '@trpc/react-query': ^10.9.0
   '@trpc/server': ^10.9.0
+  '@types/is-hotkey': ^0.1.7
+  '@types/lodash': ^4.14.191
   '@types/node': ^18.11.18
   '@types/prettier': ^2.7.2
   '@types/react': ^18.0.26
@@ -21,6 +23,8 @@ specifiers:
   eslint-config-next: 13.1.6
   formik: ^2.2.9
   immer: ^9.0.19
+  is-hotkey: ^0.2.0
+  lodash: ^4.17.21
   next: 13.1.6
   postcss: ^8.4.14
   prettier: ^2.8.1
@@ -50,6 +54,8 @@ dependencies:
   csstype: registry.npmmirror.com/csstype/3.1.1
   formik: registry.npmmirror.com/formik/2.2.9_react@18.2.0
   immer: registry.npmmirror.com/immer/9.0.19
+  is-hotkey: registry.npmmirror.com/is-hotkey/0.2.0
+  lodash: registry.npmmirror.com/lodash/4.17.21
   next: registry.npmmirror.com/next/13.1.6_biqbaboplfbrettd7655fr4n2y
   react: registry.npmmirror.com/react/18.2.0
   react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
@@ -63,6 +69,8 @@ dependencies:
 
 devDependencies:
   '@faker-js/faker': registry.npmmirror.com/@faker-js/faker/7.6.0
+  '@types/is-hotkey': registry.npmmirror.com/@types/is-hotkey/0.1.7
+  '@types/lodash': registry.npmmirror.com/@types/lodash/4.14.191
   '@types/node': registry.npmmirror.com/@types/node/18.13.0
   '@types/prettier': registry.npmmirror.com/@types/prettier/2.7.2
   '@types/react': registry.npmmirror.com/@types/react/18.0.27
@@ -741,7 +749,6 @@ packages:
     resolution: {integrity: sha512-yB5C7zcOM7idwYZZ1wKQ3pTfjA9BbvFqRWvKB46GFddxnJtHwi/b9y84ykQtxQPg5qhdpg4Q/kWU3EGoCTmLzQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/is-hotkey/-/is-hotkey-0.1.7.tgz}
     name: '@types/is-hotkey'
     version: 0.1.7
-    dev: false
 
   registry.npmmirror.com/@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.11.tgz}
@@ -759,7 +766,6 @@ packages:
     resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.191.tgz}
     name: '@types/lodash'
     version: 4.14.191
-    dev: false
 
   registry.npmmirror.com/@types/node/18.13.0:
     resolution: {integrity: sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-18.13.0.tgz}
@@ -2670,6 +2676,12 @@ packages:
     resolution: {integrity: sha512-qs3NZ1INIS+H+yeo7cD9pDfwYV/jqRh1JG9S9zYrNudkoUQg7OL7ziXqRKu+InFjUIDoP2o6HIkLYMh1pcWgyQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/is-hotkey/-/is-hotkey-0.1.8.tgz}
     name: is-hotkey
     version: 0.1.8
+    dev: false
+
+  registry.npmmirror.com/is-hotkey/0.2.0:
+    resolution: {integrity: sha512-UknnZK4RakDmTgz4PI1wIph5yxSs/mvChWs9ifnlXsKuXgWmOkY/hAE0H/k2MIqH0RlRye0i1oC07MCRSD28Mw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/is-hotkey/-/is-hotkey-0.2.0.tgz}
+    name: is-hotkey
+    version: 0.2.0
     dev: false
 
   registry.npmmirror.com/is-map/2.0.2:

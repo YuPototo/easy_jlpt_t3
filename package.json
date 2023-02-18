@@ -25,6 +25,8 @@
     "csstype": "^3.0.10",
     "formik": "^2.2.9",
     "immer": "^9.0.19",
+    "is-hotkey": "^0.2.0",
+    "lodash": "^4.17.21",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -38,6 +40,8 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
+    "@types/is-hotkey": "^0.1.7",
+    "@types/lodash": "^4.14.191",
     "@types/node": "^18.11.18",
     "@types/prettier": "^2.7.2",
     "@types/react": "^18.0.26",

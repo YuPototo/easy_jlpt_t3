@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BigQuestionEditorProvider } from "./context/BigQuestionEditorContext";
-import { Editor } from "./Editor";
+import { Editor } from "./BigQuestionEditor";
 import { Operator } from "./Operator";
 import { Previewer } from "./Previewer";
 
