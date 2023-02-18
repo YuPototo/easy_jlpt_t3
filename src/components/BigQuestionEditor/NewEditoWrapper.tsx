@@ -3,12 +3,13 @@ import { BigQuestionEditorProvider } from "./context/BigQuestionEditorContext";
 import { Editor } from "./BigQuestionEditor";
 import { Operator } from "./Operator";
 import { Previewer } from "./Previewer";
+import type { BigQuestionType } from "../../types/bigQuestion";
 
 type Props = {
-  onSubmit: () => void;
+  onSubmit: (bigQuestion: BigQuestionType) => void;
 };
 
-export const EditorWrapper: React.FC<Props> = () => {
+export const EditorWrapper: React.FC<Props> = ({ onSubmit }) => {
   const [mode, setMode] = useState<"edit" | "preview">("edit");
 
   return (
@@ -20,6 +21,7 @@ export const EditorWrapper: React.FC<Props> = () => {
       <Operator
         mode={mode}
         onToggleMode={() => setMode(mode === "edit" ? "preview" : "edit")}
+        onSubmit={onSubmit}
       />
     </BigQuestionEditorProvider>
   );

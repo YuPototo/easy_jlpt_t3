@@ -40,6 +40,7 @@ export const sectionRouter = createTRPCRouter({
           titleInUrl: sectionTitleInUrl,
         },
         select: {
+            id: true,
           title: true,
           bigQuestions: {
             select: {
@@ -57,6 +58,7 @@ export const sectionRouter = createTRPCRouter({
       }
 
       return {
+        sectionId: section.id,
         sectionTitle: section.title,
         bigQuestions: section.bigQuestions.map((bq) => bq.id),
       };
