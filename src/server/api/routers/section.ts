@@ -40,11 +40,14 @@ export const sectionRouter = createTRPCRouter({
           titleInUrl: sectionTitleInUrl,
         },
         select: {
-            id: true,
+          id: true,
           title: true,
           bigQuestions: {
             select: {
               id: true,
+            },
+            orderBy: {
+              seqIndex: "asc",
             },
           },
         },

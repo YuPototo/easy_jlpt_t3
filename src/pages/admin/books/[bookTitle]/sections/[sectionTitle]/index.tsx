@@ -38,7 +38,11 @@ const SectionPage: NextPage = () => {
 
       <div>
         {section?.bigQuestions.map((id) => (
-          <Link className="m-2 block p-2" key={id} href="/todo">
+          <Link
+            className="m-2 block p-2"
+            key={id}
+            href={`${currentPath}/bigQuestions/${id}`}
+          >
             {id}
           </Link>
         ))}

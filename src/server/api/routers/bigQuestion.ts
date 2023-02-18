@@ -9,6 +9,12 @@ const AddBigQuestionSchema = z
   })
   .merge(BigQuestionSchema);
 
+const UpdateBigQuestionSchema = z
+  .object({
+    id: z.string(),
+  })
+  .merge(BigQuestionSchema);
+
 export const bigQuestionRouter = createTRPCRouter({
   byId: publicProcedure.input(z.string()).query(async ({ ctx, input }) => {
     const id = input;
@@ -23,6 +29,9 @@ export const bigQuestionRouter = createTRPCRouter({
             explanation: true,
             options: true,
             answer: true,
+          },
+          orderBy: {
+            seqIndex: "asc",
           },
         },
       },
@@ -59,15 +68,57 @@ export const bigQuestionRouter = createTRPCRouter({
       });
 
       // 添加 small question
-      await ctx.prisma.smallQuestion.createMany({
-        data: input.smallQuestions.map((smallQuestion, seqIndex) => ({
+      const smallQuestions = input.smallQuestions.map(
+        (smallQuestion, seqIndex) => ({
           body: smallQuestion.body,
           explanation: smallQuestion.explanation,
           options: smallQuestion.options,
           answer: smallQuestion.answer,
           bigQuestionId: bigQuestion.id,
           seqIndex: seqIndex,
-        })),
+        })
+      );
+
+      await ctx.prisma.smallQuestion.createMany({
+        data: smallQuestions,
+      });
+
+      return { success: true };
+    }),
+  updateById: publicProcedure
+    .input(UpdateBigQuestionSchema)
+    .mutation(async ({ ctx, input }) => {
+      const { id, ...data } = input;
+
+      // update big questions
+      await ctx.prisma.bigQuestion.update({
+        where: { id },
+        data: {
+          body: data.body,
+          explanation: data.explanation,
+        },
+      });
+
+      // update small questions
+      // 先删除所有的小题
+      await ctx.prisma.smallQuestion.deleteMany({
+        where: { bigQuestionId: id },
+      });
+
+      // 再添加所有小题
+      const smallQuestions = input.smallQuestions.map(
+        (smallQuestion, seqIndex) => ({
+          body: smallQuestion.body,
+          explanation: smallQuestion.explanation,
+          options: smallQuestion.options,
+          answer: smallQuestion.answer,
+          bigQuestionId: id,
+          seqIndex: seqIndex,
+        })
+      );
+
+      await ctx.prisma.smallQuestion.createMany({
+        data: smallQuestions,
       });
 
       return { success: true };

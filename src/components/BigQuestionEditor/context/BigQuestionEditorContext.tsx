@@ -14,18 +14,21 @@ export type EditorState = {
   data: BigQuestionType;
 };
 
-const initialState: EditorState = {
+const state: EditorState = {
   data: createBigQuestion(),
 };
 /* --- context --- */
-const BigQuestionEditorContext = createContext<EditorState>(initialState);
+const BigQuestionEditorContext = createContext<EditorState>(state);
 const EditorDispatchContext = createContext<DispatchFunction | null>(null);
 
 export function BigQuestionEditorProvider({
   children,
+  initialData,
 }: {
   children: React.ReactNode;
+  initialData?: BigQuestionType;
 }) {
+  const initialState = initialData ? { data: initialData } : state;
   const [data, dispatch] = useImmerReducer(reducer, initialState);
 
   return (
