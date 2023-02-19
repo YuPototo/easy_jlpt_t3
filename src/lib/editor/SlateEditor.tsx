@@ -10,12 +10,14 @@ import {
   withReact,
   DefaultElement as Paragraph,
 } from "slate-react";
+import RichTextImage from "./components/Image";
 
 import type { MarkFormat } from "./components/Toolbar";
 import Toolbar, { toggleMark } from "./components/Toolbar";
 import Leaf from "./components/Leaf";
 import Filler from "./components/Filler";
 import { objectKeys } from "../typeUtils/objectKeys";
+import withImage from "./withImage";
 
 export type EditorType = ReturnType<typeof withReact>;
 
@@ -30,7 +32,7 @@ export default function SlateEditor({
   initalValue,
   allowFiller,
 }: Props) {
-  const [editor] = useState(() => withReact(createEditor()));
+  const [editor] = useState(() => withImage(withReact(createEditor())));
 
   useInlineConfig(editor);
   const renderElement = useRenderElement();
@@ -81,6 +83,12 @@ function useRenderElement() {
         return <Filler {...props} />;
       case "paragraph":
         return <Paragraph {...props} />;
+      case "image":
+        return (
+          <RichTextImage attributes={props.attributes} element={props.element}>
+            {props.children}
+          </RichTextImage>
+        );
       default:
         return (
           <div className="my-2">

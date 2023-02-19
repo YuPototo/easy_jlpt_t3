@@ -24,8 +24,10 @@
     "clsx": "^1.2.1",
     "csstype": "^3.0.10",
     "formik": "^2.2.9",
+    "image-extensions": "^1.1.0",
     "immer": "^9.0.19",
     "is-hotkey": "^0.2.0",
+    "is-url": "^1.2.4",
     "lodash": "^4.17.21",
     "next": "13.1.6",
     "react": "18.2.0",
@@ -41,6 +43,7 @@
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
     "@types/is-hotkey": "^0.1.7",
+    "@types/is-url": "^1.2.30",
     "@types/lodash": "^4.14.191",
     "@types/node": "^18.11.18",
     "@types/prettier": "^2.7.2",

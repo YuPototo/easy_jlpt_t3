@@ -4,6 +4,8 @@ import { isElement } from "../schema";
 import Leaf from "./Leaf";
 import Paragraph from "./Paragraph";
 import Filler from "./Filler";
+import { RichTextImage } from "./Image";
+import type { ImageElement } from "../../../editor/editorTypes";
 
 const renderElement = (element: RichTextElementType) => {
   switch (element.type) {
@@ -12,6 +14,10 @@ const renderElement = (element: RichTextElementType) => {
 
     case "paragraph":
       return <Paragraph element={element} />;
+
+    case "image":
+      // todo: remove as
+      return <RichTextImage element={element as ImageElement} />;
 
     default:
       console.error(`unknown element type: ${element.type}`);

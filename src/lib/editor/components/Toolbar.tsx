@@ -3,6 +3,7 @@ import { useSlate } from "slate-react";
 import ToolbarButton from "./ToolbarButton";
 import type { EditorType } from "../SlateEditor";
 import InsertFillerButton from "./InsertFillerButton";
+import { InsertImageButton } from "./InsertImageButton";
 
 export type MarkFormat = "bold" | "underline";
 
@@ -20,6 +21,7 @@ export default function MyToolbar({ allowFiller = true }: Props) {
         <span className="underline">u</span>
       </MarkButton>
       {allowFiller ? <InsertFillerButton /> : <></>}
+      <InsertImageButton />
     </div>
   );
 }

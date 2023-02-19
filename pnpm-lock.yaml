@@ -9,6 +9,7 @@ specifiers:
   '@trpc/react-query': ^10.9.0
   '@trpc/server': ^10.9.0
   '@types/is-hotkey': ^0.1.7
+  '@types/is-url': ^1.2.30
   '@types/lodash': ^4.14.191
   '@types/node': ^18.11.18
   '@types/prettier': ^2.7.2
@@ -22,8 +23,10 @@ specifiers:
   eslint: ^8.30.0
   eslint-config-next: 13.1.6
   formik: ^2.2.9
+  image-extensions: ^1.1.0
   immer: ^9.0.19
   is-hotkey: ^0.2.0
+  is-url: ^1.2.4
   lodash: ^4.17.21
   next: 13.1.6
   postcss: ^8.4.14
@@ -53,8 +56,10 @@ dependencies:
   clsx: registry.npmmirror.com/clsx/1.2.1
   csstype: registry.npmmirror.com/csstype/3.1.1
   formik: registry.npmmirror.com/formik/2.2.9_react@18.2.0
+  image-extensions: registry.npmmirror.com/image-extensions/1.1.0
   immer: registry.npmmirror.com/immer/9.0.19
   is-hotkey: registry.npmmirror.com/is-hotkey/0.2.0
+  is-url: registry.npmmirror.com/is-url/1.2.4
   lodash: registry.npmmirror.com/lodash/4.17.21
   next: registry.npmmirror.com/next/13.1.6_biqbaboplfbrettd7655fr4n2y
   react: registry.npmmirror.com/react/18.2.0
@@ -70,6 +75,7 @@ dependencies:
 devDependencies:
   '@faker-js/faker': registry.npmmirror.com/@faker-js/faker/7.6.0
   '@types/is-hotkey': registry.npmmirror.com/@types/is-hotkey/0.1.7
+  '@types/is-url': registry.npmmirror.com/@types/is-url/1.2.30
   '@types/lodash': registry.npmmirror.com/@types/lodash/4.14.191
   '@types/node': registry.npmmirror.com/@types/node/18.13.0
   '@types/prettier': registry.npmmirror.com/@types/prettier/2.7.2
@@ -749,6 +755,12 @@ packages:
     resolution: {integrity: sha512-yB5C7zcOM7idwYZZ1wKQ3pTfjA9BbvFqRWvKB46GFddxnJtHwi/b9y84ykQtxQPg5qhdpg4Q/kWU3EGoCTmLzQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/is-hotkey/-/is-hotkey-0.1.7.tgz}
     name: '@types/is-hotkey'
     version: 0.1.7
+
+  registry.npmmirror.com/@types/is-url/1.2.30:
+    resolution: {integrity: sha512-AnlNFwjzC8XLda5VjRl4ItSd8qp8pSNowvsut0WwQyBWHpOxjxRJm8iO6uETWqEyLdYdb9/1j+Qd9gQ4l5I4fw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/is-url/-/is-url-1.2.30.tgz}
+    name: '@types/is-url'
+    version: 1.2.30
+    dev: true
 
   registry.npmmirror.com/@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.11.tgz}
@@ -2521,6 +2533,13 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
+  registry.npmmirror.com/image-extensions/1.1.0:
+    resolution: {integrity: sha512-P0t7ByhK8Jk9TU05ct/7+f7h8dNuXq5OY4m0IO/T+1aga/qHkpC0Wf472x3FLdq/zFDG17pgapCM3JDTxwZzow==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/image-extensions/-/image-extensions-1.1.0.tgz}
+    name: image-extensions
+    version: 1.1.0
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   registry.npmmirror.com/immer/9.0.19:
     resolution: {integrity: sha512-eY+Y0qcsB4TZKwgQzLaE/lqYMlKhv5J9dyd2RhhtGhNo2njPXDqU9XPfcNfa3MIDsdtZt5KlkIsirlo4dHsWdQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/immer/-/immer-9.0.19.tgz}
     name: immer
@@ -2781,6 +2800,12 @@ packages:
       gopd: registry.npmmirror.com/gopd/1.0.1
       has-tostringtag: registry.npmmirror.com/has-tostringtag/1.0.0
     dev: true
+
+  registry.npmmirror.com/is-url/1.2.4:
+    resolution: {integrity: sha512-ITvGim8FhRiYe4IQ5uHSkj7pVaPDrCTkNd3yq3cV7iZAcJdHTUMPMEHcqSOy9xZ9qFenQCvi+2wjH9a1nXqHww==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/is-url/-/is-url-1.2.4.tgz}
+    name: is-url
+    version: 1.2.4
+    dev: false
 
   registry.npmmirror.com/is-weakmap/2.0.1:
     resolution: {integrity: sha512-NSBR4kH5oVj1Uwvv970ruUkCV7O1mzgVFO4/rev2cLRda9Tm9HrL70ZPut4rOHgY0FNrUu9BCbXA2sdQ+x0chA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/is-weakmap/-/is-weakmap-2.0.1.tgz}
