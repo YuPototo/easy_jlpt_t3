@@ -3,9 +3,13 @@ import type { RichTextElementType, RichTextNodeType } from "../schema";
 import { isElement } from "../schema";
 import Leaf from "./Leaf";
 import Paragraph from "./Paragraph";
+import Filler from "./Filler";
 
 const renderElement = (element: RichTextElementType) => {
   switch (element.type) {
+    case "filler":
+      return <Filler />;
+
     case "paragraph":
       return <Paragraph element={element} />;
 

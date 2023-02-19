@@ -15,7 +15,10 @@ export default function Filler({ attributes, children }: Props): ReactElement {
   return (
     <span
       {...attributes}
-      className={clsx("jp-filler", selected && focused && "ring")}
+      className={clsx(
+        "mx-2 border-b border-gray-500 px-4",
+        selected && focused && "ring"
+      )}
       contentEditable={false}
     >
       <span className="hidden">{children}</span>

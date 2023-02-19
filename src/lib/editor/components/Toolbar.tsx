@@ -2,6 +2,7 @@ import { Editor } from "slate";
 import { useSlate } from "slate-react";
 import ToolbarButton from "./ToolbarButton";
 import type { EditorType } from "../SlateEditor";
+import InsertFillerButton from "./InsertFillerButton";
 
 export type MarkFormat = "bold" | "underline";
 
@@ -14,6 +15,7 @@ export default function MyToolbar() {
       <MarkButton format="underline">
         <span className="underline">u</span>
       </MarkButton>
+      <InsertFillerButton />
     </div>
   );
 }
