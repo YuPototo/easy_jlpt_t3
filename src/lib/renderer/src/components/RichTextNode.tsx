@@ -1,11 +1,10 @@
 import React from "react";
-import type { RichTextElement, RichTextNode } from "../schema";
+import type { ImageElement, RichTextElement, RichTextNode } from "../schema";
 import { isElement } from "../schema";
 import Leaf from "./Leaf";
 import Paragraph from "./Paragraph";
 import Filler from "./Filler";
 import { RichTextImage } from "./Image";
-import type { ImageElement } from "../../../editor/editorTypes";
 
 const renderElement = (element: RichTextElement) => {
   switch (element.type) {
