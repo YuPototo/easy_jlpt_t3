@@ -1,6 +1,6 @@
 import { Editor } from "slate";
 import _ from "lodash";
-import type { RichTextElementType } from "../renderer/src/schema";
+import type { RichTextElement } from "../renderer/src/schema";
 
 /**
  * Use custom editor to add custom methods to the editor
@@ -11,7 +11,7 @@ export const CustomEditor = {
   ...Editor,
 };
 
-export const emptyParagraph: RichTextElementType = {
+export const emptyParagraph: RichTextElement = {
   type: "paragraph",
   children: [{ text: "" }],
 };

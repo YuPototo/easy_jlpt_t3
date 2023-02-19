@@ -1,7 +1,7 @@
-import type { RootNodesSchemaType } from "../../../../src/lib/renderer/src/schema";
+import type { RootNodes } from "../../../../src/lib/renderer/src/schema";
 
 export function makeParagraph(text: string): string {
-  const rawParagraph: RootNodesSchemaType = [
+  const rawParagraph: RootNodes = [
     {
       type: "paragraph",
       children: [{ text }],

@@ -1,15 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
 import type { ReactElement } from "react";
 import React from "react";
-import type { ImageElement } from "../../../editor/editorTypes";
+import type { ImageElement } from "../schema";
 
 type Props = {
   element: ImageElement;
 };
 
+// todo: use next/image
 export function RichTextImage({ element }: Props): ReactElement {
-  console.log(element);
   return (
-    <div>
+    <div className="relative">
       <img src={element.src} alt={element.alt}></img>
     </div>
   );

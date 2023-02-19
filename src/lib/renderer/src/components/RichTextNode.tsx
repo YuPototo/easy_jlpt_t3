@@ -1,5 +1,5 @@
 import React from "react";
-import type { RichTextElementType, RichTextNodeType } from "../schema";
+import type { RichTextElement, RichTextNode } from "../schema";
 import { isElement } from "../schema";
 import Leaf from "./Leaf";
 import Paragraph from "./Paragraph";
@@ -7,7 +7,7 @@ import Filler from "./Filler";
 import { RichTextImage } from "./Image";
 import type { ImageElement } from "../../../editor/editorTypes";
 
-const renderElement = (element: RichTextElementType) => {
+const renderElement = (element: RichTextElement) => {
   switch (element.type) {
     case "filler":
       return <Filler />;
@@ -26,7 +26,7 @@ const renderElement = (element: RichTextElementType) => {
 };
 
 type Props = {
-  value: RichTextNodeType;
+  value: RichTextNode;
 };
 
 export default function Node({ value }: Props) {

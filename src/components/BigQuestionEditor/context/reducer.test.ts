@@ -154,16 +154,18 @@ describe("action: bigQuestionBodyChanged", () => {
 
 describe("action: bigQuestionExplanationAdded", () => {
   // first we create a initial state
-  const initalState = {
-    data: createBigQuestion(),
-  };
-  expect(initalState.data.explanation).toBeUndefined();
+  it("should add an empty big question explanation", () => {
+    const initalState = {
+      data: createBigQuestion(),
+    };
+    expect(initalState.data.explanation).toBeUndefined();
 
-  // then we add the big question explanation
-  const finalState = reducer(initalState, {
-    type: "bigQuestionExplanationAdded",
+    // then we add the big question explanation
+    const finalState = reducer(initalState, {
+      type: "bigQuestionExplanationAdded",
+    });
+    expect(finalState.data.explanation).toBeDefined();
   });
-  expect(finalState.data.explanation).toBeDefined();
 });
 
 describe("action: bigQuestionExplanationRemoved", () => {

@@ -2,23 +2,17 @@
 import type { BaseEditor } from "slate";
 import type { ReactEditor } from "slate-react";
 
-type ParagraphElement = { type: "paragraph"; children: CustomText[] };
-export type FillerElement = { type: "filler"; children: CustomText[] };
-export type ImageElement = {
-  type: "image";
-  src: string;
-  alt: string;
-  children: [{ text: "" }]; // 似无必要，但是为了统一，还是加上
-};
+import type { ImageElement, RichTextText } from "../renderer/src/schema";
+
+type ParagraphElement = { type: "paragraph"; children: RichTextText[] };
+export type FillerElement = { type: "filler"; children: RichTextText[] };
 
 export type CustomElement = ParagraphElement | FillerElement | ImageElement;
-
-type CustomText = { text: string; bold?: true; underline?: true };
 
 declare module "slate" {
   interface CustomTypes {
     Editor: BaseEditor & ReactEditor;
     Element: CustomElement;
-    Text: CustomText;
+    Text: RichTextText;
   }
 }

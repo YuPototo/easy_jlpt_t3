@@ -1,4 +1,4 @@
-import type { RichTextNodeType } from "../schema";
+import type { RichTextNode as RichTextNodeType } from "../schema";
 import { nanoid } from "../utils/nanoid";
 import RichTextNode from "./RichTextNode";
 

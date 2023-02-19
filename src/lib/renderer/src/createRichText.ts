@@ -1,7 +1,7 @@
-import type { RootNodesSchemaType } from "./schema";
+import type { RootNodes } from "./schema";
 
 export function createRichText(text: string) {
-  const richText: RootNodesSchemaType = [
+  const richText: RootNodes = [
     {
       type: "paragraph",
       children: [
