@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import type { ReactElement } from "react";
-// import Button from "../../../components/ui/Button";
-import type { ImageElement } from "../editorTypes";
 import type { RenderElementProps } from "slate-react";
 import { useSelected } from "slate-react";
 import clsx from "clsx";
+import type { ImageElement } from "../../renderer/src/schema";
 
 type Props = {
   attributes: RenderElementProps["attributes"];

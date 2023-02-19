@@ -4,8 +4,8 @@ import ToolbarButton from "./ToolbarButton";
 import isUrl from "is-url";
 import imageExtensions from "image-extensions";
 import { Transforms } from "slate";
-import type { ImageElement } from "../editorTypes";
 import type { EditorType } from "../SlateEditor";
+import type { ImageElement } from "../../renderer/src/schema";
 
 export function InsertImageButton() {
   const editor = useSlateStatic();
@@ -22,7 +22,7 @@ export function InsertImageButton() {
         url && insertImage(editor, url);
       }}
     >
-      <span className="text-sm">{"<>"}</span>
+      <span className="text-sm">{"图"}</span>
     </ToolbarButton>
   );
 }
