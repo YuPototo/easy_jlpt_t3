@@ -2,7 +2,7 @@ import { PartEditor } from "./PartEditor";
 import {
   useBigQuestionEditor,
   useEditorDispatch,
-} from "./context/BigQuestionEditorContext";
+} from "./context/ContextProvider";
 import {
   addSmallQuestionBody,
   changeSmallQuestionBody,
@@ -11,7 +11,7 @@ import {
   removeSmallQuestionExplanation,
   changeSmallQuestionExplanation,
   removeSmallQuestion,
-} from "./context/reducer";
+} from "./context";
 import Options from "./Options";
 
 export const SmallQuestions: React.FC = () => {

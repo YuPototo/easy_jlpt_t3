@@ -21,7 +21,7 @@ const state: EditorState = {
 const BigQuestionEditorContext = createContext<EditorState>(state);
 const EditorDispatchContext = createContext<DispatchFunction | null>(null);
 
-export function BigQuestionEditorProvider({
+export function ContextProvider({
   children,
   initialData,
 }: {

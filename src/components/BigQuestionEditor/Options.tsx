@@ -1,9 +1,11 @@
 import { PartEditor } from "./PartEditor";
 import {
+  removeOption,
+  addOption,
+  changeOption,
   useBigQuestionEditor,
   useEditorDispatch,
-} from "./context/BigQuestionEditorContext";
-import { removeOption, addOption, changeOption } from "./context/reducer";
+} from "./context";
 
 type Props = {
   smallQuestionIndex: number;

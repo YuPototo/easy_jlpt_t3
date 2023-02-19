@@ -2,119 +2,61 @@ import type { Dispatch } from "react";
 // 必须从源文件引入 createRichText，否则单元测试会报错
 import { createRichText } from "../../../lib/renderer/src/createRichText";
 import { createSmallQuestion } from "../intitialData";
-import type { EditorState } from "./BigQuestionEditorContext";
-
-type BigQuestionActionType =
-  | { type: "bigQuestionBodyAdded" } // 增加大题题干
-  | { type: "bigQuestionBodyRemoved" } // 移除大题题干
-  | { type: "bigQuestionExplanationAdded" } // 增加大题解析
-  | { type: "bigQuestionExplanationRemoved" } // 移除大题解析
-  | { type: "bigQuestionBodyChanged"; payload: string } // 大题题干内容改变
-  | { type: "bigQuestionExplanationChanged"; payload: string }; // 大题解析内容改变
-
-type SmallQuestionActionType =
-  | {
-      // 增加小题题干
-      type: "smallQuestionBodyAdded";
-      payload: number;
-    }
-  | {
-      // 移除小题题干
-      type: "smallQuestionBodyRemoved";
-      payload: number;
-    }
-  | {
-      // 小题题干内容改变
-      type: "smallQuestionBodyChanged";
-      payload: {
-        smallQuestionIndex: number;
-        content: string;
-      };
-    }
-  | {
-      // 移除小题解析
-      type: "smallQuestionExplanationRemoved";
-      payload: number;
-    }
-  | {
-      // 增加小题解析
-      type: "smallQuestionExplanationAdded";
-      payload: number;
-    }
-  | {
-      // 小题解析内容改变
-      type: "smallQuestionExplanationChanged";
-      payload: {
-        smallQuestionIndex: number;
-        content: string;
-      };
-    }
-  | {
-      // 新增小题
-      type: "smallQuestionAdded";
-    }
-  | {
-      // 移除小题
-      type: "smallQuestionRemoved";
-      payload: number;
-    }
-  | {
-      // 移除选项
-      type: "optionRemoved";
-      payload: {
-        smallQuestionIndex: number;
-        optionIndex: number;
-      };
-    }
-  | {
-      // 新增选项
-      type: "optionAdded";
-      payload: number;
-    }
-  | {
-      // 选项内容改变
-      type: "optionChanged";
-      payload: {
-        smallQuestionIndex: number;
-        optionIndex: number;
-        content: string;
-      };
-    };
-
-type ActionType = BigQuestionActionType | SmallQuestionActionType;
+import type { ActionType } from "./actions";
+import type { EditorState } from "./ContextProvider";
 
 export function reducer(state: EditorState, action: ActionType): EditorState {
   switch (action.type) {
+    // 添加大题题干
     case "bigQuestionBodyAdded":
       console.log("action: bigQuestionBodyAdded");
+      if (state.data.body) {
+        throw new Error("bigQuestionBody 已存在，不允许再添加");
+      }
       state.data.body = createRichText("");
       return state;
 
+    // 移除大题题干
     case "bigQuestionBodyRemoved":
       console.log("action: bigQuestionBodyRemoved");
+      if (!state.data.body) {
+        throw new Error(
+          "bigQuestionBody 不存在，只能删除已存在的 bigQuestionBody"
+        );
+      }
       state.data.body = undefined;
       return state;
 
+    // 添加大题题干
     case "bigQuestionExplanationAdded":
       console.log("action: bigQuestionExplanationAdded");
       state.data.explanation = createRichText("");
       return state;
 
+    // 移除大题解析
     case "bigQuestionExplanationRemoved":
       console.log("action: bigQuestionExplanationRemoved");
       state.data.explanation = undefined;
       return state;
 
+    // 修改大题题干
     case "bigQuestionBodyChanged":
       console.log("action: bigQuestionBodyChanged");
+      if (!state.data.body) {
+        throw new Error(
+          "bigQuestionBody 不存在，只能修改已存在的 bigQuestionBody"
+        );
+      }
       state.data.body = action.payload;
       return state;
 
+    // todo: add test case
     case "bigQuestionExplanationChanged":
       console.log("action: bigQuestionExplanationChanged");
       state.data.explanation = action.payload;
       return state;
 
+    // todo: add test case
     case "smallQuestionBodyAdded": {
       console.log("action: smallQuestionBodyAdded");
       const smallQuestionIndex = action.payload;
@@ -126,6 +68,7 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       return state;
     }
 
+    // todo: add test case
     case "smallQuestionBodyRemoved": {
       console.log("action: smallQuestionBodyRemoved");
       const smallQuestionIndex = action.payload;
@@ -137,6 +80,7 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       return state;
     }
 
+    // todo: add test case
     case "smallQuestionBodyChanged": {
       console.log("action: smallQuestionBodyChanged");
       const { smallQuestionIndex, content } = action.payload;
@@ -148,6 +92,7 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       return state;
     }
 
+    // todo: add test case
     case "smallQuestionExplanationAdded": {
       console.log("action: smallQuestionExplanationAdded");
       const smallQuestionIndex = action.payload;
@@ -159,6 +104,7 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       return state;
     }
 
+    // todo: add test case
     case "smallQuestionExplanationRemoved": {
       console.log("action: smallQuestionExplanationRemoved");
       const smallQuestionIndex = action.payload;
@@ -170,6 +116,7 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       return state;
     }
 
+    // todo: add test case
     case "smallQuestionExplanationChanged": {
       console.log("action: smallQuestionExplanationChanged");
       const { smallQuestionIndex, content } = action.payload;
@@ -181,6 +128,7 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       return state;
     }
 
+    // todo: add test case
     case "smallQuestionAdded": {
       console.log("action: smallQuestionAdded");
       const newSmallQuestion = createSmallQuestion();
@@ -188,6 +136,7 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       return state;
     }
 
+    // todo: add test case
     case "smallQuestionRemoved": {
       console.log("action: smallQuestionRemoved");
       const smallQuestionIndex = action.payload;
@@ -195,6 +144,7 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       return state;
     }
 
+    // todo: add test case
     case "optionRemoved": {
       console.log("action: optionRemoved");
       const { smallQuestionIndex, optionIndex } = action.payload;
@@ -206,6 +156,7 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       return state;
     }
 
+    // todo: add test case
     case "optionAdded": {
       console.log("action: optionAdded");
       const smallQuestionIndex = action.payload;
@@ -217,6 +168,7 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       return state;
     }
 
+    // todo: add test case
     case "optionChanged": {
       console.log("action: optionChanged");
       const { smallQuestionIndex, optionIndex, content } = action.payload;
@@ -234,67 +186,3 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
 }
 
 export type DispatchFunction = Dispatch<ActionType>;
-
-// action creators
-export function changeBigQuestionBody(payload: string): ActionType {
-  return { type: "bigQuestionBodyChanged", payload };
-}
-
-export function changeBigQuestionExplanation(payload: string): ActionType {
-  return { type: "bigQuestionExplanationChanged", payload };
-}
-
-export function addSmallQuestionBody(payload: number): ActionType {
-  return { type: "smallQuestionBodyAdded", payload };
-}
-
-export function removeSmallQuestionBody(payload: number): ActionType {
-  return { type: "smallQuestionBodyRemoved", payload };
-}
-
-export function changeSmallQuestionBody(payload: {
-  smallQuestionIndex: number;
-  content: string;
-}): ActionType {
-  return { type: "smallQuestionBodyChanged", payload };
-}
-
-export function addSmallQuestionExplanation(payload: number): ActionType {
-  return { type: "smallQuestionExplanationAdded", payload };
-}
-
-export function removeSmallQuestionExplanation(payload: number): ActionType {
-  {
-    return { type: "smallQuestionExplanationRemoved", payload };
-  }
-}
-
-export function changeSmallQuestionExplanation(payload: {
-  smallQuestionIndex: number;
-  content: string;
-}): ActionType {
-  return { type: "smallQuestionExplanationChanged", payload };
-}
-
-export function removeSmallQuestion(payload: number): ActionType {
-  return { type: "smallQuestionRemoved", payload };
-}
-
-export function removeOption(payload: {
-  smallQuestionIndex: number;
-  optionIndex: number;
-}): ActionType {
-  return { type: "optionRemoved", payload };
-}
-
-export function addOption(payload: number): ActionType {
-  return { type: "optionAdded", payload };
-}
-
-export function changeOption(payload: {
-  smallQuestionIndex: number;
-  optionIndex: number;
-  content: string;
-}): ActionType {
-  return { type: "optionChanged", payload };
-}

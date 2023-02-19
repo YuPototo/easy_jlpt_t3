@@ -1,11 +1,9 @@
 import {
-  useBigQuestionEditor,
-  useEditorDispatch,
-} from "./context/BigQuestionEditorContext";
-import {
   changeBigQuestionBody,
   changeBigQuestionExplanation,
-} from "./context/reducer";
+  useBigQuestionEditor,
+  useEditorDispatch,
+} from "./context";
 import { PartEditor } from "./PartEditor";
 import { SmallQuestions } from "./SmallQuestions";
 

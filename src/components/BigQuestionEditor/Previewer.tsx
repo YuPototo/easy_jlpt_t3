@@ -1,4 +1,4 @@
-import { useBigQuestionEditor } from "./context/BigQuestionEditorContext";
+import { useBigQuestionEditor } from "./context/ContextProvider";
 import { BigQuestion } from "../BigQuestion";
 
 export const Previewer: React.FC = () => {

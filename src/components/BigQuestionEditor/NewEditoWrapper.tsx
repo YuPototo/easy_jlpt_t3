@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BigQuestionEditorProvider } from "./context/BigQuestionEditorContext";
+import { ContextProvider } from "./context/ContextProvider";
 import { Editor } from "./BigQuestionEditor";
 import { Operator } from "./Operator";
 import { Previewer } from "./Previewer";
@@ -14,7 +14,7 @@ export const EditorWrapper: React.FC<Props> = ({ initialData, onSubmit }) => {
   const [mode, setMode] = useState<"edit" | "preview">("edit");
 
   return (
-    <BigQuestionEditorProvider initialData={initialData}>
+    <ContextProvider initialData={initialData}>
       <div className="my-10">
         {mode === "edit" ? <Editor /> : <Previewer />}
       </div>
@@ -24,6 +24,6 @@ export const EditorWrapper: React.FC<Props> = ({ initialData, onSubmit }) => {
         onToggleMode={() => setMode(mode === "edit" ? "preview" : "edit")}
         onSubmit={onSubmit}
       />
-    </BigQuestionEditorProvider>
+    </ContextProvider>
   );
 };

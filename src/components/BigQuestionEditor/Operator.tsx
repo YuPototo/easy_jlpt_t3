@@ -1,5 +1,5 @@
 import type { BigQuestionType } from "../../types/bigQuestion";
-import { useBigQuestionEditor } from "./context/BigQuestionEditorContext";
+import { useBigQuestionEditor } from "./context/ContextProvider";
 
 type Props = {
   mode: "edit" | "preview";
