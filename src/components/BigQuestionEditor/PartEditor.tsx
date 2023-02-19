@@ -9,6 +9,7 @@ type Props = {
   onRemove: () => void;
   onChange: (newContent: string) => void;
   onAdd?: () => void; // 有的时候不支持直接添加，比如 option 编辑器
+  allowFiller?: boolean;
 };
 
 export const PartEditor: React.FC<Props> = ({
@@ -17,6 +18,7 @@ export const PartEditor: React.FC<Props> = ({
   onAdd,
   onRemove,
   onChange,
+  allowFiller,
 }) => {
   const handleClickBtn = () => {
     if (content) {
@@ -32,6 +34,7 @@ export const PartEditor: React.FC<Props> = ({
         <SlateEditor
           initalValue={content}
           onChange={(value) => onChange(value)}
+          allowFiller={allowFiller}
         />
       ) : (
         <></>

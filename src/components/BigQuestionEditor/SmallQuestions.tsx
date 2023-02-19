@@ -67,6 +67,7 @@ export const SmallQuestions: React.FC = () => {
                 })
               )
             }
+            allowFiller={false}
           />
         </div>
       ))}

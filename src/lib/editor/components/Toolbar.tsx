@@ -6,7 +6,11 @@ import InsertFillerButton from "./InsertFillerButton";
 
 export type MarkFormat = "bold" | "underline";
 
-export default function MyToolbar() {
+type Props = {
+  allowFiller?: boolean;
+};
+
+export default function MyToolbar({ allowFiller = true }: Props) {
   return (
     <div className="mb-1 flex items-center gap-1">
       <MarkButton format="bold">
@@ -15,7 +19,7 @@ export default function MyToolbar() {
       <MarkButton format="underline">
         <span className="underline">u</span>
       </MarkButton>
-      <InsertFillerButton />
+      {allowFiller ? <InsertFillerButton /> : <></>}
     </div>
   );
 }

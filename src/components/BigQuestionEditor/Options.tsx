@@ -42,6 +42,7 @@ const Options: React.FC<Props> = ({ smallQuestionIndex }) => {
                 })
               )
             }
+            allowFiller={false}
           />
         </div>
       ))}

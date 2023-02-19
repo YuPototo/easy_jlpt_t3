@@ -33,6 +33,7 @@ export const Editor: React.FC = () => {
         onAdd={() => dispatch({ type: "bigQuestionExplanationAdded" })}
         onRemove={() => dispatch({ type: "bigQuestionExplanationRemoved" })}
         onChange={(content) => dispatch(changeBigQuestionExplanation(content))}
+        allowFiller={false}
       />
     </div>
   );

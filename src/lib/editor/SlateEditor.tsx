@@ -22,9 +22,14 @@ export type EditorType = ReturnType<typeof withReact>;
 type Props = {
   initalValue: string;
   onChange: (value: string) => void;
+  allowFiller?: boolean;
 };
 
-export default function SlateEditor({ onChange, initalValue }: Props) {
+export default function SlateEditor({
+  onChange,
+  initalValue,
+  allowFiller,
+}: Props) {
   const [editor] = useState(() => withReact(createEditor()));
 
   useInlineConfig(editor);
@@ -47,7 +52,7 @@ export default function SlateEditor({ onChange, initalValue }: Props) {
   return (
     <div>
       <Slate editor={editor} value={data} onChange={handleChange}>
-        <Toolbar />
+        <Toolbar allowFiller={allowFiller} />
 
         <div className="rounded border border-gray-300 bg-gray-50 px-4 py-3 shadow-green-100">
           <Editable
