@@ -189,3 +189,123 @@ describe("action: bigQuestionExplanationRemoved", () => {
     expect(finalState.data.explanation).toBeUndefined();
   });
 });
+
+describe("action: bigQuestionExplanationChanged", () => {
+  it("should change the big question explanation", () => {
+    // first we create a initial state
+    const initalState = {
+      data: createBigQuestion(),
+    };
+    expect(initalState.data.explanation).toBeUndefined();
+
+    // then we add the big question explanation
+    const stateAfterAdd = reducer(initalState, {
+      type: "bigQuestionExplanationAdded",
+    });
+    expect(stateAfterAdd.data.explanation).toBeDefined();
+
+    // then we change the big question explanation
+    const finalState = reducer(stateAfterAdd, {
+      type: "bigQuestionExplanationChanged",
+      payload: "hello",
+    });
+    expect(finalState.data.explanation).toBeDefined();
+    expect(finalState.data.explanation).toEqual("hello");
+  });
+
+  it("should not allow to change a not existing big question explanation", () => {
+    // first we create a initial state
+    const initalState = {
+      data: createBigQuestion(),
+    };
+    expect(initalState.data.explanation).toBeUndefined();
+
+    // then we change the big question explanation
+    expect(() =>
+      reducer(initalState, {
+        type: "bigQuestionExplanationChanged",
+        payload: "hello",
+      })
+    ).toThrow(
+      "bigQuestionExplanation 不存在，只能修改已存在的 bigQuestionExplanation"
+    );
+  });
+});
+
+describe("optionRemoved", () => {
+  it("should remove the option", () => {
+    // first we create a initial state
+    const initalState = {
+      data: createBigQuestion(),
+    };
+    const smallQuestionIndex = 0;
+    const smallQuestion = initalState.data.smallQuestions[smallQuestionIndex];
+    expect(smallQuestion?.options).toHaveLength(4);
+
+    const firstOption = smallQuestion?.options[0];
+
+    // 下面这个 option 内容是预设的
+    const firstOptionContent = createRichText("a");
+    expect(firstOption).toMatch(firstOptionContent);
+
+    // then we remove the option
+    const finalState = reducer(initalState, {
+      type: "optionRemoved",
+      payload: {
+        smallQuestionIndex: 0,
+        optionIndex: 0,
+      },
+    });
+    expect(finalState.data.smallQuestions[0]?.options).toHaveLength(3);
+  });
+
+  it("should not allow to remove when there is no options", () => {
+    const initalState = {
+      data: createBigQuestion(),
+    };
+    const smallQuestionIndex = 0;
+    const smallQuestion = initalState.data.smallQuestions[smallQuestionIndex];
+    expect(smallQuestion?.options).toHaveLength(4);
+
+    const payload = {
+      type: "optionRemoved",
+      payload: {
+        smallQuestionIndex: 0,
+        optionIndex: 0,
+      },
+    } as const;
+
+    // then we remove 4 options
+    const state_1 = reducer(initalState, payload);
+    const state_2 = reducer(state_1, payload);
+    const state_3 = reducer(state_2, payload);
+    const state_4 = reducer(state_3, payload);
+
+    expect(state_4.data.smallQuestions[0]?.options).toHaveLength(0);
+
+    // then we remove the option
+    expect(() => reducer(state_4, payload)).toThrow("已经没有选项可以移除了");
+  });
+
+  it("should not allow to remove when the option index is out of range", () => {
+    const initalState = {
+      data: createBigQuestion(),
+    };
+    const smallQuestionIndex = 0;
+    const smallQuestion = initalState.data.smallQuestions[smallQuestionIndex];
+    expect(smallQuestion?.options).toHaveLength(4);
+
+    const payload = {
+      type: "optionRemoved",
+      payload: {
+        smallQuestionIndex: 0,
+        optionIndex: 5,
+      },
+    } as const;
+
+    // then we remove the option
+    expect(() => reducer(initalState, payload)).toThrow(
+      "选项 index 5 大于等于选项数量 4"
+    );
+  });
+});

@@ -50,9 +50,14 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       state.data.body = action.payload;
       return state;
 
-    // todo: add test case
+    // 修改大题解析
     case "bigQuestionExplanationChanged":
       console.log("action: bigQuestionExplanationChanged");
+      if (!state.data.explanation) {
+        throw new Error(
+          "bigQuestionExplanation 不存在，只能修改已存在的 bigQuestionExplanation"
+        );
+      }
       state.data.explanation = action.payload;
       return state;
 
@@ -151,6 +156,15 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       const smallQuestion = state.data.smallQuestions[smallQuestionIndex];
       if (!smallQuestion) {
         throw new Error("Invalid smallQuestionIndex");
+      }
+      if (smallQuestion.options.length === 0) {
+        throw new Error("已经没有选项可以移除了");
+      }
+      const optionsNumber = smallQuestion.options.length;
+      if (optionIndex >= optionsNumber) {
+        throw new Error(
+          `选项 index ${optionIndex} 大于等于选项数量 ${optionsNumber}`
+        );
       }
       smallQuestion.options.splice(optionIndex, 1);
       return state;
