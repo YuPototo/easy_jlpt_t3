@@ -29,6 +29,23 @@ const testDataTwo = [
   },
 ];
 
+const testDataThree = [
+  {
+    type: "paragraph",
+    children: [
+      {
+        text: "images",
+      },
+    ],
+  },
+  {
+    type: "image",
+    src: "https://www.shutterstock.com/image-illustration/illustration-international-passengers-infrared-thermal-600w-1640970700.jpg",
+    alt: "image",
+    children: [{ text: "" }],
+  },
+];
+
 const RendererPage: NextPage = () => {
   return (
     <>
@@ -41,6 +58,10 @@ const RendererPage: NextPage = () => {
 
         <div className="my-10">
           <RichText data={JSON.stringify(testDataTwo)} />
+        </div>
+
+        <div>
+          <RichText data={JSON.stringify(testDataThree)} />
         </div>
       </main>
     </>

@@ -24,16 +24,28 @@
     "clsx": "^1.2.1",
     "csstype": "^3.0.10",
     "formik": "^2.2.9",
+    "image-extensions": "^1.1.0",
+    "immer": "^9.0.19",
+    "is-hotkey": "^0.2.0",
+    "is-url": "^1.2.4",
+    "lodash": "^4.17.21",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.0",
+    "react-uuid": "^2.0.0",
+    "slate": "^0.90.0",
+    "slate-react": "^0.90.0",
     "superjson": "1.9.1",
+    "use-immer": "^0.8.1",
     "zod": "^3.20.2",
     "zod-formik-adapter": "^1.2.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
+    "@types/is-hotkey": "^0.1.7",
+    "@types/is-url": "^1.2.30",
+    "@types/lodash": "^4.14.191",
     "@types/node": "^18.11.18",
     "@types/prettier": "^2.7.2",
     "@types/react": "^18.0.26",
@@ -49,7 +61,7 @@
     "prisma": "^4.9.0",
     "tailwindcss": "^3.2.0",
     "typescript": "^4.9.4",
-    "vitest": "^0.28.4"
+    "vitest": "^0.28.5"
   },
   "ct3aMetadata": {
     "initVersion": "7.5.1"

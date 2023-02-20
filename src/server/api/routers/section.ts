@@ -40,10 +40,14 @@ export const sectionRouter = createTRPCRouter({
           titleInUrl: sectionTitleInUrl,
         },
         select: {
+          id: true,
           title: true,
           bigQuestions: {
             select: {
               id: true,
+            },
+            orderBy: {
+              seqIndex: "asc",
             },
           },
         },
@@ -57,6 +61,7 @@ export const sectionRouter = createTRPCRouter({
       }
 
       return {
+        sectionId: section.id,
         sectionTitle: section.title,
         bigQuestions: section.bigQuestions.map((bq) => bq.id),
       };

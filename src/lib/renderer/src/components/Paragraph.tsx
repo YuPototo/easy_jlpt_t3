@@ -1,8 +1,8 @@
-import type { RichTextElementType } from "../schema";
+import type { RichTextElement } from "../schema";
 import RichTextNodes from "./RichTextNodes";
 
 type Props = {
-  element: RichTextElementType;
+  element: RichTextElement;
 };
 
 export default function Paragraph({ element }: Props) {

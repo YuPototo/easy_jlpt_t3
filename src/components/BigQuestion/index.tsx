@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import type { BigQuestionType } from "../../types/bigQuestion";
-import MainBody from "./MainBody";
-import MainExplanation from "./MainExpalanation";
+import { MainBody } from "./MainBody";
+import { MainExplanation } from "./MainExpalanation";
 import SmallQuestion from "./SmallQuestion";
 
 type BigQuestionContextType = {
@@ -18,7 +18,7 @@ type Props = {
   onDone: () => void;
 };
 
-const BigQuestion: React.FC<Props> = ({ data, onDone }) => {
+export const BigQuestion: React.FC<Props> = ({ data, onDone }) => {
   const [bigQuestionState, setBigQuestionState] = useState<
     Pick<BigQuestionContextType, "userAnswers">
   >({
@@ -58,5 +58,3 @@ const BigQuestion: React.FC<Props> = ({ data, onDone }) => {
     </BigQuestionContext.Provider>
   );
 };
-
-export default BigQuestion;

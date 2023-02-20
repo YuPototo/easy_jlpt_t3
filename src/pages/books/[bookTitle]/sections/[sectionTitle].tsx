@@ -1,29 +1,27 @@
 import type { NextPage } from "next";
-import { useRouter } from "next/router";
 import { useState } from "react";
-import BigQuestion from "../../../../components/BigQuestion";
+import { BigQuestion } from "../../../../components/BigQuestion";
+import { useSectionPath } from "../../../../hooks/usePath";
 import { api } from "../../../../utils/api";
 
 const SectionPracticePage: NextPage = () => {
   const [index, setIndex] = useState(0);
   const [isDond, setIsDone] = useState(false);
 
-  const router = useRouter();
-  const query = router.query;
-  const bookTitle = query.bookTitle as string;
-  const sectionTitle = query.sectionTitle as string;
+  const { bookTitle, sectionTitle, router } = useSectionPath();
 
   const { data: section } = api.section.content.useQuery(
     {
       bookTitle,
       sectionTitleInUrl: sectionTitle,
-    },
+    } as { bookTitle: string; sectionTitleInUrl: string },
     {
       enabled: !!bookTitle && !!sectionTitle,
     }
   );
 
-  const bigQuestionId = section?.bigQuestions[index];
+  const bigQuestions = section?.bigQuestions;
+  const bigQuestionId = bigQuestions ? bigQuestions[index] : undefined;
 
   const { data: bigQuestion } = api.bigQuestion.byId.useQuery(
     bigQuestionId as string,
@@ -32,9 +30,20 @@ const SectionPracticePage: NextPage = () => {
     }
   );
 
+  const bigQuestionLengths = bigQuestions?.length;
+  const hasNext = bigQuestionLengths ? index + 1 < bigQuestionLengths : false;
+
   const handleToNext = () => {
     setIsDone(false);
-    setIndex(index + 1);
+    if (hasNext) {
+      setIndex(index + 1);
+    } else {
+      if (!bookTitle) {
+        // 在这个函数里，应该已经获得了 bookTitle
+        throw Error("bookTitle is undefined");
+      }
+      void router.replace(`/books/${bookTitle}`);
+    }
   };
 
   const handleDone = () => {
@@ -53,7 +62,7 @@ const SectionPracticePage: NextPage = () => {
 
         {isDond ? (
           <button className="mt-8 bg-blue-100 px-4 py-2" onClick={handleToNext}>
-            Next
+            {hasNext ? "Next" : "Finish"}
           </button>
         ) : (
           <></>

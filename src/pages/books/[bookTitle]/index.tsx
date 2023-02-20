@@ -1,5 +1,4 @@
 import type { GetServerSidePropsContext, GetStaticPaths, NextPage } from "next";
-import { useRouter } from "next/router";
 import { createProxySSGHelpers } from "@trpc/react-query/ssg";
 import superjson from "superjson";
 import { createInnerTRPCContext } from "../../../server/api/trpc";
@@ -7,6 +6,7 @@ import { appRouter } from "../../../server/api/root";
 import { prisma } from "../../../server/db";
 import { api } from "../../../utils/api";
 import Link from "next/link";
+import { useBookPath } from "../../../hooks/usePath";
 
 export async function getStaticProps(
   context: GetServerSidePropsContext<{ bookTitle: string }>
@@ -48,12 +48,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const Book: NextPage = () => {
-  const router = useRouter();
-  const query = router.query;
-  const bookTitle = query.bookTitle as string;
+  const { bookTitle, router } = useBookPath();
+  const currentPath = router.asPath;
 
   // This query will be immediately available as it's prefetched.
-  const { data: book } = api.book.byUniqueTitle.useQuery(bookTitle);
+  const { data: book } = api.book.byUniqueTitle.useQuery(bookTitle as string, {
+    enabled: !!bookTitle,
+  });
 
   // get sections
   const { data: sections } = api.section.byBookId.useQuery(book?.id as string, {
@@ -72,9 +73,7 @@ const Book: NextPage = () => {
             <div>
               {sections?.map((section) => (
                 <div key={section.id}>
-                  <Link
-                    href={`/books/${book.uniqueTitle}/sections/${section.titleInUrl}`}
-                  >
+                  <Link href={`${currentPath}/sections/${section.titleInUrl}`}>
                     {section.title}
                   </Link>
                 </div>

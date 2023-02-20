@@ -26,7 +26,7 @@ describe("NodeSchema", () => {
 
   it("should success when parsing an element", () => {
     const result = NodeSchema.safeParse({
-      type: "element",
+      type: "paragraph",
       children: [{ text: "text" }],
     });
     expect(result.success).toBeTruthy();
@@ -50,7 +50,7 @@ describe("NodeSchema", () => {
 describe("ElementSchema", () => {
   it("should success when parsing an element", () => {
     const result = ElementSchema.safeParse({
-      type: "element",
+      type: "paragraph",
       children: [{ text: "text" }],
     });
     expect(result.success).toBeTruthy();

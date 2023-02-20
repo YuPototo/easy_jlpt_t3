@@ -1,6 +1,7 @@
 import saveParseJson from "./utils/saveParseJson";
 import { RootNodesSchema } from "./schema";
 import RichTextNodes from "./components/RichTextNodes";
+
 type Props = {
   data: string;
 };

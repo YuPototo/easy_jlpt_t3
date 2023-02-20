@@ -7,30 +7,63 @@ export const TextSchema = z.object({
   underline: z.literal(true).optional(),
 });
 
-export type RichTextTextType = z.infer<typeof TextSchema>;
+export type RichTextText = z.infer<typeof TextSchema>;
 
 /* Element */
-export type RichTextElementType = {
+export type BaseElement = {
   type: string;
-  children: RichTextNodeType[];
+  children: RichTextNode[];
 };
 
-export type RichTextNodeType = RichTextElementType | RichTextTextType;
+export interface ParagraphElement extends BaseElement {
+  type: "paragraph";
+}
 
-export const ElementSchema: z.ZodType<RichTextElementType> = z.object({
-  type: z.string(),
-  children: z.lazy(() => NodeSchema.array()),
-});
+export interface FillerElement extends BaseElement {
+  type: "filler";
+  children: [{ text: "" }];
+}
 
-export const NodeSchema: z.ZodType<RichTextNodeType> = z.union([
+export interface ImageElement extends BaseElement {
+  type: "image";
+  src: string;
+  alt: string;
+  children: [{ text: "" }];
+}
+
+export type RichTextElement = FillerElement | ImageElement | ParagraphElement;
+
+export type RichTextNode = RichTextElement | RichTextText;
+
+export const ElementSchema: z.ZodType<RichTextElement> = z.discriminatedUnion(
+  "type",
+  [
+    z.object({
+      type: z.literal("paragraph"),
+      children: z.lazy(() => NodeSchema.array()),
+    }),
+    z.object({
+      type: z.literal("filler"),
+      children: z.tuple([z.object({ text: z.literal("") })]),
+    }),
+    z.object({
+      type: z.literal("image"),
+      src: z.string(),
+      alt: z.string(),
+      children: z.tuple([z.object({ text: z.literal("") })]),
+    }),
+  ]
+);
+
+export const NodeSchema: z.ZodType<RichTextNode> = z.union([
   ElementSchema,
   TextSchema,
 ]);
 
 export const RootNodesSchema = NodeSchema.array();
 
-export type RootNodesSchemaType = z.infer<typeof RootNodesSchema>;
+export type RootNodes = z.infer<typeof RootNodesSchema>;
 
-export function isElement(node: RichTextNodeType): node is RichTextElementType {
-  return (node as RichTextElementType).type !== undefined;
+export function isElement(node: RichTextNode): node is RichTextElement {
+  return (node as RichTextElement).type !== undefined;
 }

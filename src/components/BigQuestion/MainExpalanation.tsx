@@ -4,8 +4,6 @@ type Props = {
   content: string;
 };
 
-const MainExplanation: React.FC<Props> = ({ content }) => {
+export const MainExplanation: React.FC<Props> = ({ content }) => {
   return <RichText data={content} />;
 };
-
-export default MainExplanation;
