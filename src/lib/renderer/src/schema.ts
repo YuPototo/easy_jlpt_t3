@@ -15,6 +15,15 @@ export type BaseElement = {
   children: RichTextNode[];
 };
 
+export interface ParagraphElement extends BaseElement {
+  type: "paragraph";
+}
+
+export interface FillerElement extends BaseElement {
+  type: "filler";
+  children: [{ text: "" }];
+}
+
 export interface ImageElement extends BaseElement {
   type: "image";
   src: string;
@@ -22,16 +31,29 @@ export interface ImageElement extends BaseElement {
   children: [{ text: "" }];
 }
 
-export type RichTextElement = BaseElement | ImageElement;
+export type RichTextElement = FillerElement | ImageElement | ParagraphElement;
 
 export type RichTextNode = RichTextElement | RichTextText;
 
-export const ElementSchema: z.ZodType<RichTextElement> = z.object({
-  type: z.string(),
-  children: z.lazy(() => NodeSchema.array()),
-  src: z.string().optional(),
-  alt: z.string().optional(),
-});
+export const ElementSchema: z.ZodType<RichTextElement> = z.discriminatedUnion(
+  "type",
+  [
+    z.object({
+      type: z.literal("paragraph"),
+      children: z.lazy(() => NodeSchema.array()),
+    }),
+    z.object({
+      type: z.literal("filler"),
+      children: z.tuple([z.object({ text: z.literal("") })]),
+    }),
+    z.object({
+      type: z.literal("image"),
+      src: z.string(),
+      alt: z.string(),
+      children: z.tuple([z.object({ text: z.literal("") })]),
+    }),
+  ]
+);
 
 export const NodeSchema: z.ZodType<RichTextNode> = z.union([
   ElementSchema,

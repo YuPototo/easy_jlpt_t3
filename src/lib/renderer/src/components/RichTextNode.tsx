@@ -1,10 +1,11 @@
 import React from "react";
-import type { ImageElement, RichTextElement, RichTextNode } from "../schema";
+import type { RichTextElement, RichTextNode } from "../schema";
 import { isElement } from "../schema";
 import Leaf from "./Leaf";
 import Paragraph from "./Paragraph";
 import Filler from "./Filler";
 import { RichTextImage } from "./Image";
+import { assertUnreachable } from "../../../typeUtils/assertUnreacherbale";
 
 const renderElement = (element: RichTextElement) => {
   switch (element.type) {
@@ -15,12 +16,10 @@ const renderElement = (element: RichTextElement) => {
       return <Paragraph element={element} />;
 
     case "image":
-      // todo: remove as
-      return <RichTextImage element={element as ImageElement} />;
+      return <RichTextImage element={element} />;
 
     default:
-      console.error(`unknown element type: ${element.type}`);
-      return <></>;
+      assertUnreachable(element);
   }
 };
 
