@@ -6,6 +6,7 @@ import {
   useBigQuestionEditor,
   useEditorDispatch,
 } from "./context";
+import uuid from "react-uuid";
 
 type Props = {
   smallQuestionIndex: number;
@@ -26,7 +27,7 @@ const Options: React.FC<Props> = ({ smallQuestionIndex }) => {
   return (
     <div>
       {options.map((option, optionIndex) => (
-        <div className="my-4 bg-purple-200 p-2" key={optionIndex}>
+        <div className="my-4 bg-purple-200 p-2" key={uuid()}>
           <PartEditor
             title={`选项 ${optionIndex + 1}`}
             content={option}

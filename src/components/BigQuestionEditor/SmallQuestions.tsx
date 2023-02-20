@@ -13,6 +13,7 @@ import {
   removeSmallQuestion,
 } from "./context";
 import Options from "./Options";
+import uuid from "react-uuid";
 
 export const SmallQuestions: React.FC = () => {
   const editor = useBigQuestionEditor();
@@ -25,7 +26,7 @@ export const SmallQuestions: React.FC = () => {
       <div>Questions</div>
 
       {smallQuestions.map((smallQuestion, questionIndex) => (
-        <div className="my-4 bg-green-50 py-2 px-2" key={questionIndex}>
+        <div className="my-4 bg-green-50 py-2 px-2" key={uuid()}>
           <div>第 {questionIndex + 1} 小题</div>
 
           <button
