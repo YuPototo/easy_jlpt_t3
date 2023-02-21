@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { api } from "../../utils/api";
+import { api } from "@/utils/api";
 
 const AdminPage: NextPage = () => {
   const { data: books } = api.book.all.useQuery();

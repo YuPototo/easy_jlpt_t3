@@ -4,8 +4,8 @@
  */
 import { createContext, useContext } from "react";
 import { useImmerReducer } from "use-immer";
-import type { BigQuestionType } from "../../../types/bigQuestion";
-import { createBigQuestion } from "../intitialData";
+import type { BigQuestionType } from "@/types/bigQuestion";
+import { createBigQuestion } from "../initialData";
 import type { DispatchFunction } from "./reducer";
 import { reducer } from "./reducer";
 

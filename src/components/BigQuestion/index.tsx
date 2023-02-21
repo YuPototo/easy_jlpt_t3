@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import type { BigQuestionType } from "../../types/bigQuestion";
+import type { BigQuestionType } from "@/types/bigQuestion";
 import { MainBody } from "./MainBody";
 import { MainExplanation } from "./MainExpalanation";
 import SmallQuestion from "./SmallQuestion";

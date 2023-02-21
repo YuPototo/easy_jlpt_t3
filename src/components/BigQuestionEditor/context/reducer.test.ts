@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { createRichText } from "../../../lib/renderer/src/createRichText";
-import { createBigQuestion } from "../intitialData";
+import { createRichText } from "@/lib/renderer/src/createRichText";
+import { createBigQuestion } from "../initialData";
 import { reducer } from "./reducer";
 
 describe("action: bigQuestionBodyAdded", () => {

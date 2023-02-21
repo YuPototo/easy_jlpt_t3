@@ -3,7 +3,7 @@ import { ContextProvider } from "./context/ContextProvider";
 import { Editor } from "./BigQuestionEditor";
 import { Operator } from "./Operator";
 import { Previewer } from "./Previewer";
-import type { BigQuestionType } from "../../types/bigQuestion";
+import type { BigQuestionType } from "@/types/bigQuestion";
 
 type Props = {
   initialData?: BigQuestionType;

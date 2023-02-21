@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import { useState } from "react";
-import { BigQuestion } from "../../../../components/BigQuestion";
-import { useSectionPath } from "../../../../hooks/usePath";
-import { api } from "../../../../utils/api";
+import { BigQuestion } from "@/components/BigQuestion";
+import { useSectionPath } from "@/hooks/usePath";
+import { api } from "@/utils/api";
 
 const SectionPracticePage: NextPage = () => {
   const [index, setIndex] = useState(0);

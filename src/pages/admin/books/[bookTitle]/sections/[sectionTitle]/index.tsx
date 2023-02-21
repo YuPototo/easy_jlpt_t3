@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { useSectionPath } from "../../../../../../hooks/usePath";
-import { api } from "../../../../../../utils/api";
+import { useSectionPath } from "@/hooks/usePath";
+import { api } from "@/utils/api";
 
 const SectionPage: NextPage = () => {
   // get section info

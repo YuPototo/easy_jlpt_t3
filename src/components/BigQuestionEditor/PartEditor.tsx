@@ -1,7 +1,7 @@
 /**
  * 一个单独的可移除的编辑器
  */
-import SlateEditor from "../../lib/editor/SlateEditor";
+import SlateEditor from "@/lib/editor/SlateEditor";
 
 type Props = {
   title: string;

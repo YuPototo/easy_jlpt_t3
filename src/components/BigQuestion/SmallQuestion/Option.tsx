@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useContext } from "react";
 import { BigQuestionContext } from "..";
-import RichText from "../../../lib/renderer/src/RichText";
+import RichText from "@/lib/renderer/src/RichText";
 
 type Props = {
   content: string;

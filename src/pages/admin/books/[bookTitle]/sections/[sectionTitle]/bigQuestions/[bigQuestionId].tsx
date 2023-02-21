@@ -2,10 +2,11 @@
  * 添加题目的页面
  */
 import type { NextPage } from "next";
-import { EditorWrapper } from "../../../../../../../components/BigQuestionEditor/NewEditoWrapper";
-import { useBigQuestionPath } from "../../../../../../../hooks/usePath";
-import { api } from "../../../../../../../utils/api";
 import toast from "react-hot-toast";
+import { EditorWrapper } from "@/components/BigQuestionEditor/NewEditoWrapper";
+import { useBigQuestionPath } from "@/hooks/usePath";
+import { api } from "@/utils/api";
+import type { BigQuestionType } from "@/types/bigQuestion";
 
 const AddBigQuestion: NextPage = () => {
   // get section info
@@ -52,6 +53,17 @@ const AddBigQuestion: NextPage = () => {
     },
   });
 
+  const handleSubmit = (bigQuestion: BigQuestionType) => {
+    if (!bigQuestionId) {
+      throw Error("bigQuestionId is undefined");
+    }
+
+    updateBigQuestion.mutate({
+      ...bigQuestion,
+      id: bigQuestionId,
+    });
+  };
+
   if (!book || !section || !bigQuestion) {
     return <div>loading...</div>;
   }
@@ -66,16 +78,7 @@ const AddBigQuestion: NextPage = () => {
       </div>
 
       <div className="m-4">
-        <EditorWrapper
-          initialData={bigQuestion}
-          onSubmit={(bigQuestion) =>
-            updateBigQuestion.mutate({
-              ...bigQuestion,
-              // todo: remove as
-              id: bigQuestionId as string,
-            })
-          }
-        />
+        <EditorWrapper initialData={bigQuestion} onSubmit={handleSubmit} />
       </div>
     </main>
   );

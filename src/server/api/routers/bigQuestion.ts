@@ -1,6 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { BigQuestionSchema } from "../../../types/bigQuestion";
+import { BigQuestionSchema } from "@/types/bigQuestion";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
 const AddBigQuestionSchema = z

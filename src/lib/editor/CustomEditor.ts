@@ -1,6 +1,6 @@
 import { Editor } from "slate";
 import _ from "lodash";
-import type { RichTextElement } from "../renderer/src/schema";
+import type { RichTextElement } from "@/lib/renderer/src/schema";
 
 /**
  * Use custom editor to add custom methods to the editor

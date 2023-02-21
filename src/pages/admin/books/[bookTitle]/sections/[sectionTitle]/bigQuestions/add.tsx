@@ -2,9 +2,9 @@
  * 添加题目的页面
  */
 import type { NextPage } from "next";
-import { EditorWrapper } from "../../../../../../../components/BigQuestionEditor/NewEditoWrapper";
-import { useSectionPath } from "../../../../../../../hooks/usePath";
-import { api } from "../../../../../../../utils/api";
+import { EditorWrapper } from "@/components/BigQuestionEditor/NewEditoWrapper";
+import { useSectionPath } from "@/hooks/usePath";
+import { api } from "@/utils/api";
 import toast from "react-hot-toast";
 
 const AddBigQuestion: NextPage = () => {

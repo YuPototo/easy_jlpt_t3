@@ -1,12 +1,12 @@
 import type { GetServerSidePropsContext, GetStaticPaths, NextPage } from "next";
 import { createProxySSGHelpers } from "@trpc/react-query/ssg";
 import superjson from "superjson";
-import { createInnerTRPCContext } from "../../../server/api/trpc";
-import { appRouter } from "../../../server/api/root";
-import { prisma } from "../../../server/db";
-import { api } from "../../../utils/api";
+import { createInnerTRPCContext } from "@/server/api/trpc";
+import { appRouter } from "@/server/api/root";
+import { prisma } from "@/server/db";
+import { api } from "@/utils/api";
 import Link from "next/link";
-import { useBookPath } from "../../../hooks/usePath";
+import { useBookPath } from "@/hooks/usePath";
 
 export async function getStaticProps(
   context: GetServerSidePropsContext<{ bookTitle: string }>
