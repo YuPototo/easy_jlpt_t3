@@ -32,7 +32,7 @@ export const PartEditor: React.FC<Props> = ({
       <div>{title}</div>
       {content ? (
         <SlateEditor
-          initalValue={content}
+          initialValue={content}
           onChange={(value) => onChange(value)}
           allowFiller={allowFiller}
         />

@@ -61,7 +61,7 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       state.data.explanation = action.payload;
       return state;
 
-    // todo: add test case
+    // 添加小题题干
     case "smallQuestionBodyAdded": {
       console.log("action: smallQuestionBodyAdded");
       const smallQuestionIndex = action.payload;
@@ -69,11 +69,14 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       if (!smallQuestion) {
         throw new Error("Invalid smallQuestionIndex");
       }
+      if (smallQuestion.body) {
+        throw new Error("smallQuestionBody 已存在，不允许再添加");
+      }
       smallQuestion.body = createRichText("");
       return state;
     }
 
-    // todo: add test case
+    // 移除小题题干
     case "smallQuestionBodyRemoved": {
       console.log("action: smallQuestionBodyRemoved");
       const smallQuestionIndex = action.payload;
@@ -81,7 +84,14 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       if (!smallQuestion) {
         throw new Error("Invalid smallQuestionIndex");
       }
+
+      if (!smallQuestion.body) {
+        throw new Error(
+          "smallQuestionBody 不存在，只能删除已存在的 smallQuestionBody"
+        );
+      }
       smallQuestion.body = undefined;
+
       return state;
     }
 

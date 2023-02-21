@@ -22,14 +22,14 @@ import withImage from "./withImage";
 export type EditorType = ReturnType<typeof withReact>;
 
 type Props = {
-  initalValue: string;
+  initialValue: string;
   onChange: (value: string) => void;
   allowFiller?: boolean;
 };
 
 export default function SlateEditor({
   onChange,
-  initalValue,
+  initialValue,
   allowFiller,
 }: Props) {
   const [editor] = useState(() => withImage(withReact(createEditor())));
@@ -49,7 +49,7 @@ export default function SlateEditor({
   };
 
   // todo: remove as
-  const data = JSON.parse(initalValue) as Descendant[];
+  const data = JSON.parse(initialValue) as Descendant[];
 
   return (
     <div>
