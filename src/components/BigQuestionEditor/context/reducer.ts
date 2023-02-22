@@ -204,6 +204,17 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       return state;
     }
 
+    case "answerChanged": {
+      console.log("action: answerChanged");
+      const { smallQuestionIndex, optionIndex } = action.payload;
+      const smallQuestion = state.data.smallQuestions[smallQuestionIndex];
+      if (!smallQuestion) {
+        throw new Error("Invalid smallQuestionIndex");
+      }
+      smallQuestion.answer = optionIndex;
+      return state;
+    }
+
     default:
       throw new Error("Unknown action type");
   }

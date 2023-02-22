@@ -73,6 +73,14 @@ type SmallQuestionActionType =
         optionIndex: number;
         content: string;
       };
+    }
+  | {
+      // 修改答案
+      type: "answerChanged";
+      payload: {
+        smallQuestionIndex: number;
+        optionIndex: number;
+      };
     };
 
 export type ActionType = BigQuestionActionType | SmallQuestionActionType;
@@ -138,4 +146,11 @@ export function changeOption(payload: {
   content: string;
 }): ActionType {
   return { type: "optionChanged", payload };
+}
+
+export function answerChanged(payload: {
+  smallQuestionIndex: number;
+  optionIndex: number;
+}): ActionType {
+  return { type: "answerChanged", payload };
 }
