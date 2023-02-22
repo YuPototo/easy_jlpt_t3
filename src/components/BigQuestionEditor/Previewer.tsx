@@ -1,6 +1,7 @@
 import { useBigQuestionEditor } from "./context/ContextProvider";
 import { BigQuestion } from "../BigQuestion";
 import { BigQuestionSchema } from "@/types/bigQuestion";
+import { fromZodError } from "zod-validation-error";
 
 export const Previewer: React.FC = () => {
   const editor = useBigQuestionEditor();
@@ -19,7 +20,7 @@ export const Previewer: React.FC = () => {
       ) : (
         <div>
           题目不完整：
-          {JSON.stringify(parseResult.error.format())}
+          {fromZodError(parseResult.error).message}
         </div>
       )}
     </div>
