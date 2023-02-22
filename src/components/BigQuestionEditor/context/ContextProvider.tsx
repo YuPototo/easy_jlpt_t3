@@ -4,14 +4,14 @@
  */
 import { createContext, useContext } from "react";
 import { useImmerReducer } from "use-immer";
-import type { BigQuestionType } from "@/types/bigQuestion";
+import type { InitialBigQuesiton } from "../initialData";
 import { createBigQuestion } from "../initialData";
 import type { DispatchFunction } from "./reducer";
 import { reducer } from "./reducer";
 
 /* --- state --- */
 export type EditorState = {
-  data: BigQuestionType;
+  data: InitialBigQuesiton;
 };
 
 const state: EditorState = {
@@ -26,7 +26,7 @@ export function ContextProvider({
   initialData,
 }: {
   children: React.ReactNode;
-  initialData?: BigQuestionType;
+  initialData?: InitialBigQuesiton;
 }) {
   const initialState = initialData ? { data: initialData } : state;
   const [data, dispatch] = useImmerReducer(reducer, initialState);

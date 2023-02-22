@@ -1,8 +1,11 @@
 // 必须从源文件引入，否则因为 tsx 报错
 import { createRichText } from "@/lib/renderer/createRichText";
+import type { PartialBy } from "@/lib/typeUtils/optional";
 import type { BigQuestionType, SmallQuestionType } from "@/types/bigQuestion";
 
-export const INITIAL_SMALL_QUESTION: SmallQuestionType = {
+export type InitialSmallQuestion = PartialBy<SmallQuestionType, "answer">;
+
+export const INITIAL_SMALL_QUESTION: InitialSmallQuestion = {
   body: createRichText("这是小题 body"),
   options: [
     createRichText("a"),
@@ -11,10 +14,13 @@ export const INITIAL_SMALL_QUESTION: SmallQuestionType = {
     createRichText("d"),
   ],
   explanation: createRichText("这是小题的 expalantion"),
-  answer: 0,
 };
 
-const INITIAL_BIG_QUESTION: BigQuestionType = {
+export type InitialBigQuesiton = Omit<BigQuestionType, "smallQuestions"> & {
+  smallQuestions: InitialSmallQuestion[];
+};
+
+const INITIAL_BIG_QUESTION: InitialBigQuesiton = {
   smallQuestions: [INITIAL_SMALL_QUESTION],
 };
 
@@ -22,9 +28,9 @@ const INITIAL_BIG_QUESTION: BigQuestionType = {
 export function createSmallQuestion() {
   return JSON.parse(
     JSON.stringify(INITIAL_SMALL_QUESTION)
-  ) as SmallQuestionType;
+  ) as InitialSmallQuestion;
 }
 
 export function createBigQuestion() {
-  return JSON.parse(JSON.stringify(INITIAL_BIG_QUESTION)) as BigQuestionType;
+  return JSON.parse(JSON.stringify(INITIAL_BIG_QUESTION)) as InitialBigQuesiton;
 }
