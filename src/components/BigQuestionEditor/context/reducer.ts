@@ -1,6 +1,6 @@
 import type { Dispatch } from "react";
 // 必须从源文件引入 createRichText，否则单元测试会报错
-import { createRichText } from "@/lib/renderer/src/createRichText";
+import { createRichText } from "@/lib/renderer/createRichText";
 import { createSmallQuestion } from "../initialData";
 import type { ActionType } from "./actions";
 import type { EditorState } from "./ContextProvider";

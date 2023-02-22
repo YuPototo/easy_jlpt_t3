@@ -1,8 +1,7 @@
 // TypeScript users only add this code
 import type { BaseEditor } from "slate";
 import type { ReactEditor } from "slate-react";
-
-import type { ImageElement, RichTextText } from "@/lib/renderer/src/schema";
+import type { ImageElement, RichTextText } from "./types";
 
 type ParagraphElement = { type: "paragraph"; children: RichTextText[] };
 export type FillerElement = { type: "filler"; children: RichTextText[] };

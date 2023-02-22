@@ -5,7 +5,7 @@ import Leaf from "./Leaf";
 import Paragraph from "./Paragraph";
 import Filler from "./Filler";
 import { RichTextImage } from "./Image";
-import { assertUnreachable } from "../../../typeUtils/assertUnreacherbale";
+import { assertUnreachable } from "../../typeUtils/assertUnreacherbale";
 
 const renderElement = (element: RichTextElement) => {
   switch (element.type) {

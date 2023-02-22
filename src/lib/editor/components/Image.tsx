@@ -3,7 +3,7 @@ import type { ReactElement } from "react";
 import type { RenderElementProps } from "slate-react";
 import { useSelected } from "slate-react";
 import clsx from "clsx";
-import type { ImageElement } from "@/lib/renderer/src/schema";
+import type { ImageElement } from "../types";
 
 type Props = {
   attributes: RenderElementProps["attributes"];

@@ -1,5 +1,5 @@
 // 必须从源文件引入，否则因为 tsx 报错
-import { createRichText } from "@/lib/renderer/src/createRichText";
+import { createRichText } from "@/lib/renderer/createRichText";
 import type { BigQuestionType, SmallQuestionType } from "@/types/bigQuestion";
 
 export const INITIAL_SMALL_QUESTION: SmallQuestionType = {

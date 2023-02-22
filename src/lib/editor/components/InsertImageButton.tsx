@@ -5,7 +5,7 @@ import isUrl from "is-url";
 import imageExtensions from "image-extensions";
 import { Transforms } from "slate";
 import type { EditorType } from "../SlateEditor";
-import type { ImageElement } from "@/lib/renderer/src/schema";
+import type { ImageElement } from "../types";
 
 export function InsertImageButton() {
   const editor = useSlateStatic();

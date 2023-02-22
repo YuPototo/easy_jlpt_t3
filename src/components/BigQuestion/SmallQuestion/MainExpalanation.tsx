@@ -1,4 +1,4 @@
-import RichText from "@/lib/renderer/src/RichText";
+import RichText from "@/lib/renderer/RichText";
 
 type Props = {
   content: string;

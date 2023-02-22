@@ -1,4 +1,4 @@
-import { createRichText } from "@/lib/renderer/src/createRichText";
+import { createRichText } from "@/lib/renderer/createRichText";
 import { describe, expect, it } from "vitest";
 import { createBigQuestion } from "../initialData";
 import { reducer } from "./reducer";
