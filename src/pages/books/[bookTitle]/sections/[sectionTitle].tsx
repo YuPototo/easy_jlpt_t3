@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BigQuestion } from "@/components/BigQuestion";
 import { useSectionPath } from "@/hooks/usePath";
 import { api } from "@/utils/api";
+import { Button } from "@/components/ui/Button";
 
 const SectionPracticePage: NextPage = () => {
   const [index, setIndex] = useState(0);
@@ -60,10 +61,12 @@ const SectionPracticePage: NextPage = () => {
           <></>
         )}
 
+        <Button outline onClick={() => console.log("todo")}>
+          Show Answer
+        </Button>
+
         {isDond ? (
-          <button className="mt-8 bg-blue-100 px-4 py-2" onClick={handleToNext}>
-            {hasNext ? "Next" : "Finish"}
-          </button>
+          <Button onClick={handleToNext}>{hasNext ? "Next" : "Finish"}</Button>
         ) : (
           <></>
         )}
