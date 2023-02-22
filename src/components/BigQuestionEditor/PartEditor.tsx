@@ -2,6 +2,7 @@
  * 一个单独的可移除的编辑器
  */
 import SlateEditor from "@/lib/editor/SlateEditor";
+import clsx from "clsx";
 
 type Props = {
   title?: string;
@@ -10,6 +11,7 @@ type Props = {
   onChange: (newContent: string) => void;
   onAdd?: () => void; // 有的时候不支持直接添加，比如 option 编辑器
   allowFiller?: boolean;
+  layout?: "vertical" | "horizontal";
 };
 
 export const PartEditor: React.FC<Props> = ({
@@ -19,6 +21,7 @@ export const PartEditor: React.FC<Props> = ({
   onRemove,
   onChange,
   allowFiller,
+  layout = "vertical",
 }) => {
   const handleClickBtn = () => {
     if (content) {
@@ -28,20 +31,35 @@ export const PartEditor: React.FC<Props> = ({
     }
   };
   return (
-    <div className="my-4">
-      {title ? <div className="text-gray-50">{title}</div> : <></>}
-      {content ? (
-        <SlateEditor
-          initialValue={content}
-          onChange={(value) => onChange(value)}
-          allowFiller={allowFiller}
-        />
+    <div
+      className={clsx("my-4 rounded bg-gray-50 p-4", {
+        "flex items-center gap-6": layout === "horizontal",
+      })}
+    >
+      {title ? (
+        <div className="mb-4 text-lg font-bold text-green-800">{title}</div>
       ) : (
         <></>
       )}
-      <button className="bg-blue-100 p-2" onClick={handleClickBtn}>
-        {content ? "移除" : "添加"}
-      </button>
+
+      <div className="flex flex-grow items-center gap-6">
+        {content ? (
+          <div className="flex-grow">
+            <SlateEditor
+              initialValue={content}
+              onChange={(value) => onChange(value)}
+              allowFiller={allowFiller}
+            />
+          </div>
+        ) : (
+          <></>
+        )}
+        <div>
+          <button className="bg-blue-100 p-2" onClick={handleClickBtn}>
+            {content ? "移除" : "添加"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -14,6 +14,7 @@ import {
 } from "./context";
 import Options from "./Options";
 import uuid from "react-uuid";
+import { Divider } from "../ui/Divider";
 
 export const SmallQuestions: React.FC = () => {
   const editor = useBigQuestionEditor();
@@ -22,12 +23,12 @@ export const SmallQuestions: React.FC = () => {
   const smallQuestions = data?.smallQuestions || [];
 
   return (
-    <div className="my-10">
-      <div className="text-gray-50">Questions</div>
-
+    <>
       {smallQuestions.map((smallQuestion, questionIndex) => (
-        <div className="my-4 bg-green-50 py-2 px-2" key={uuid()}>
-          <div>第 {questionIndex + 1} 小题</div>
+        <div className="my-10 rounded bg-gray-50 p-4" key={uuid()}>
+          <div className="mb-4 text-lg font-bold text-green-800">
+            第 {questionIndex + 1} 小题
+          </div>
 
           <button
             className="bg-red-100 p-2"
@@ -37,7 +38,7 @@ export const SmallQuestions: React.FC = () => {
           </button>
 
           <PartEditor
-            title="小题题干"
+            title="题干"
             content={smallQuestion.body}
             onAdd={() => dispatch(addSmallQuestionBody(questionIndex))}
             onRemove={() => dispatch(removeSmallQuestionBody(questionIndex))}
@@ -49,12 +50,17 @@ export const SmallQuestions: React.FC = () => {
                 })
               )
             }
+            layout="horizontal"
           />
+
+          <Divider />
 
           <Options smallQuestionIndex={questionIndex} />
 
+          <Divider />
+
           <PartEditor
-            title="小题解析"
+            title="解析"
             content={smallQuestion.explanation}
             onAdd={() => dispatch(addSmallQuestionExplanation(questionIndex))}
             onRemove={() =>
@@ -69,6 +75,7 @@ export const SmallQuestions: React.FC = () => {
               )
             }
             allowFiller={false}
+            layout="horizontal"
           />
         </div>
       ))}
@@ -79,6 +86,6 @@ export const SmallQuestions: React.FC = () => {
       >
         新增小题
       </button>
-    </div>
+    </>
   );
 };

@@ -25,34 +25,36 @@ const Options: React.FC<Props> = ({ smallQuestionIndex }) => {
   const options = smallQuestion.options;
 
   return (
-    <div>
-      {options.map((option, optionIndex) => (
-        <div className="my-4 bg-purple-200 p-2" key={uuid()}>
-          <PartEditor
-            content={option}
-            onRemove={() =>
-              dispatch(removeOption({ smallQuestionIndex, optionIndex }))
-            }
-            onChange={(content) =>
-              dispatch(
-                changeOption({
-                  smallQuestionIndex,
-                  optionIndex,
-                  content,
-                })
-              )
-            }
-            allowFiller={false}
-          />
-        </div>
-      ))}
-
-      <button
-        className="bg-red-50 p-2"
-        onClick={() => dispatch(addOption(smallQuestionIndex))}
-      >
-        添加选项
-      </button>
+    <div className="flex items-center gap-6 pl-4">
+      <div className="mb-4 text-lg font-bold text-green-800">选项</div>
+      <div className="flex-grow">
+        {options.map((option, optionIndex) => (
+          <div className="my-4 p-2 " key={uuid()}>
+            <PartEditor
+              content={option}
+              onRemove={() =>
+                dispatch(removeOption({ smallQuestionIndex, optionIndex }))
+              }
+              onChange={(content) =>
+                dispatch(
+                  changeOption({
+                    smallQuestionIndex,
+                    optionIndex,
+                    content,
+                  })
+                )
+              }
+              allowFiller={false}
+            />
+          </div>
+        ))}
+        <button
+          className="bg-red-50 p-2"
+          onClick={() => dispatch(addOption(smallQuestionIndex))}
+        >
+          添加选项
+        </button>
+      </div>
     </div>
   );
 };
