@@ -51,9 +51,9 @@ export const AddSectionForm: React.FC<{
           <div>
             <label
               htmlFor="title"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-50"
             >
-              Title
+              Title 标题
             </label>
             <div className="my-1">
               <input
@@ -77,7 +77,7 @@ export const AddSectionForm: React.FC<{
               type="submit"
               disabled={isSubmitting}
             >
-              添加 Section
+              添加
             </button>
           </div>
         </Form>

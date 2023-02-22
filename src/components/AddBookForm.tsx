@@ -52,9 +52,9 @@ export const AddBookForm: React.FC<{
           <div>
             <label
               htmlFor="title"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-50"
             >
-              Title
+              Title 标题
             </label>
             <div className="my-1">
               <input
@@ -78,7 +78,7 @@ export const AddBookForm: React.FC<{
               type="submit"
               disabled={isSubmitting}
             >
-              Submit
+              提交
             </button>
           </div>
         </Form>

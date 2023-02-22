@@ -5,8 +5,8 @@ import { createInnerTRPCContext } from "@/server/api/trpc";
 import { appRouter } from "@/server/api/root";
 import { prisma } from "@/server/db";
 import { api } from "@/utils/api";
-import Link from "next/link";
 import { useBookPath } from "@/hooks/usePath";
+import { SectionCard } from "@/components/ui/SectionCard";
 
 export async function getStaticProps(
   context: GetServerSidePropsContext<{ bookTitle: string }>
@@ -63,28 +63,25 @@ const Book: NextPage = () => {
 
   // get param
   return (
-    <>
-      <main className="flex h-screen flex-col items-center">
-        {book ? (
-          <div>
-            <h1>{book.title}</h1>
-            <div>{book.createdAt.toString()}</div>
+    <main className="flex min-h-screen flex-col items-center bg-[#f3f4f6] py-8 sm:px-6 lg:px-8">
+      {book ? (
+        <div>
+          <h1 className="my-4 text-lg">{book.title}</h1>
 
-            <div>
-              {sections?.map((section) => (
-                <div key={section.id}>
-                  <Link href={`${currentPath}/sections/${section.titleInUrl}`}>
-                    {section.title}
-                  </Link>
-                </div>
-              ))}
-            </div>
+          <div className="flex flex-col gap-4">
+            {sections?.map((section) => (
+              <SectionCard
+                key={section.id}
+                title={section.title}
+                href={`${currentPath}/sections/${section.titleInUrl}`}
+              />
+            ))}
           </div>
-        ) : (
-          <div>Not exists</div>
-        )}
-      </main>
-    </>
+        </div>
+      ) : (
+        <div>Not exists</div>
+      )}
+    </main>
   );
 };
 

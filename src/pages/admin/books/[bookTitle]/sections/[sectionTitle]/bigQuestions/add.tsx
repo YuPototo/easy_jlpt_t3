@@ -48,8 +48,8 @@ const AddBigQuestion: NextPage = () => {
   }
 
   return (
-    <main>
-      <h1 className="mb-4">添加题目</h1>
+    <main className="min-h-screebg-[#f3f4f6] py-8 sm:px-6 lg:px-8">
+      <h1 className="mb-4 text-lg">添加题目</h1>
 
       <div>
         <div>Book: {book?.title}</div>

@@ -1,6 +1,5 @@
 import clsx from "clsx";
-import { useContext } from "react";
-import { BigQuestionContext } from "..";
+import { useBigQuestionContext } from "../context";
 import RichText from "@/lib/renderer/RichText";
 
 type Props = {
@@ -16,7 +15,7 @@ export const Option: React.FC<Props> = ({
   optionIndex,
   isAnswer,
 }) => {
-  const { isPicked, isDone, optionPicked } = useBigQuestionContext({
+  const { isPicked, isDone, optionPicked } = useOptionContext({
     smallQuestionIndex,
     optionIndex,
   });
@@ -36,23 +35,16 @@ export const Option: React.FC<Props> = ({
   );
 };
 
-const useBigQuestionContext = ({
+const useOptionContext = ({
   smallQuestionIndex,
   optionIndex,
 }: {
   smallQuestionIndex: number;
   optionIndex: number;
 }) => {
-  const context = useContext(BigQuestionContext);
-
-  if (!context) {
-    throw new Error(
-      "BigQuestionContext has to be used within <BigQuestionContext.Provider>"
-    );
-  }
+  const { isDone, context } = useBigQuestionContext();
 
   const isPicked = context.userAnswers[smallQuestionIndex] === optionIndex;
-  const isDone = context.userAnswers.every((answer) => answer !== null);
 
   return { isPicked, isDone, optionPicked: context.optionPicked };
 };
@@ -67,10 +59,10 @@ function backgroundColor({
   isPicked: boolean;
 }) {
   // not picked option
-  if (!isPicked) return "bg-yellow-50";
+  if (!isPicked) return "bg-gray-100";
 
   // picked but not done
-  if (!isDone) return "bg-yellow-200";
+  if (!isDone) return "bg-gray-100 ring-2 ring-blue";
 
   if (isAnswer) {
     // picked, done and right

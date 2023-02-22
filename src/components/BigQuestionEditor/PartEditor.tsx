@@ -4,7 +4,7 @@
 import SlateEditor from "@/lib/editor/SlateEditor";
 
 type Props = {
-  title: string;
+  title?: string;
   content?: string | null;
   onRemove: () => void;
   onChange: (newContent: string) => void;
@@ -29,7 +29,7 @@ export const PartEditor: React.FC<Props> = ({
   };
   return (
     <div className="my-4">
-      <div>{title}</div>
+      {title ? <div className="text-gray-50">{title}</div> : <></>}
       {content ? (
         <SlateEditor
           initialValue={content}

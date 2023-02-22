@@ -5,5 +5,9 @@ type Props = {
 };
 
 export const MainBody: React.FC<Props> = ({ content }) => {
-  return <RichText data={content} />;
+  return (
+    <div className="my-6">
+      <RichText data={content} />
+    </div>
+  );
 };

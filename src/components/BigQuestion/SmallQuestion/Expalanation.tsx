@@ -1,11 +1,11 @@
 import RichText from "@/lib/renderer/RichText";
-import { useBigQuestionContext } from "./context";
+import { useBigQuestionContext } from "../context";
 
 type Props = {
   content: string;
 };
 
-export const MainExplanation: React.FC<Props> = ({ content }) => {
+export const Explanation: React.FC<Props> = ({ content }) => {
   const { isDone } = useBigQuestionContext();
 
   return isDone ? (

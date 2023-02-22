@@ -23,7 +23,7 @@ export const SmallQuestions: React.FC = () => {
 
   return (
     <div className="my-10">
-      <div>Questions</div>
+      <div className="text-gray-50">Questions</div>
 
       {smallQuestions.map((smallQuestion, questionIndex) => (
         <div className="my-4 bg-green-50 py-2 px-2" key={uuid()}>
@@ -73,7 +73,10 @@ export const SmallQuestions: React.FC = () => {
         </div>
       ))}
 
-      <button onClick={() => dispatch({ type: "smallQuestionAdded" })}>
+      <button
+        className="bg-green-50 p-2"
+        onClick={() => dispatch({ type: "smallQuestionAdded" })}
+      >
         新增小题
       </button>
     </div>

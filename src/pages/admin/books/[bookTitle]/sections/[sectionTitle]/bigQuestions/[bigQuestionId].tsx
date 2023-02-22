@@ -69,10 +69,10 @@ const AddBigQuestion: NextPage = () => {
   }
 
   return (
-    <main>
-      <h1 className="mb-4">修改题目</h1>
+    <main className="min-h-scree bg-gray-900 py-8 sm:px-6 lg:px-8">
+      <h1 className="mb-4 text-lg text-gray-50">修改题目</h1>
 
-      <div>
+      <div className="text-gray-50">
         <div>Book: {book?.title}</div>
         <div>Section: {section?.sectionTitle}</div>
       </div>

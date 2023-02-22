@@ -20,10 +20,14 @@ const SectionPage: NextPage = () => {
   );
 
   return (
-    <main>
-      {isLoading ? <div className="font-lg m-4">加载中....</div> : <></>}
+    <main className="flex min-h-screen flex-col items-center bg-gray-900 py-8 sm:px-6 lg:px-8">
+      {isLoading ? (
+        <div className="font-lg m-4 text-gray-50">加载中....</div>
+      ) : (
+        <></>
+      )}
 
-      <h1>{section?.sectionTitle}</h1>
+      <h1 className="mb-8 text-lg text-gray-50">{section?.sectionTitle}</h1>
 
       <div className="m-4">
         <Link
@@ -34,12 +38,14 @@ const SectionPage: NextPage = () => {
         </Link>
       </div>
 
-      <div className="m-2">题目数量：{section?.bigQuestions.length}</div>
+      <div className="m-2 text-gray-50">
+        题目数量：{section?.bigQuestions.length}
+      </div>
 
       <div>
         {section?.bigQuestions.map((id) => (
           <Link
-            className="m-2 block p-2"
+            className="m-2 block bg-gray-50 p-2"
             key={id}
             href={`${currentPath}/bigQuestions/${id}`}
           >

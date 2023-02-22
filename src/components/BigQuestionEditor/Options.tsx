@@ -29,7 +29,6 @@ const Options: React.FC<Props> = ({ smallQuestionIndex }) => {
       {options.map((option, optionIndex) => (
         <div className="my-4 bg-purple-200 p-2" key={uuid()}>
           <PartEditor
-            title={`选项 ${optionIndex + 1}`}
             content={option}
             onRemove={() =>
               dispatch(removeOption({ smallQuestionIndex, optionIndex }))

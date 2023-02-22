@@ -7,14 +7,14 @@ export const Previewer: React.FC = () => {
 
   return (
     <div>
-      <h2>Preview</h2>
+      <h2 className="text-gray-50">Preview</h2>
       {data ? (
         <BigQuestion
           data={data}
           onDone={() => console.log("do nothing here")}
         />
       ) : (
-        <div>editor data is undefined</div>
+        <div className="text-gray-50">editor data is undefined</div>
       )}
     </div>
   );

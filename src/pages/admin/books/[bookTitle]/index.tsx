@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { useBookPath } from "@/hooks/usePath";
 import { api } from "@/utils/api";
+import { SectionCard } from "@/components/ui/SectionCard";
 
 const Book: NextPage = () => {
   const { bookTitle, router } = useBookPath();
@@ -19,26 +20,23 @@ const Book: NextPage = () => {
   // get param
   return (
     <>
-      <main className="flex h-screen flex-col items-center">
+      <main className="flex min-h-screen flex-col items-center bg-gray-900 py-8 sm:px-6 lg:px-8">
         {bookTitle ? (
           book ? (
             <div>
-              <h1>{book.title}</h1>
-              <div>{book.createdAt.toString()}</div>
+              <h1 className="mb-10 text-lg text-gray-50">{book.title}</h1>
 
-              <div>
+              <div className="my-4 flex flex-col gap-4">
                 {sections?.map((section) => (
-                  <Link
-                    className="m-2 block p-2"
+                  <SectionCard
                     key={section.id}
+                    title={section.title}
                     href={`${currentPath}/sections/${section.titleInUrl}`}
-                  >
-                    {section.title}
-                  </Link>
+                  />
                 ))}
               </div>
 
-              <div>
+              <div className="mt-10">
                 <Link
                   className="bg-green-300 p-2"
                   href={`${currentPath}/sections/add`}

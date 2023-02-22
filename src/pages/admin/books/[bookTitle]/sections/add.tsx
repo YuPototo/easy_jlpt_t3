@@ -19,12 +19,15 @@ const AddSectionPage: NextPage = () => {
   };
 
   return (
-    <main>
-      <h1>Add Section</h1>
-      <div>Book: {book?.title} </div>
+    <main className="flex min-h-screen flex-col items-center bg-gray-900 py-8 sm:px-6 lg:px-8">
+      <h1 className="mb-4 text-lg text-gray-50">Add Section</h1>
+
+      <div className="mb-10 text-gray-50">Book: {book?.title} </div>
 
       {book ? (
-        <AddSectionForm bookId={book.id} onSuccess={handleSuccess} />
+        <div className="w-80">
+          <AddSectionForm bookId={book.id} onSuccess={handleSuccess} />
+        </div>
       ) : (
         <></>
       )}

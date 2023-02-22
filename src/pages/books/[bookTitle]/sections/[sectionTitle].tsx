@@ -53,7 +53,7 @@ const SectionPracticePage: NextPage = () => {
   return (
     <>
       <main className="flex h-screen flex-col items-center">
-        <div>section: {section?.sectionTitle} </div>
+        <div className="my-4 text-gray-700">{section?.sectionTitle} </div>
         {bigQuestion ? (
           <BigQuestion data={bigQuestion} onDone={handleDone} />
         ) : (
