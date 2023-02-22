@@ -3,6 +3,7 @@
  */
 import SlateEditor from "@/lib/editor/SlateEditor";
 import clsx from "clsx";
+import { Button } from "../ui/Button";
 
 type Props = {
   title?: string;
@@ -55,9 +56,9 @@ export const PartEditor: React.FC<Props> = ({
           <></>
         )}
         <div>
-          <button className="bg-blue-100 p-2" onClick={handleClickBtn}>
+          <Button intent="primary" outline onClick={handleClickBtn}>
             {content ? "移除" : "添加"}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import {
   useEditorDispatch,
 } from "./context";
 import uuid from "react-uuid";
+import { Button } from "../ui/Button";
 
 type Props = {
   smallQuestionIndex: number;
@@ -48,12 +49,9 @@ const Options: React.FC<Props> = ({ smallQuestionIndex }) => {
             />
           </div>
         ))}
-        <button
-          className="bg-red-50 p-2"
-          onClick={() => dispatch(addOption(smallQuestionIndex))}
-        >
+        <Button outline onClick={() => dispatch(addOption(smallQuestionIndex))}>
           添加选项
-        </button>
+        </Button>
       </div>
     </div>
   );

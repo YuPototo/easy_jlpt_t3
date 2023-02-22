@@ -15,6 +15,7 @@ import {
 import Options from "./Options";
 import uuid from "react-uuid";
 import { Divider } from "../ui/Divider";
+import { Button } from "../ui/Button";
 
 export const SmallQuestions: React.FC = () => {
   const editor = useBigQuestionEditor();
@@ -30,12 +31,13 @@ export const SmallQuestions: React.FC = () => {
             第 {questionIndex + 1} 小题
           </div>
 
-          <button
-            className="bg-red-100 p-2"
+          <Button
+            intent="secondary"
+            outline
             onClick={() => dispatch(removeSmallQuestion(questionIndex))}
           >
             移除小题
-          </button>
+          </Button>
 
           <PartEditor
             title="题干"
@@ -80,12 +82,9 @@ export const SmallQuestions: React.FC = () => {
         </div>
       ))}
 
-      <button
-        className="bg-green-50 p-2"
-        onClick={() => dispatch({ type: "smallQuestionAdded" })}
-      >
+      <Button outline onClick={() => dispatch({ type: "smallQuestionAdded" })}>
         新增小题
-      </button>
+      </Button>
     </>
   );
 };

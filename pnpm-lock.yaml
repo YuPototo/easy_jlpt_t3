@@ -18,6 +18,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.47.1
   '@typescript-eslint/parser': ^5.47.1
   autoprefixer: ^10.4.7
+  class-variance-authority: ^0.4.0
   clsx: ^1.2.1
   csstype: ^3.0.10
   eslint: ^8.30.0
@@ -54,6 +55,7 @@ dependencies:
   '@trpc/next': registry.npmmirror.com/@trpc/next/10.11.0_rid2hrxunbm3ffp2k2uj3yfmiq
   '@trpc/react-query': registry.npmmirror.com/@trpc/react-query/10.11.0_cpeqqrckfgr33xypfmr4g7wgmq
   '@trpc/server': registry.npmmirror.com/@trpc/server/10.11.0
+  class-variance-authority: registry.npmmirror.com/class-variance-authority/0.4.0_typescript@4.9.5
   clsx: registry.npmmirror.com/clsx/1.2.1
   csstype: registry.npmmirror.com/csstype/3.1.1
   formik: registry.npmmirror.com/formik/2.2.9_react@18.2.0
@@ -1390,6 +1392,20 @@ packages:
     optionalDependencies:
       fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: true
+
+  registry.npmmirror.com/class-variance-authority/0.4.0_typescript@4.9.5:
+    resolution: {integrity: sha512-74enNN8O9ZNieycac/y8FxqgyzZhZbxmCitAtAeUrLPlxjSd5zA7LfpprmxEcOmQBnaGs5hYhiSGnJ0mqrtBLQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/class-variance-authority/-/class-variance-authority-0.4.0.tgz}
+    id: registry.npmmirror.com/class-variance-authority/0.4.0
+    name: class-variance-authority
+    version: 0.4.0
+    peerDependencies:
+      typescript: '>= 4.5.5 < 5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: registry.npmmirror.com/typescript/4.9.5
+    dev: false
 
   registry.npmmirror.com/cli-truncate/3.1.0:
     resolution: {integrity: sha512-wfOBkjXteqSnI59oPcJkcPl/ZmwvMMOj340qUIY1SKZCv0B9Cf4D4fAucRkIKQmsIuYK3x1rrgU7MeGRruiuiA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/cli-truncate/-/cli-truncate-3.1.0.tgz}
@@ -4269,7 +4285,6 @@ packages:
     version: 4.9.5
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   registry.npmmirror.com/ufo/1.1.0:
     resolution: {integrity: sha512-LQc2s/ZDMaCN3QLpa+uzHUOQ7SdV0qgv3VBXOolQGXTaaZpIur6PwUclF5nN2hNkiTRcUugXd1zFOW3FLJ135Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ufo/-/ufo-1.1.0.tgz}

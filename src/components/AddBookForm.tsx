@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { api } from "../utils/api";
+import { Button } from "./ui/Button";
 
 const BookSchema = z.object({
   title: z.string().min(1).max(30),
@@ -73,13 +74,9 @@ export const AddBookForm: React.FC<{
           </div>
 
           <div className="mx-auto">
-            <button
-              className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              type="submit"
-              disabled={isSubmitting}
-            >
+            <Button type="submit" disabled={isSubmitting}>
               提交
-            </button>
+            </Button>
           </div>
         </Form>
       )}

@@ -21,6 +21,7 @@
     "@trpc/next": "^10.9.0",
     "@trpc/react-query": "^10.9.0",
     "@trpc/server": "^10.9.0",
+    "class-variance-authority": "^0.4.0",
     "clsx": "^1.2.1",
     "csstype": "^3.0.10",
     "formik": "^2.2.9",
