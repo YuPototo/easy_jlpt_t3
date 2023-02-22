@@ -1,3 +1,4 @@
+import { SectionLayout } from "./components/SectionLayout";
 import {
   changeBigQuestionBody,
   changeBigQuestionExplanation,
@@ -16,25 +17,30 @@ export const Editor: React.FC = () => {
   return (
     <div>
       {/* --- 大题题干 --- */}
-      <PartEditor
-        title="大题题干"
-        content={body}
-        onAdd={() => dispatch({ type: "bigQuestionBodyAdded" })}
-        onRemove={() => dispatch({ type: "bigQuestionBodyRemoved" })}
-        onChange={(content) => dispatch(changeBigQuestionBody(content))}
-      />
+      <SectionLayout title="大题题干">
+        <PartEditor
+          content={body}
+          onAdd={() => dispatch({ type: "bigQuestionBodyAdded" })}
+          onRemove={() => dispatch({ type: "bigQuestionBodyRemoved" })}
+          onChange={(content) => dispatch(changeBigQuestionBody(content))}
+        />
+      </SectionLayout>
 
+      {/* 小题 */}
       <SmallQuestions />
 
       {/* --- 大题解析 --- */}
-      <PartEditor
-        title="解析"
-        content={explanation}
-        onAdd={() => dispatch({ type: "bigQuestionExplanationAdded" })}
-        onRemove={() => dispatch({ type: "bigQuestionExplanationRemoved" })}
-        onChange={(content) => dispatch(changeBigQuestionExplanation(content))}
-        allowFiller={false}
-      />
+      <SectionLayout title="大题解析">
+        <PartEditor
+          content={explanation}
+          onAdd={() => dispatch({ type: "bigQuestionExplanationAdded" })}
+          onRemove={() => dispatch({ type: "bigQuestionExplanationRemoved" })}
+          onChange={(content) =>
+            dispatch(changeBigQuestionExplanation(content))
+          }
+          allowFiller={false}
+        />
+      </SectionLayout>
     </div>
   );
 };

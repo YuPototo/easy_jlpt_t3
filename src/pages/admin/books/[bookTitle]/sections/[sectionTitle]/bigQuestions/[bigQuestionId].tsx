@@ -3,7 +3,7 @@
  */
 import type { NextPage } from "next";
 import toast from "react-hot-toast";
-import { EditorWrapper } from "@/components/BigQuestionEditor/NewEditoWrapper";
+import { EditorWrapper } from "@/components/BigQuestionEditor/EditoWrapper";
 import { useBigQuestionPath } from "@/hooks/usePath";
 import { api } from "@/utils/api";
 import type { BigQuestionType } from "@/types/bigQuestion";

@@ -12,7 +12,8 @@ export const Operator: React.FC<Props> = ({ mode, onToggleMode, onSubmit }) => {
   const editor = useBigQuestionEditor();
 
   const handleSubmit = () => {
-    onSubmit(editor.data);
+    // todo: remove any
+    onSubmit(editor.data as BigQuestionType);
   };
 
   return (

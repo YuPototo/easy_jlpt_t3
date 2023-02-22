@@ -16,6 +16,8 @@ import Options from "./Options";
 import uuid from "react-uuid";
 import { Divider } from "../ui/Divider";
 import { Button } from "../ui/Button";
+import { SectionLayout } from "./components/SectionLayout";
+import { PartLayout } from "./components/PartLayout";
 
 export const SmallQuestions: React.FC = () => {
   const editor = useBigQuestionEditor();
@@ -26,11 +28,7 @@ export const SmallQuestions: React.FC = () => {
   return (
     <>
       {smallQuestions.map((smallQuestion, questionIndex) => (
-        <div className="my-10 rounded bg-gray-50 p-4" key={uuid()}>
-          <div className="mb-4 text-lg font-bold text-green-800">
-            第 {questionIndex + 1} 小题
-          </div>
-
+        <SectionLayout title={`第 ${questionIndex + 1} 小题`} key={uuid()}>
           <Button
             intent="secondary"
             outline
@@ -39,21 +37,21 @@ export const SmallQuestions: React.FC = () => {
             移除小题
           </Button>
 
-          <PartEditor
-            title="题干"
-            content={smallQuestion.body}
-            onAdd={() => dispatch(addSmallQuestionBody(questionIndex))}
-            onRemove={() => dispatch(removeSmallQuestionBody(questionIndex))}
-            onChange={(content) =>
-              dispatch(
-                changeSmallQuestionBody({
-                  smallQuestionIndex: questionIndex,
-                  content,
-                })
-              )
-            }
-            layout="horizontal"
-          />
+          <PartLayout title="题干">
+            <PartEditor
+              content={smallQuestion.body}
+              onAdd={() => dispatch(addSmallQuestionBody(questionIndex))}
+              onRemove={() => dispatch(removeSmallQuestionBody(questionIndex))}
+              onChange={(content) =>
+                dispatch(
+                  changeSmallQuestionBody({
+                    smallQuestionIndex: questionIndex,
+                    content,
+                  })
+                )
+              }
+            />
+          </PartLayout>
 
           <Divider />
 
@@ -61,25 +59,25 @@ export const SmallQuestions: React.FC = () => {
 
           <Divider />
 
-          <PartEditor
-            title="解析"
-            content={smallQuestion.explanation}
-            onAdd={() => dispatch(addSmallQuestionExplanation(questionIndex))}
-            onRemove={() =>
-              dispatch(removeSmallQuestionExplanation(questionIndex))
-            }
-            onChange={(content) =>
-              dispatch(
-                changeSmallQuestionExplanation({
-                  smallQuestionIndex: questionIndex,
-                  content,
-                })
-              )
-            }
-            allowFiller={false}
-            layout="horizontal"
-          />
-        </div>
+          <PartLayout title="解析">
+            <PartEditor
+              content={smallQuestion.explanation}
+              onAdd={() => dispatch(addSmallQuestionExplanation(questionIndex))}
+              onRemove={() =>
+                dispatch(removeSmallQuestionExplanation(questionIndex))
+              }
+              onChange={(content) =>
+                dispatch(
+                  changeSmallQuestionExplanation({
+                    smallQuestionIndex: questionIndex,
+                    content,
+                  })
+                )
+              }
+              allowFiller={false}
+            />
+          </PartLayout>
+        </SectionLayout>
       ))}
 
       <Button outline onClick={() => dispatch({ type: "smallQuestionAdded" })}>

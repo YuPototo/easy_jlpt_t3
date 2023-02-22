@@ -8,6 +8,7 @@ import {
 } from "./context";
 import uuid from "react-uuid";
 import { Button } from "../ui/Button";
+import { PartLayout } from "./components/PartLayout";
 
 type Props = {
   smallQuestionIndex: number;
@@ -26,11 +27,10 @@ const Options: React.FC<Props> = ({ smallQuestionIndex }) => {
   const options = smallQuestion.options;
 
   return (
-    <div className="flex items-center gap-6 pl-4">
-      <div className="mb-4 text-lg font-bold text-green-800">选项</div>
+    <PartLayout title="选项">
       <div className="flex-grow">
         {options.map((option, optionIndex) => (
-          <div className="my-4 p-2 " key={uuid()}>
+          <div key={uuid()}>
             <PartEditor
               content={option}
               onRemove={() =>
@@ -53,7 +53,7 @@ const Options: React.FC<Props> = ({ smallQuestionIndex }) => {
           添加选项
         </Button>
       </div>
-    </div>
+    </PartLayout>
   );
 };
 
