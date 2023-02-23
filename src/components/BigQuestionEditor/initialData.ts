@@ -2,10 +2,7 @@
 import { createRichText } from "@/lib/renderer/createRichText";
 import { nanoid } from "@/lib/renderer/utils/nanoid";
 import type { PartialBy } from "@/lib/typeUtils/optional";
-import type {
-  BigQuestionInputType,
-  SmallQuestionInputType,
-} from "@/types/bigQuestion";
+import type { BigQuestionInputType, SmallQuestionInputType } from "./schema";
 
 export type InitialSmallQuestion = PartialBy<SmallQuestionInputType, "answer">;
 

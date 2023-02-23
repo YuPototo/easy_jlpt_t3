@@ -204,8 +204,11 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       if (!smallQuestion) {
         throw new Error("Invalid smallQuestionIndex");
       }
-      // todo: remove !
-      smallQuestion.options[optionIndex]!.content = content;
+      const option = smallQuestion.options[optionIndex];
+      if (!option) {
+        throw new Error("Invalid optionIndex");
+      }
+      option.content = content;
       return state;
     }
 

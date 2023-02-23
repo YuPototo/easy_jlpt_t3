@@ -6,7 +6,7 @@ import { EditorWrapper } from "@/components/BigQuestionEditor/EditoWrapper";
 import { useSectionPath } from "@/hooks/usePath";
 import { api } from "@/utils/api";
 import toast from "react-hot-toast";
-import { bigQuestionInputToBigQuestion } from "@/types/bigQuestion";
+import { bigQuestionInputToBigQuestion } from "@/components/BigQuestionEditor/schema";
 
 const AddBigQuestion: NextPage = () => {
   // get section info

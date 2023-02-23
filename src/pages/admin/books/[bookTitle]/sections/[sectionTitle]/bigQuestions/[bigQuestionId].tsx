@@ -6,10 +6,10 @@ import toast from "react-hot-toast";
 import { EditorWrapper } from "@/components/BigQuestionEditor/EditoWrapper";
 import { useBigQuestionPath } from "@/hooks/usePath";
 import { api } from "@/utils/api";
-import type { BigQuestionInputType } from "@/types/bigQuestion";
-import { bigQuestionInputToBigQuestion } from "@/types/bigQuestion";
-import { bigQuestionToBigQuestionInput } from "@/types/bigQuestion";
 import { useMemo } from "react";
+import type { BigQuestionInputType } from "@/components/BigQuestionEditor/schema";
+import { bigQuestionInputToBigQuestion } from "@/components/BigQuestionEditor/schema";
+import { bigQuestionToBigQuestionInput } from "@/components/BigQuestionEditor/schema";
 
 const AddBigQuestion: NextPage = () => {
   // get section info

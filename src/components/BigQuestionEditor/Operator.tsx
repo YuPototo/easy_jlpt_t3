@@ -1,6 +1,6 @@
-import type { BigQuestionInputType } from "../../types/bigQuestion";
 import { Button } from "../ui/Button";
 import { useBigQuestionEditor } from "./context/ContextProvider";
+import type { BigQuestionInputType } from "./schema";
 
 type Props = {
   mode: "edit" | "preview";
