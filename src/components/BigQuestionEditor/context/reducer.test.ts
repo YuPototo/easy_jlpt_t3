@@ -240,13 +240,13 @@ describe("optionRemoved", () => {
     };
     const smallQuestionIndex = 0;
     const smallQuestion = initalState.data.smallQuestions[smallQuestionIndex];
-    expect(smallQuestion?.options).toHaveLength(4);
+    expect(smallQuestion?.options).toHaveLength(3);
 
     const firstOption = smallQuestion?.options[0];
 
     // 下面这个 option 内容是预设的
     const firstOptionContent = createRichText("a");
-    expect(firstOption).toMatch(firstOptionContent);
+    expect(firstOption?.content).toMatch(firstOptionContent);
 
     // then we remove the option
     const finalState = reducer(initalState, {
@@ -256,7 +256,7 @@ describe("optionRemoved", () => {
         optionIndex: 0,
       },
     });
-    expect(finalState.data.smallQuestions[0]?.options).toHaveLength(3);
+    expect(finalState.data.smallQuestions[0]?.options).toHaveLength(2);
   });
 
   it("should not allow to remove when there is no options", () => {
@@ -265,7 +265,7 @@ describe("optionRemoved", () => {
     };
     const smallQuestionIndex = 0;
     const smallQuestion = initalState.data.smallQuestions[smallQuestionIndex];
-    expect(smallQuestion?.options).toHaveLength(4);
+    expect(smallQuestion?.options).toHaveLength(3);
 
     const payload = {
       type: "optionRemoved",
@@ -279,12 +279,11 @@ describe("optionRemoved", () => {
     const state_1 = reducer(initalState, payload);
     const state_2 = reducer(state_1, payload);
     const state_3 = reducer(state_2, payload);
-    const state_4 = reducer(state_3, payload);
 
-    expect(state_4.data.smallQuestions[0]?.options).toHaveLength(0);
+    expect(state_3.data.smallQuestions[0]?.options).toHaveLength(0);
 
     // then we remove the option
-    expect(() => reducer(state_4, payload)).toThrow("已经没有选项可以移除了");
+    expect(() => reducer(state_3, payload)).toThrow("已经没有选项可以移除了");
   });
 
   it("should not allow to remove when the option index is out of range", () => {
@@ -293,19 +292,19 @@ describe("optionRemoved", () => {
     };
     const smallQuestionIndex = 0;
     const smallQuestion = initalState.data.smallQuestions[smallQuestionIndex];
-    expect(smallQuestion?.options).toHaveLength(4);
+    expect(smallQuestion?.options).toHaveLength(3);
 
     const payload = {
       type: "optionRemoved",
       payload: {
         smallQuestionIndex: 0,
-        optionIndex: 5,
+        optionIndex: 4,
       },
     } as const;
 
     // then we remove the option
     expect(() => reducer(initalState, payload)).toThrow(
-      "选项 index 5 大于等于选项数量 4"
+      "选项 index 4 大于等于选项数量 3"
     );
   });
 });

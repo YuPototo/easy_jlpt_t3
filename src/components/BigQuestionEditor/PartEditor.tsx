@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { Button } from "../ui/Button";
 
 type Props = {
-  content?: string | null;
+  initialValue?: string | null;
   onRemove: () => void;
   onChange: (newContent: string) => void;
   onAdd?: () => void; // 有的时候不支持直接添加，比如 option 编辑器
@@ -15,7 +15,7 @@ type Props = {
 };
 
 export const PartEditor: React.FC<Props> = ({
-  content,
+  initialValue,
   onAdd,
   onRemove,
   onChange,
@@ -23,19 +23,20 @@ export const PartEditor: React.FC<Props> = ({
   bgColor = "bg-gray-50",
 }) => {
   const handleClickBtn = () => {
-    if (content) {
+    if (initialValue) {
       onRemove();
     } else {
       onAdd && onAdd();
     }
   };
+
   return (
     <div className={clsx("rounded  p-4", bgColor)}>
       <div className="flex flex-grow items-center gap-6">
-        {content ? (
+        {initialValue ? (
           <div className="flex-grow">
             <SlateEditor
-              initialValue={content}
+              initialValue={initialValue}
               onChange={(value) => onChange(value)}
               allowFiller={allowFiller}
             />
@@ -50,7 +51,7 @@ export const PartEditor: React.FC<Props> = ({
             outline
             onClick={handleClickBtn}
           >
-            {content ? "移除" : "添加"}
+            {initialValue ? "移除" : "添加"}
           </Button>
         </div>
       </div>

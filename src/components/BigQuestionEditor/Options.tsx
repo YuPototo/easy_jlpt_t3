@@ -7,7 +7,6 @@ import {
   useEditorDispatch,
   answerChanged,
 } from "./context";
-import uuid from "react-uuid";
 import { Button } from "../ui/Button";
 import { PartLayout } from "./components/PartLayout";
 import { Check } from "react-bootstrap-icons";
@@ -30,6 +29,7 @@ const Options: React.FC<Props> = ({ smallQuestionIndex }) => {
   const options = smallQuestion.options;
   const answer = smallQuestion.answer;
 
+  console.log(options);
   return (
     <PartLayout title="选项">
       <div className="flex-grow">
@@ -38,7 +38,7 @@ const Options: React.FC<Props> = ({ smallQuestionIndex }) => {
             className={clsx("flex items-center gap-4 pl-2", {
               "bg-green-100": answer === optionIndex,
             })}
-            key={uuid()}
+            key={option.uuid}
           >
             <div
               className={clsx(
@@ -59,7 +59,7 @@ const Options: React.FC<Props> = ({ smallQuestionIndex }) => {
             <div className="flex-grow">
               <PartEditor
                 bgColor={answer === optionIndex ? "bg-green-100" : undefined}
-                content={option}
+                initialValue={option.content}
                 onRemove={() =>
                   dispatch(removeOption({ smallQuestionIndex, optionIndex }))
                 }

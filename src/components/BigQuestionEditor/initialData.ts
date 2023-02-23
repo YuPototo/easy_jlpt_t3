@@ -1,22 +1,38 @@
 // 必须从源文件引入，否则因为 tsx 报错
 import { createRichText } from "@/lib/renderer/createRichText";
+import { nanoid } from "@/lib/renderer/utils/nanoid";
 import type { PartialBy } from "@/lib/typeUtils/optional";
-import type { BigQuestionType, SmallQuestionType } from "@/types/bigQuestion";
+import type {
+  BigQuestionInputType,
+  SmallQuestionInputType,
+} from "@/types/bigQuestion";
 
-export type InitialSmallQuestion = PartialBy<SmallQuestionType, "answer">;
+export type InitialSmallQuestion = PartialBy<SmallQuestionInputType, "answer">;
 
 export const INITIAL_SMALL_QUESTION: InitialSmallQuestion = {
+  uuid: nanoid(),
   body: createRichText("这是小题 body"),
   options: [
-    createRichText("a"),
-    createRichText("b"),
-    createRichText("c"),
-    createRichText("d"),
+    {
+      uuid: nanoid(),
+      content: createRichText("a"),
+    },
+    {
+      uuid: nanoid(),
+      content: createRichText("b"),
+    },
+    {
+      uuid: nanoid(),
+      content: createRichText("c"),
+    },
   ],
   explanation: createRichText("这是小题的 expalantion"),
 };
 
-export type InitialBigQuesiton = Omit<BigQuestionType, "smallQuestions"> & {
+export type InitialBigQuesiton = Omit<
+  BigQuestionInputType,
+  "smallQuestions"
+> & {
   smallQuestions: InitialSmallQuestion[];
 };
 

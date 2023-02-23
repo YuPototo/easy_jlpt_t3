@@ -6,7 +6,10 @@ import toast from "react-hot-toast";
 import { EditorWrapper } from "@/components/BigQuestionEditor/EditoWrapper";
 import { useBigQuestionPath } from "@/hooks/usePath";
 import { api } from "@/utils/api";
-import type { BigQuestionType } from "@/types/bigQuestion";
+import type { BigQuestionInputType } from "@/types/bigQuestion";
+import { bigQuestionInputToBigQuestion } from "@/types/bigQuestion";
+import { bigQuestionToBigQuestionInput } from "@/types/bigQuestion";
+import { useMemo } from "react";
 
 const AddBigQuestion: NextPage = () => {
   // get section info
@@ -30,12 +33,16 @@ const AddBigQuestion: NextPage = () => {
   );
 
   // get big question
-  const { data: bigQuestion } = api.bigQuestion.byId.useQuery(
+  const { data: rawBigQuestion } = api.bigQuestion.byId.useQuery(
     bigQuestionId as string,
     {
       enabled: !!bigQuestionId,
     }
   );
+
+  const bigQuestion = useMemo(() => {
+    return rawBigQuestion && bigQuestionToBigQuestionInput(rawBigQuestion);
+  }, [rawBigQuestion]);
 
   const apiUtils = api.useContext();
 
@@ -53,10 +60,12 @@ const AddBigQuestion: NextPage = () => {
     },
   });
 
-  const handleSubmit = (bigQuestion: BigQuestionType) => {
+  const handleSubmit = (bigQuestionInput: BigQuestionInputType) => {
     if (!bigQuestionId) {
       throw Error("bigQuestionId is undefined");
     }
+
+    const bigQuestion = bigQuestionInputToBigQuestion(bigQuestionInput);
 
     updateBigQuestion.mutate({
       ...bigQuestion,

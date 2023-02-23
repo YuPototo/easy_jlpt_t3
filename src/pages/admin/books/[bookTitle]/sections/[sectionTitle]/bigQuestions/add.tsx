@@ -6,6 +6,7 @@ import { EditorWrapper } from "@/components/BigQuestionEditor/EditoWrapper";
 import { useSectionPath } from "@/hooks/usePath";
 import { api } from "@/utils/api";
 import toast from "react-hot-toast";
+import { bigQuestionInputToBigQuestion } from "@/types/bigQuestion";
 
 const AddBigQuestion: NextPage = () => {
   // get section info
@@ -58,7 +59,8 @@ const AddBigQuestion: NextPage = () => {
 
       <div className="m-4">
         <EditorWrapper
-          onSubmit={(bigQuestion) => {
+          onSubmit={(bigQuestionInput) => {
+            const bigQuestion = bigQuestionInputToBigQuestion(bigQuestionInput);
             addBigQuestion.mutate({
               ...bigQuestion,
               sectionId: section.sectionId,

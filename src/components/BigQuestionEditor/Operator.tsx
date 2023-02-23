@@ -1,19 +1,19 @@
-import type { BigQuestionType } from "../../types/bigQuestion";
+import type { BigQuestionInputType } from "../../types/bigQuestion";
 import { Button } from "../ui/Button";
 import { useBigQuestionEditor } from "./context/ContextProvider";
 
 type Props = {
   mode: "edit" | "preview";
   onToggleMode: () => void;
-  onSubmit: (data: BigQuestionType) => void;
+  onSubmit: (data: BigQuestionInputType) => void;
 };
 
 export const Operator: React.FC<Props> = ({ mode, onToggleMode, onSubmit }) => {
   const editor = useBigQuestionEditor();
 
   const handleSubmit = () => {
-    // todo: remove any
-    onSubmit(editor.data as BigQuestionType);
+    // todo: remove as
+    onSubmit(editor.data as BigQuestionInputType);
   };
 
   return (

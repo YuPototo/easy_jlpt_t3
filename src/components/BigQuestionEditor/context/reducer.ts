@@ -4,6 +4,7 @@ import { createRichText } from "@/lib/renderer/createRichText";
 import { createSmallQuestion } from "../initialData";
 import type { ActionType } from "./actions";
 import type { EditorState } from "./ContextProvider";
+import { nanoid } from "@/lib/renderer/utils/nanoid";
 
 export function reducer(state: EditorState, action: ActionType): EditorState {
   switch (action.type) {
@@ -188,7 +189,10 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       if (!smallQuestion) {
         throw new Error("Invalid smallQuestionIndex");
       }
-      smallQuestion.options.push(createRichText(""));
+      smallQuestion.options.push({
+        uuid: nanoid(),
+        content: createRichText(""),
+      });
       return state;
     }
 
@@ -200,7 +204,8 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       if (!smallQuestion) {
         throw new Error("Invalid smallQuestionIndex");
       }
-      smallQuestion.options[optionIndex] = content;
+      // todo: remove !
+      smallQuestion.options[optionIndex]!.content = content;
       return state;
     }
 

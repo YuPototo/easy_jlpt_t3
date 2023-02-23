@@ -13,7 +13,6 @@ import {
   removeSmallQuestion,
 } from "./context";
 import Options from "./Options";
-import uuid from "react-uuid";
 import { Divider } from "../ui/Divider";
 import { Button } from "../ui/Button";
 import { SectionLayout } from "./components/SectionLayout";
@@ -28,7 +27,10 @@ export const SmallQuestions: React.FC = () => {
   return (
     <>
       {smallQuestions.map((smallQuestion, questionIndex) => (
-        <SectionLayout title={`第 ${questionIndex + 1} 小题`} key={uuid()}>
+        <SectionLayout
+          title={`第 ${questionIndex + 1} 小题`}
+          key={smallQuestion.uuid}
+        >
           <Button
             intent="secondary"
             outline
@@ -39,7 +41,7 @@ export const SmallQuestions: React.FC = () => {
 
           <PartLayout title="题干">
             <PartEditor
-              content={smallQuestion.body}
+              initialValue={smallQuestion.body}
               onAdd={() => dispatch(addSmallQuestionBody(questionIndex))}
               onRemove={() => dispatch(removeSmallQuestionBody(questionIndex))}
               onChange={(content) =>
@@ -61,7 +63,7 @@ export const SmallQuestions: React.FC = () => {
 
           <PartLayout title="解析">
             <PartEditor
-              content={smallQuestion.explanation}
+              initialValue={smallQuestion.explanation}
               onAdd={() => dispatch(addSmallQuestionExplanation(questionIndex))}
               onRemove={() =>
                 dispatch(removeSmallQuestionExplanation(questionIndex))

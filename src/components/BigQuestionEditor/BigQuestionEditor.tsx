@@ -19,7 +19,7 @@ export const Editor: React.FC = () => {
       {/* --- 大题题干 --- */}
       <SectionLayout title="大题题干">
         <PartEditor
-          content={body}
+          initialValue={body}
           onAdd={() => dispatch({ type: "bigQuestionBodyAdded" })}
           onRemove={() => dispatch({ type: "bigQuestionBodyRemoved" })}
           onChange={(content) => dispatch(changeBigQuestionBody(content))}
@@ -32,7 +32,7 @@ export const Editor: React.FC = () => {
       {/* --- 大题解析 --- */}
       <SectionLayout title="大题解析">
         <PartEditor
-          content={explanation}
+          initialValue={explanation}
           onAdd={() => dispatch({ type: "bigQuestionExplanationAdded" })}
           onRemove={() => dispatch({ type: "bigQuestionExplanationRemoved" })}
           onChange={(content) =>

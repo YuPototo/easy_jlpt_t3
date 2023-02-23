@@ -1,13 +1,21 @@
 import { useBigQuestionEditor } from "./context/ContextProvider";
 import { BigQuestion } from "../BigQuestion";
-import { BigQuestionSchema } from "@/types/bigQuestion";
+import type { BigQuestionInputType } from "@/types/bigQuestion";
+import {
+  bigQuestionInputToBigQuestion,
+  BigQuestionSchema,
+} from "@/types/bigQuestion";
 import { fromZodError } from "zod-validation-error";
 
 export const Previewer: React.FC = () => {
   const editor = useBigQuestionEditor();
   const data = editor.data;
 
-  const parseResult = BigQuestionSchema.safeParse(data);
+  const bigQuestion = bigQuestionInputToBigQuestion(
+    data as BigQuestionInputType
+  );
+
+  const parseResult = BigQuestionSchema.safeParse(bigQuestion);
 
   return (
     <div>

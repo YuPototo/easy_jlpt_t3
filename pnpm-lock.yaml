@@ -38,7 +38,6 @@ specifiers:
   react-bootstrap-icons: ^1.10.2
   react-dom: 18.2.0
   react-hot-toast: ^2.4.0
-  react-uuid: ^2.0.0
   slate: ^0.90.0
   slate-react: ^0.90.0
   superjson: 1.9.1
@@ -71,7 +70,6 @@ dependencies:
   react-bootstrap-icons: registry.npmmirror.com/react-bootstrap-icons/1.10.2_react@18.2.0
   react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
   react-hot-toast: registry.npmmirror.com/react-hot-toast/2.4.0_owo25xnefcwdq3zjgtohz6dbju
-  react-uuid: registry.npmmirror.com/react-uuid/2.0.0
   slate: registry.npmmirror.com/slate/0.90.0
   slate-react: registry.npmmirror.com/slate-react/0.90.0_vfkxdgngtm5gosdcaawdsu5ur4
   superjson: registry.npmmirror.com/superjson/1.9.1
@@ -3688,12 +3686,6 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: registry.npmmirror.com/react/18.2.0
-    dev: false
-
-  registry.npmmirror.com/react-uuid/2.0.0:
-    resolution: {integrity: sha512-FNUH/8WR/FEtx0Bu6gmt1eONfc413hhvrEXFWUSFGvznUhI4dYoVZA09p7JHoTpnM4WC2D/bG2YSxGKXF4oVLg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-uuid/-/react-uuid-2.0.0.tgz}
-    name: react-uuid
-    version: 2.0.0
     dev: false
 
   registry.npmmirror.com/react/18.2.0:
