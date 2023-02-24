@@ -3,6 +3,7 @@ import { createContext, useContext } from "react";
 export type BigQuestionContextType = {
   userAnswers: (number | null)[];
   optionPicked: (smallQuestionIndex: number, optionPicked: number) => void;
+  giveUp: () => void; // 直接展示答案
 };
 
 export const BigQuestionContext = createContext<BigQuestionContextType | null>(

@@ -49,6 +49,7 @@ const useOptionContext = ({
   return { isPicked, isDone, optionPicked: context.optionPicked };
 };
 
+// todo: refactor this function
 function backgroundColor({
   isDone,
   isAnswer,
@@ -58,17 +59,21 @@ function backgroundColor({
   isAnswer: boolean;
   isPicked: boolean;
 }) {
-  // not picked option
-  if (!isPicked) return "bg-gray-100";
-
-  // picked but not done
-  if (!isDone) return "bg-gray-100 ring-2 ring-blue";
-
-  if (isAnswer) {
-    // picked, done and right
-    return "bg-green-200";
+  if (!isDone) {
+    if (isPicked) {
+      return "bg-gray-100 ring-2 ring-blue";
+    } else {
+      return "bg-gray-100";
+    }
   } else {
-    // picked, done and wrong
-    return "bg-red-200";
+    if (isAnswer) {
+      return "bg-green-200";
+    } else {
+      if (isPicked) {
+        return "bg-red-200";
+      } else {
+        return "bg-gray-100";
+      }
+    }
   }
 }
