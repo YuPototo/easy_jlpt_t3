@@ -2,10 +2,11 @@
  * 添加题目的页面
  */
 import type { NextPage } from "next";
-import { EditorWrapper } from "@/components/BigQuestionEditor/NewEditoWrapper";
+import { EditorWrapper } from "@/components/BigQuestionEditor/EditoWrapper";
 import { useSectionPath } from "@/hooks/usePath";
 import { api } from "@/utils/api";
 import toast from "react-hot-toast";
+import { bigQuestionInputToBigQuestion } from "@/components/BigQuestionEditor/schema";
 
 const AddBigQuestion: NextPage = () => {
   // get section info
@@ -48,8 +49,8 @@ const AddBigQuestion: NextPage = () => {
   }
 
   return (
-    <main>
-      <h1 className="mb-4">添加题目</h1>
+    <main className="min-h-screebg-[#f3f4f6] py-8 sm:px-6 lg:px-8">
+      <h1 className="mb-4 text-lg">添加题目</h1>
 
       <div>
         <div>Book: {book?.title}</div>
@@ -58,7 +59,8 @@ const AddBigQuestion: NextPage = () => {
 
       <div className="m-4">
         <EditorWrapper
-          onSubmit={(bigQuestion) => {
+          onSubmit={(bigQuestionInput) => {
+            const bigQuestion = bigQuestionInputToBigQuestion(bigQuestionInput);
             addBigQuestion.mutate({
               ...bigQuestion,
               sectionId: section.sectionId,

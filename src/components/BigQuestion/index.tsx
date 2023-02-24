@@ -1,17 +1,10 @@
-import { createContext, useState } from "react";
+import { useState } from "react";
 import type { BigQuestionType } from "@/types/bigQuestion";
 import { MainBody } from "./MainBody";
 import { MainExplanation } from "./MainExpalanation";
 import SmallQuestion from "./SmallQuestion";
-
-type BigQuestionContextType = {
-  userAnswers: (number | null)[];
-  optionPicked: (smallQuestionIndex: number, optionPicked: number) => void;
-};
-
-export const BigQuestionContext = createContext<BigQuestionContextType | null>(
-  null
-);
+import type { BigQuestionContextType } from "./context";
+import { BigQuestionContext } from "./context";
 
 type Props = {
   data: BigQuestionType;
@@ -40,21 +33,23 @@ export const BigQuestion: React.FC<Props> = ({ data, onDone }) => {
   };
 
   return (
-    <BigQuestionContext.Provider
-      value={{
-        ...bigQuestionState,
-        optionPicked: handleOptionPicked,
-      }}
-    >
-      {body ? <MainBody content={body} /> : <></>}
-      {smallQuestions.map((smallQuestion, index) => (
-        <SmallQuestion
-          data={smallQuestion}
-          key={index}
-          smallQuestionIndex={index}
-        />
-      ))}
-      {explanation ? <MainExplanation content={explanation} /> : <></>}
-    </BigQuestionContext.Provider>
+    <div className="bg-gray-50 p-4">
+      <BigQuestionContext.Provider
+        value={{
+          ...bigQuestionState,
+          optionPicked: handleOptionPicked,
+        }}
+      >
+        {body ? <MainBody content={body} /> : <></>}
+        {smallQuestions.map((smallQuestion, index) => (
+          <SmallQuestion
+            data={smallQuestion}
+            key={index}
+            smallQuestionIndex={index}
+          />
+        ))}
+        {explanation ? <MainExplanation content={explanation} /> : <></>}
+      </BigQuestionContext.Provider>
+    </div>
   );
 };

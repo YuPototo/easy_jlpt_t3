@@ -3,11 +3,11 @@ import { ContextProvider } from "./context/ContextProvider";
 import { Editor } from "./BigQuestionEditor";
 import { Operator } from "./Operator";
 import { Previewer } from "./Previewer";
-import type { BigQuestionType } from "@/types/bigQuestion";
+import type { BigQuestionInputType } from "./schema";
 
 type Props = {
-  initialData?: BigQuestionType;
-  onSubmit: (bigQuestion: BigQuestionType) => void;
+  initialData?: BigQuestionInputType;
+  onSubmit: (bigQuestion: BigQuestionInputType) => void;
 };
 
 export const EditorWrapper: React.FC<Props> = ({ initialData, onSubmit }) => {

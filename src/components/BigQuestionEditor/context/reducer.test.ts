@@ -1,6 +1,14 @@
 import { createRichText } from "@/lib/renderer/createRichText";
 import { describe, expect, it } from "vitest";
 import { createBigQuestion } from "../initialData";
+import {
+  addSmallQuestionBody,
+  changeBigQuestionBody,
+  changeBigQuestionExplanation,
+  changeSmallQuestionBody,
+  removeOption,
+  removeSmallQuestionBody,
+} from "./actions";
 import { reducer } from "./reducer";
 
 describe("action: bigQuestionBodyAdded", () => {
@@ -126,10 +134,7 @@ describe("action: bigQuestionBodyChanged", () => {
     expect(stateAfterAdd.data.body).toBeDefined();
 
     // then we change the big question body
-    const finalState = reducer(stateAfterAdd, {
-      type: "bigQuestionBodyChanged",
-      payload: "hello",
-    });
+    const finalState = reducer(stateAfterAdd, changeBigQuestionBody("hello"));
 
     expect(finalState.data.body).toBeDefined();
     expect(finalState.data.body).toEqual("hello");
@@ -143,12 +148,9 @@ describe("action: bigQuestionBodyChanged", () => {
     expect(initalState.data.body).toBeUndefined();
 
     // then we change the big question body
-    expect(() =>
-      reducer(initalState, {
-        type: "bigQuestionBodyChanged",
-        payload: "hello",
-      })
-    ).toThrow("bigQuestionBody 不存在，只能修改已存在的 bigQuestionBody");
+    expect(() => reducer(initalState, changeBigQuestionBody("hello"))).toThrow(
+      "bigQuestionBody 不存在，只能修改已存在的 bigQuestionBody"
+    );
   });
 });
 
@@ -205,10 +207,10 @@ describe("action: bigQuestionExplanationChanged", () => {
     expect(stateAfterAdd.data.explanation).toBeDefined();
 
     // then we change the big question explanation
-    const finalState = reducer(stateAfterAdd, {
-      type: "bigQuestionExplanationChanged",
-      payload: "hello",
-    });
+    const finalState = reducer(
+      stateAfterAdd,
+      changeBigQuestionExplanation("hello")
+    );
     expect(finalState.data.explanation).toBeDefined();
     expect(finalState.data.explanation).toEqual("hello");
   });
@@ -222,10 +224,7 @@ describe("action: bigQuestionExplanationChanged", () => {
 
     // then we change the big question explanation
     expect(() =>
-      reducer(initalState, {
-        type: "bigQuestionExplanationChanged",
-        payload: "hello",
-      })
+      reducer(initalState, changeBigQuestionExplanation("hello"))
     ).toThrow(
       "bigQuestionExplanation 不存在，只能修改已存在的 bigQuestionExplanation"
     );
@@ -240,23 +239,23 @@ describe("optionRemoved", () => {
     };
     const smallQuestionIndex = 0;
     const smallQuestion = initalState.data.smallQuestions[smallQuestionIndex];
-    expect(smallQuestion?.options).toHaveLength(4);
+    expect(smallQuestion?.options).toHaveLength(3);
 
     const firstOption = smallQuestion?.options[0];
 
     // 下面这个 option 内容是预设的
     const firstOptionContent = createRichText("a");
-    expect(firstOption).toMatch(firstOptionContent);
+    expect(firstOption?.content).toMatch(firstOptionContent);
 
-    // then we remove the option
-    const finalState = reducer(initalState, {
-      type: "optionRemoved",
-      payload: {
+    const finalState = reducer(
+      initalState,
+      removeOption({
         smallQuestionIndex: 0,
         optionIndex: 0,
-      },
-    });
-    expect(finalState.data.smallQuestions[0]?.options).toHaveLength(3);
+      })
+    );
+
+    expect(finalState.data.smallQuestions[0]?.options).toHaveLength(2);
   });
 
   it("should not allow to remove when there is no options", () => {
@@ -265,26 +264,22 @@ describe("optionRemoved", () => {
     };
     const smallQuestionIndex = 0;
     const smallQuestion = initalState.data.smallQuestions[smallQuestionIndex];
-    expect(smallQuestion?.options).toHaveLength(4);
+    expect(smallQuestion?.options).toHaveLength(3);
 
-    const payload = {
-      type: "optionRemoved",
-      payload: {
-        smallQuestionIndex: 0,
-        optionIndex: 0,
-      },
-    } as const;
+    const payload = removeOption({
+      smallQuestionIndex: 0,
+      optionIndex: 0,
+    });
 
     // then we remove 4 options
     const state_1 = reducer(initalState, payload);
     const state_2 = reducer(state_1, payload);
     const state_3 = reducer(state_2, payload);
-    const state_4 = reducer(state_3, payload);
 
-    expect(state_4.data.smallQuestions[0]?.options).toHaveLength(0);
+    expect(state_3.data.smallQuestions[0]?.options).toHaveLength(0);
 
     // then we remove the option
-    expect(() => reducer(state_4, payload)).toThrow("已经没有选项可以移除了");
+    expect(() => reducer(state_3, payload)).toThrow("已经没有选项可以移除了");
   });
 
   it("should not allow to remove when the option index is out of range", () => {
@@ -293,19 +288,16 @@ describe("optionRemoved", () => {
     };
     const smallQuestionIndex = 0;
     const smallQuestion = initalState.data.smallQuestions[smallQuestionIndex];
-    expect(smallQuestion?.options).toHaveLength(4);
+    expect(smallQuestion?.options).toHaveLength(3);
 
-    const payload = {
-      type: "optionRemoved",
-      payload: {
-        smallQuestionIndex: 0,
-        optionIndex: 5,
-      },
-    } as const;
+    const payload = removeOption({
+      smallQuestionIndex: 0,
+      optionIndex: 4,
+    });
 
     // then we remove the option
     expect(() => reducer(initalState, payload)).toThrow(
-      "选项 index 5 大于等于选项数量 4"
+      "选项 index 4 大于等于选项数量 3"
     );
   });
 });
@@ -321,17 +313,11 @@ describe("smallQuestionBodyAdded", () => {
     expect(smallQuestion?.body).toBeDefined();
 
     // then we remove the small question body
-    const stateAfterRemove = reducer(initalState, {
-      type: "smallQuestionBodyRemoved",
-      payload: 0,
-    });
+    const stateAfterRemove = reducer(initalState, removeSmallQuestionBody(0));
     expect(stateAfterRemove.data.smallQuestions[0]?.body).toBeUndefined();
 
     // then we add the small question body
-    const finalState = reducer(stateAfterRemove, {
-      type: "smallQuestionBodyAdded",
-      payload: 0,
-    });
+    const finalState = reducer(stateAfterRemove, addSmallQuestionBody(0));
     expect(finalState.data.smallQuestions[0]?.body).toBeDefined();
   });
 
@@ -344,12 +330,9 @@ describe("smallQuestionBodyAdded", () => {
     expect(smallQuestion).toBeDefined();
     expect(smallQuestion?.body).toBeDefined();
 
-    expect(() =>
-      reducer(initalState, {
-        type: "smallQuestionBodyAdded",
-        payload: 0,
-      })
-    ).toThrow("smallQuestionBody 已存在，不允许再添加");
+    expect(() => reducer(initalState, addSmallQuestionBody(0))).toThrow(
+      "smallQuestionBody 已存在，不允许再添加"
+    );
   });
 });
 
@@ -364,10 +347,7 @@ describe("smallQuestionBodyRemoved", () => {
     expect(smallQuestion?.body).toBeDefined();
 
     // then we remove the small question body
-    const finalState = reducer(initalState, {
-      type: "smallQuestionBodyRemoved",
-      payload: 0,
-    });
+    const finalState = reducer(initalState, removeSmallQuestionBody(0));
     expect(finalState.data.smallQuestions[0]?.body).toBeUndefined();
   });
 
@@ -381,17 +361,35 @@ describe("smallQuestionBodyRemoved", () => {
     expect(smallQuestion?.body).toBeDefined();
 
     // then we remove
-    const stateAfterRemove = reducer(initalState, {
-      type: "smallQuestionBodyRemoved",
-      payload: 0,
-    });
+    const stateAfterRemove = reducer(initalState, removeSmallQuestionBody(0));
     expect(stateAfterRemove.data.smallQuestions[0]?.body).toBeUndefined();
 
-    expect(() =>
-      reducer(stateAfterRemove, {
-        type: "smallQuestionBodyRemoved",
-        payload: 0,
+    expect(() => reducer(stateAfterRemove, removeSmallQuestionBody(0))).toThrow(
+      "smallQuestionBody 不存在，只能删除已存在的 smallQuestionBody"
+    );
+  });
+});
+
+describe("smallQuestionBodyChanged", () => {
+  it("should change small question body", () => {
+    // first we create a initial state
+    const initalState = {
+      data: createBigQuestion(),
+    };
+    const smallQuestion = initalState.data.smallQuestions[0];
+    expect(smallQuestion).toBeDefined();
+    expect(smallQuestion?.body).toBeDefined();
+
+    // then we change it
+    const finalState = reducer(
+      initalState,
+      changeSmallQuestionBody({
+        smallQuestionIndex: 0,
+        content: "hello",
       })
-    ).toThrow("smallQuestionBody 不存在，只能删除已存在的 smallQuestionBody");
+    );
+
+    expect(finalState.data.smallQuestions[0]?.body).toBeDefined();
+    expect(finalState.data.smallQuestions[0]?.body).toEqual("hello");
   });
 });

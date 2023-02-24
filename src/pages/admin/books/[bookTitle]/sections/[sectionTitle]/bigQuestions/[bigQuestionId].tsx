@@ -3,10 +3,13 @@
  */
 import type { NextPage } from "next";
 import toast from "react-hot-toast";
-import { EditorWrapper } from "@/components/BigQuestionEditor/NewEditoWrapper";
+import { EditorWrapper } from "@/components/BigQuestionEditor/EditoWrapper";
 import { useBigQuestionPath } from "@/hooks/usePath";
 import { api } from "@/utils/api";
-import type { BigQuestionType } from "@/types/bigQuestion";
+import { useMemo } from "react";
+import type { BigQuestionInputType } from "@/components/BigQuestionEditor/schema";
+import { bigQuestionInputToBigQuestion } from "@/components/BigQuestionEditor/schema";
+import { bigQuestionToBigQuestionInput } from "@/components/BigQuestionEditor/schema";
 
 const AddBigQuestion: NextPage = () => {
   // get section info
@@ -30,12 +33,16 @@ const AddBigQuestion: NextPage = () => {
   );
 
   // get big question
-  const { data: bigQuestion } = api.bigQuestion.byId.useQuery(
+  const { data: rawBigQuestion } = api.bigQuestion.byId.useQuery(
     bigQuestionId as string,
     {
       enabled: !!bigQuestionId,
     }
   );
+
+  const bigQuestion = useMemo(() => {
+    return rawBigQuestion && bigQuestionToBigQuestionInput(rawBigQuestion);
+  }, [rawBigQuestion]);
 
   const apiUtils = api.useContext();
 
@@ -53,10 +60,12 @@ const AddBigQuestion: NextPage = () => {
     },
   });
 
-  const handleSubmit = (bigQuestion: BigQuestionType) => {
+  const handleSubmit = (bigQuestionInput: BigQuestionInputType) => {
     if (!bigQuestionId) {
       throw Error("bigQuestionId is undefined");
     }
+
+    const bigQuestion = bigQuestionInputToBigQuestion(bigQuestionInput);
 
     updateBigQuestion.mutate({
       ...bigQuestion,
@@ -69,10 +78,10 @@ const AddBigQuestion: NextPage = () => {
   }
 
   return (
-    <main>
-      <h1 className="mb-4">修改题目</h1>
+    <main className="min-h-scree bg-gray-900 py-8 sm:px-6 lg:px-8">
+      <h1 className="mb-4 text-lg text-gray-50">修改题目</h1>
 
-      <div>
+      <div className="text-gray-50">
         <div>Book: {book?.title}</div>
         <div>Section: {section?.sectionTitle}</div>
       </div>

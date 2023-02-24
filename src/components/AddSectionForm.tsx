@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { api } from "../utils/api";
+import { Button } from "./ui/Button";
 
 const SectionSchema = z.object({
   title: z.string().min(1).max(30),
@@ -51,9 +52,9 @@ export const AddSectionForm: React.FC<{
           <div>
             <label
               htmlFor="title"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-50"
             >
-              Title
+              Title 标题
             </label>
             <div className="my-1">
               <input
@@ -72,13 +73,9 @@ export const AddSectionForm: React.FC<{
           </div>
 
           <div className="mx-auto">
-            <button
-              className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              type="submit"
-              disabled={isSubmitting}
-            >
-              添加 Section
-            </button>
+            <Button type="submit" disabled={isSubmitting}>
+              提交
+            </Button>
           </div>
         </Form>
       )}

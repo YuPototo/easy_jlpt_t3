@@ -18,6 +18,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.47.1
   '@typescript-eslint/parser': ^5.47.1
   autoprefixer: ^10.4.7
+  class-variance-authority: ^0.4.0
   clsx: ^1.2.1
   csstype: ^3.0.10
   eslint: ^8.30.0
@@ -34,9 +35,9 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.2.1
   prisma: ^4.9.0
   react: 18.2.0
+  react-bootstrap-icons: ^1.10.2
   react-dom: 18.2.0
   react-hot-toast: ^2.4.0
-  react-uuid: ^2.0.0
   slate: ^0.90.0
   slate-react: ^0.90.0
   superjson: 1.9.1
@@ -46,6 +47,7 @@ specifiers:
   vitest: ^0.28.5
   zod: ^3.20.2
   zod-formik-adapter: ^1.2.0
+  zod-validation-error: ^0.3.1
 
 dependencies:
   '@prisma/client': registry.npmmirror.com/@prisma/client/4.10.1_prisma@4.10.1
@@ -54,6 +56,7 @@ dependencies:
   '@trpc/next': registry.npmmirror.com/@trpc/next/10.11.0_rid2hrxunbm3ffp2k2uj3yfmiq
   '@trpc/react-query': registry.npmmirror.com/@trpc/react-query/10.11.0_cpeqqrckfgr33xypfmr4g7wgmq
   '@trpc/server': registry.npmmirror.com/@trpc/server/10.11.0
+  class-variance-authority: registry.npmmirror.com/class-variance-authority/0.4.0_typescript@4.9.5
   clsx: registry.npmmirror.com/clsx/1.2.1
   csstype: registry.npmmirror.com/csstype/3.1.1
   formik: registry.npmmirror.com/formik/2.2.9_react@18.2.0
@@ -64,15 +67,16 @@ dependencies:
   lodash: registry.npmmirror.com/lodash/4.17.21
   next: registry.npmmirror.com/next/13.1.6_biqbaboplfbrettd7655fr4n2y
   react: registry.npmmirror.com/react/18.2.0
+  react-bootstrap-icons: registry.npmmirror.com/react-bootstrap-icons/1.10.2_react@18.2.0
   react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
   react-hot-toast: registry.npmmirror.com/react-hot-toast/2.4.0_owo25xnefcwdq3zjgtohz6dbju
-  react-uuid: registry.npmmirror.com/react-uuid/2.0.0
   slate: registry.npmmirror.com/slate/0.90.0
   slate-react: registry.npmmirror.com/slate-react/0.90.0_vfkxdgngtm5gosdcaawdsu5ur4
   superjson: registry.npmmirror.com/superjson/1.9.1
   use-immer: registry.npmmirror.com/use-immer/0.8.1_immer@9.0.19+react@18.2.0
   zod: registry.npmmirror.com/zod/3.20.6
   zod-formik-adapter: registry.npmmirror.com/zod-formik-adapter/1.2.0_formik@2.2.9+zod@3.20.6
+  zod-validation-error: registry.npmmirror.com/zod-validation-error/0.3.1_zod@3.20.6
 
 devDependencies:
   '@faker-js/faker': registry.npmmirror.com/@faker-js/faker/7.6.0
@@ -1390,6 +1394,20 @@ packages:
     optionalDependencies:
       fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: true
+
+  registry.npmmirror.com/class-variance-authority/0.4.0_typescript@4.9.5:
+    resolution: {integrity: sha512-74enNN8O9ZNieycac/y8FxqgyzZhZbxmCitAtAeUrLPlxjSd5zA7LfpprmxEcOmQBnaGs5hYhiSGnJ0mqrtBLQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/class-variance-authority/-/class-variance-authority-0.4.0.tgz}
+    id: registry.npmmirror.com/class-variance-authority/0.4.0
+    name: class-variance-authority
+    version: 0.4.0
+    peerDependencies:
+      typescript: '>= 4.5.5 < 5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: registry.npmmirror.com/typescript/4.9.5
+    dev: false
 
   registry.npmmirror.com/cli-truncate/3.1.0:
     resolution: {integrity: sha512-wfOBkjXteqSnI59oPcJkcPl/ZmwvMMOj340qUIY1SKZCv0B9Cf4D4fAucRkIKQmsIuYK3x1rrgU7MeGRruiuiA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/cli-truncate/-/cli-truncate-3.1.0.tgz}
@@ -3152,7 +3170,6 @@ packages:
     name: object-assign
     version: 4.1.1
     engines: {node: '>=0.10.0'}
-    dev: true
 
   registry.npmmirror.com/object-hash/3.0.0:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/object-hash/-/object-hash-3.0.0.tgz}
@@ -3580,7 +3597,6 @@ packages:
       loose-envify: registry.npmmirror.com/loose-envify/1.4.0
       object-assign: registry.npmmirror.com/object-assign/4.1.1
       react-is: registry.npmmirror.com/react-is/16.13.1
-    dev: true
 
   registry.npmmirror.com/punycode/2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/punycode/-/punycode-2.3.0.tgz}
@@ -3601,6 +3617,18 @@ packages:
     version: 5.1.1
     engines: {node: '>=10'}
     dev: true
+
+  registry.npmmirror.com/react-bootstrap-icons/1.10.2_react@18.2.0:
+    resolution: {integrity: sha512-PC72g6uARdSxZH+ViBbul3FRWKuIhiJajahwt1h0daPBDw789KqpA+x3hrJpSUyQMF0PQ9LfWxu1a0O67bqPeg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-bootstrap-icons/-/react-bootstrap-icons-1.10.2.tgz}
+    id: registry.npmmirror.com/react-bootstrap-icons/1.10.2
+    name: react-bootstrap-icons
+    version: 1.10.2
+    peerDependencies:
+      react: '>=16.8.6'
+    dependencies:
+      prop-types: registry.npmmirror.com/prop-types/15.8.1
+      react: registry.npmmirror.com/react/18.2.0
+    dev: false
 
   registry.npmmirror.com/react-dom/18.2.0_react@18.2.0:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-dom/-/react-dom-18.2.0.tgz}
@@ -3658,12 +3686,6 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: registry.npmmirror.com/react/18.2.0
-    dev: false
-
-  registry.npmmirror.com/react-uuid/2.0.0:
-    resolution: {integrity: sha512-FNUH/8WR/FEtx0Bu6gmt1eONfc413hhvrEXFWUSFGvznUhI4dYoVZA09p7JHoTpnM4WC2D/bG2YSxGKXF4oVLg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-uuid/-/react-uuid-2.0.0.tgz}
-    name: react-uuid
-    version: 2.0.0
     dev: false
 
   registry.npmmirror.com/react/18.2.0:
@@ -4269,7 +4291,6 @@ packages:
     version: 4.9.5
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   registry.npmmirror.com/ufo/1.1.0:
     resolution: {integrity: sha512-LQc2s/ZDMaCN3QLpa+uzHUOQ7SdV0qgv3VBXOolQGXTaaZpIur6PwUclF5nN2hNkiTRcUugXd1zFOW3FLJ135Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ufo/-/ufo-1.1.0.tgz}
@@ -4575,6 +4596,18 @@ packages:
       zod: ^3.14.4
     dependencies:
       formik: registry.npmmirror.com/formik/2.2.9_react@18.2.0
+      zod: registry.npmmirror.com/zod/3.20.6
+    dev: false
+
+  registry.npmmirror.com/zod-validation-error/0.3.1_zod@3.20.6:
+    resolution: {integrity: sha512-3m7VcE4YT3ZdGJoYBZnLt8E1S/r8zPFNDWMc2njaeC7Vxe5FQbgIiwHoerSkli5PgsUyxWQhpFxEAJXkBJvoDg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/zod-validation-error/-/zod-validation-error-0.3.1.tgz}
+    id: registry.npmmirror.com/zod-validation-error/0.3.1
+    name: zod-validation-error
+    version: 0.3.1
+    engines: {node: ^14.17 || >=16.0.0}
+    peerDependencies:
+      zod: ^3.18.0
+    dependencies:
       zod: registry.npmmirror.com/zod/3.20.6
     dev: false
 

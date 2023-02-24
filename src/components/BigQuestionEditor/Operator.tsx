@@ -1,39 +1,31 @@
-import type { BigQuestionType } from "../../types/bigQuestion";
+import { Button } from "../ui/Button";
 import { useBigQuestionEditor } from "./context/ContextProvider";
+import type { BigQuestionInputType } from "./schema";
 
 type Props = {
   mode: "edit" | "preview";
   onToggleMode: () => void;
-  onSubmit: (data: BigQuestionType) => void;
+  onSubmit: (data: BigQuestionInputType) => void;
 };
 
 export const Operator: React.FC<Props> = ({ mode, onToggleMode, onSubmit }) => {
   const editor = useBigQuestionEditor();
 
   const handleSubmit = () => {
-    onSubmit(editor.data);
+    // todo: remove as
+    onSubmit(editor.data as BigQuestionInputType);
   };
 
   return (
     <div className="flex gap-4">
-      <button
-        className="
-        rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700
-    "
-        onClick={onToggleMode}
-      >
+      <Button outline onClick={onToggleMode}>
         {mode === "edit" ? "预览" : "编辑"}
-      </button>
+      </Button>
 
       {mode === "preview" ? (
-        <button
-          className="
-        rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700
-    "
-          onClick={handleSubmit}
-        >
+        <Button intent="primary" onClick={handleSubmit}>
           提交
-        </button>
+        </Button>
       ) : (
         <></>
       )}

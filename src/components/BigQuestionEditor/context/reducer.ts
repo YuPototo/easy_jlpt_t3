@@ -4,6 +4,7 @@ import { createRichText } from "@/lib/renderer/createRichText";
 import { createSmallQuestion } from "../initialData";
 import type { ActionType } from "./actions";
 import type { EditorState } from "./ContextProvider";
+import { nanoid } from "@/lib/renderer/utils/nanoid";
 
 export function reducer(state: EditorState, action: ActionType): EditorState {
   switch (action.type) {
@@ -95,7 +96,7 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       return state;
     }
 
-    // todo: add test case
+    // 修改小题题干
     case "smallQuestionBodyChanged": {
       console.log("action: smallQuestionBodyChanged");
       const { smallQuestionIndex, content } = action.payload;
@@ -188,7 +189,10 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       if (!smallQuestion) {
         throw new Error("Invalid smallQuestionIndex");
       }
-      smallQuestion.options.push(createRichText(""));
+      smallQuestion.options.push({
+        uuid: nanoid(),
+        content: createRichText(""),
+      });
       return state;
     }
 
@@ -200,7 +204,22 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       if (!smallQuestion) {
         throw new Error("Invalid smallQuestionIndex");
       }
-      smallQuestion.options[optionIndex] = content;
+      const option = smallQuestion.options[optionIndex];
+      if (!option) {
+        throw new Error("Invalid optionIndex");
+      }
+      option.content = content;
+      return state;
+    }
+
+    case "answerChanged": {
+      console.log("action: answerChanged");
+      const { smallQuestionIndex, optionIndex } = action.payload;
+      const smallQuestion = state.data.smallQuestions[smallQuestionIndex];
+      if (!smallQuestion) {
+        throw new Error("Invalid smallQuestionIndex");
+      }
+      smallQuestion.answer = optionIndex;
       return state;
     }
 

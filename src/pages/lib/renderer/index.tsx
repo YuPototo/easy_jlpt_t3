@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import RichText from "@/lib/renderer/src/RichText";
+import RichText from "@/lib/renderer/RichText";
 
 const testDataOne = [
   {

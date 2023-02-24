@@ -35,6 +35,7 @@ export default function SlateEditor({
   const [editor] = useState(() => withImage(withReact(createEditor())));
 
   useInlineConfig(editor);
+
   const renderElement = useRenderElement();
   const renderLeaf = useRenderLeaf();
 

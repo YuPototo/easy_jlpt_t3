@@ -1,4 +1,4 @@
-import type { RootNodes } from "../../../../src/lib/renderer/src/schema";
+import type { RootNodes } from "@/lib/renderer/schema";
 
 export function makeParagraph(text: string): string {
   const rawParagraph: RootNodes = [

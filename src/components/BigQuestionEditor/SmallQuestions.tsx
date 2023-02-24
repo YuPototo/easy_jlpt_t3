@@ -13,7 +13,10 @@ import {
   removeSmallQuestion,
 } from "./context";
 import Options from "./Options";
-import uuid from "react-uuid";
+import { Divider } from "../ui/Divider";
+import { Button } from "../ui/Button";
+import { SectionLayout } from "./components/SectionLayout";
+import { PartLayout } from "./components/PartLayout";
 
 export const SmallQuestions: React.FC = () => {
   const editor = useBigQuestionEditor();
@@ -22,60 +25,66 @@ export const SmallQuestions: React.FC = () => {
   const smallQuestions = data?.smallQuestions || [];
 
   return (
-    <div className="my-10">
-      <div>Questions</div>
-
+    <>
       {smallQuestions.map((smallQuestion, questionIndex) => (
-        <div className="my-4 bg-green-50 py-2 px-2" key={uuid()}>
-          <div>第 {questionIndex + 1} 小题</div>
-
-          <button
-            className="bg-red-100 p-2"
+        <SectionLayout
+          title={`第 ${questionIndex + 1} 小题`}
+          key={smallQuestion.uuid}
+        >
+          <Button
+            intent="secondary"
+            outline
             onClick={() => dispatch(removeSmallQuestion(questionIndex))}
           >
             移除小题
-          </button>
+          </Button>
 
-          <PartEditor
-            title="小题题干"
-            content={smallQuestion.body}
-            onAdd={() => dispatch(addSmallQuestionBody(questionIndex))}
-            onRemove={() => dispatch(removeSmallQuestionBody(questionIndex))}
-            onChange={(content) =>
-              dispatch(
-                changeSmallQuestionBody({
-                  smallQuestionIndex: questionIndex,
-                  content,
-                })
-              )
-            }
-          />
+          <PartLayout title="题干">
+            <PartEditor
+              initialValue={smallQuestion.body}
+              onAdd={() => dispatch(addSmallQuestionBody(questionIndex))}
+              onRemove={() => dispatch(removeSmallQuestionBody(questionIndex))}
+              onChange={(content) =>
+                dispatch(
+                  changeSmallQuestionBody({
+                    smallQuestionIndex: questionIndex,
+                    content,
+                  })
+                )
+              }
+            />
+          </PartLayout>
+
+          <Divider />
 
           <Options smallQuestionIndex={questionIndex} />
 
-          <PartEditor
-            title="小题解析"
-            content={smallQuestion.explanation}
-            onAdd={() => dispatch(addSmallQuestionExplanation(questionIndex))}
-            onRemove={() =>
-              dispatch(removeSmallQuestionExplanation(questionIndex))
-            }
-            onChange={(content) =>
-              dispatch(
-                changeSmallQuestionExplanation({
-                  smallQuestionIndex: questionIndex,
-                  content,
-                })
-              )
-            }
-            allowFiller={false}
-          />
-        </div>
+          <Divider />
+
+          <PartLayout title="解析">
+            <PartEditor
+              initialValue={smallQuestion.explanation}
+              onAdd={() => dispatch(addSmallQuestionExplanation(questionIndex))}
+              onRemove={() =>
+                dispatch(removeSmallQuestionExplanation(questionIndex))
+              }
+              onChange={(content) =>
+                dispatch(
+                  changeSmallQuestionExplanation({
+                    smallQuestionIndex: questionIndex,
+                    content,
+                  })
+                )
+              }
+              allowFiller={false}
+            />
+          </PartLayout>
+        </SectionLayout>
       ))}
 
-      <button onClick={() => dispatch({ type: "smallQuestionAdded" })}>
+      <Button outline onClick={() => dispatch({ type: "smallQuestionAdded" })}>
         新增小题
-      </button>
-    </div>
+      </Button>
+    </>
   );
 };
