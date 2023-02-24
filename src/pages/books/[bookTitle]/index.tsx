@@ -68,15 +68,16 @@ const Book: NextPage = () => {
         <div>
           <h1 className="my-4 text-lg">{book.title}</h1>
 
-          <div className="flex flex-col gap-4">
+          <ol className="flex flex-col gap-4">
             {sections?.map((section) => (
-              <SectionCard
-                key={section.id}
-                title={section.title}
-                href={`${currentPath}/sections/${section.titleInUrl}`}
-              />
+              <li key={section.id}>
+                <SectionCard
+                  title={section.title}
+                  href={`${currentPath}/sections/${section.titleInUrl}`}
+                />
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       ) : (
         <div>Not exists</div>
