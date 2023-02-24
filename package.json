@@ -11,6 +11,7 @@
     "lint": "next lint",
     "start": "next start",
     "test": "vitest run",
+    "test:e2e": "playwright test",
     "studio": "prisma studio",
     "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
+    "@playwright/test": "^1.31.1",
     "@types/is-hotkey": "^0.1.7",
     "@types/is-url": "^1.2.30",
     "@types/lodash": "^4.14.191",

@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@faker-js/faker': ^7.6.0
+  '@playwright/test': ^1.31.1
   '@prisma/client': ^4.9.0
   '@tanstack/react-query': ^4.20.0
   '@trpc/client': ^10.9.0
@@ -80,6 +81,7 @@ dependencies:
 
 devDependencies:
   '@faker-js/faker': registry.npmmirror.com/@faker-js/faker/7.6.0
+  '@playwright/test': registry.npmmirror.com/@playwright/test/1.31.1
   '@types/is-hotkey': registry.npmmirror.com/@types/is-hotkey/0.1.7
   '@types/is-url': registry.npmmirror.com/@types/is-url/1.2.30
   '@types/lodash': registry.npmmirror.com/@types/lodash/4.14.191
@@ -611,6 +613,19 @@ packages:
       picocolors: registry.npmmirror.com/picocolors/1.0.0
       tiny-glob: registry.npmmirror.com/tiny-glob/0.2.9
       tslib: registry.npmmirror.com/tslib/2.5.0
+    dev: true
+
+  registry.npmmirror.com/@playwright/test/1.31.1:
+    resolution: {integrity: sha512-IsytVZ+0QLDh1Hj83XatGp/GsI1CDJWbyDaBGbainsh0p2zC7F4toUocqowmjS6sQff2NGT3D9WbDj/3K2CJiA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@playwright/test/-/test-1.31.1.tgz}
+    name: '@playwright/test'
+    version: 1.31.1
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      '@types/node': registry.npmmirror.com/@types/node/18.13.0
+      playwright-core: registry.npmmirror.com/playwright-core/1.31.1
+    optionalDependencies:
+      fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: true
 
   registry.npmmirror.com/@prisma/client/4.10.1_prisma@4.10.1:
@@ -3397,6 +3412,14 @@ packages:
       jsonc-parser: registry.npmmirror.com/jsonc-parser/3.2.0
       mlly: registry.npmmirror.com/mlly/1.1.1
       pathe: registry.npmmirror.com/pathe/1.1.0
+    dev: true
+
+  registry.npmmirror.com/playwright-core/1.31.1:
+    resolution: {integrity: sha512-JTyX4kV3/LXsvpHkLzL2I36aCdml4zeE35x+G5aPc4bkLsiRiQshU5lWeVpHFAuC8xAcbI6FDcw/8z3q2xtJSQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/playwright-core/-/playwright-core-1.31.1.tgz}
+    name: playwright-core
+    version: 1.31.1
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   registry.npmmirror.com/postcss-import/14.1.0_postcss@8.4.21:

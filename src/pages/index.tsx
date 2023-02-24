@@ -31,7 +31,7 @@ const Home: NextPage = () => {
   return (
     <>
       <main className="flex min-h-screen flex-col items-center bg-[#f3f4f6] py-8 sm:px-6 lg:px-8">
-        <div>Easy JLPT</div>
+        <h1>Easy JLPT</h1>
 
         {books ? (
           <div className="my-4 flex flex-col gap-4">

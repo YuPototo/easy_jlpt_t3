@@ -1,0 +1,28 @@
+{
+    "vitest.exclude": [
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/e2e/**",
+        "**/.{idea,git,cache,output,temp}/**"
+    ],
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#9072a8",
+        "activityBar.background": "#9072a8",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#cec1b0",
+        "activityBarBadge.foreground": "#15202b",
+        "commandCenter.border": "#e7e7e799",
+        "sash.hoverBorder": "#9072a8",
+        "statusBar.background": "#77588f",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#9072a8",
+        "statusBarItem.remoteBackground": "#77588f",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#77588f",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#77588f99",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#77588f"
+}
