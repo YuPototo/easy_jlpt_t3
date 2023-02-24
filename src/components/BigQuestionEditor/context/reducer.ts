@@ -96,7 +96,7 @@ export function reducer(state: EditorState, action: ActionType): EditorState {
       return state;
     }
 
-    // todo: add test case
+    // 修改小题题干
     case "smallQuestionBodyChanged": {
       console.log("action: smallQuestionBodyChanged");
       const { smallQuestionIndex, content } = action.payload;
