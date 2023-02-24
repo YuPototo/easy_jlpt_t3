@@ -6,7 +6,7 @@ import { api } from "@/utils/api";
 import { Button } from "@/components/ui/Button";
 
 const SectionPracticePage: NextPage = () => {
-  const [index, setIndex] = useState(0);
+  const [bigQuestionIndex, setBigQuestionIndex] = useState(0);
   const [isDond, setIsDone] = useState(false);
 
   const { bookTitle, sectionTitle, router } = useSectionPath();
@@ -22,7 +22,9 @@ const SectionPracticePage: NextPage = () => {
   );
 
   const bigQuestions = section?.bigQuestions;
-  const bigQuestionId = bigQuestions ? bigQuestions[index] : undefined;
+  const bigQuestionId = bigQuestions
+    ? bigQuestions[bigQuestionIndex]
+    : undefined;
 
   const { data: bigQuestion } = api.bigQuestion.byId.useQuery(
     bigQuestionId as string,
@@ -32,12 +34,14 @@ const SectionPracticePage: NextPage = () => {
   );
 
   const bigQuestionLengths = bigQuestions?.length;
-  const hasNext = bigQuestionLengths ? index + 1 < bigQuestionLengths : false;
+  const hasNext = bigQuestionLengths
+    ? bigQuestionIndex + 1 < bigQuestionLengths
+    : false;
 
   const handleToNext = () => {
     setIsDone(false);
     if (hasNext) {
-      setIndex(index + 1);
+      setBigQuestionIndex(bigQuestionIndex + 1);
     } else {
       if (!bookTitle) {
         // 在这个函数里，应该已经获得了 bookTitle
@@ -60,10 +64,6 @@ const SectionPracticePage: NextPage = () => {
         ) : (
           <></>
         )}
-
-        <Button outline onClick={() => console.log("todo")}>
-          Show Answer
-        </Button>
 
         {isDond ? (
           <Button onClick={handleToNext}>{hasNext ? "Next" : "Finish"}</Button>

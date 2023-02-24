@@ -5,6 +5,7 @@ import { MainExplanation } from "./MainExpalanation";
 import SmallQuestion from "./SmallQuestion";
 import type { BigQuestionContextType } from "./context";
 import { BigQuestionContext } from "./context";
+import { Operator } from "./Operator";
 
 type Props = {
   data: BigQuestionType;
@@ -32,12 +33,24 @@ export const BigQuestion: React.FC<Props> = ({ data, onDone }) => {
     }
   };
 
+  const handleGiveUp = () => {
+    const newUserAnswers = [...bigQuestionState.userAnswers];
+    newUserAnswers.forEach((answer, index) => {
+      if (answer === null) {
+        newUserAnswers[index] = -1;
+      }
+    });
+    setBigQuestionState({ userAnswers: newUserAnswers });
+    onDone();
+  };
+
   return (
     <div className="bg-gray-50 p-4">
       <BigQuestionContext.Provider
         value={{
           ...bigQuestionState,
           optionPicked: handleOptionPicked,
+          giveUp: handleGiveUp,
         }}
       >
         {body ? <MainBody content={body} /> : <></>}
@@ -49,6 +62,8 @@ export const BigQuestion: React.FC<Props> = ({ data, onDone }) => {
           />
         ))}
         {explanation ? <MainExplanation content={explanation} /> : <></>}
+
+        <Operator />
       </BigQuestionContext.Provider>
     </div>
   );
